@@ -136,10 +136,10 @@
 				for(HashMap<String, Object> m : list) {
 			%>
 				<div>
-					<%=(Integer)(m.get("cashNo")) %>
+					<%=(Integer)(m.get("cashNo")) %>번
 					<%=(String)(m.get("cashDate")) %>
-					<%=(Long)(m.get("cashPrice")) %>
-					<%=(Integer)(m.get("categoryNo")) %>
+					\<%=(Long)(m.get("cashPrice")) %>
+					<%=(Integer)(m.get("categoryNo")) %>번
 					<%=(String)(m.get("categoryKind")) %>
 					<%=(String)(m.get("categoryName")) %>
 				</div>	
