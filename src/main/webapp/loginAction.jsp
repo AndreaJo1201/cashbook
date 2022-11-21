@@ -7,7 +7,7 @@
 <%
 	// 1) controller
 	if(session.getAttribute("loginMember") != null) {
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 		return;
 	}
 	

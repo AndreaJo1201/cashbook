@@ -3,7 +3,15 @@
 <%@ page import = "java.sql.*" %>
 
 <%
-
+	if(session.getAttribute("loginEmpNo") != null) {
+		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+		return;
+	}
+	
+	if(request.getParameter("msg") != null) {
+		String msg = request.getParameter("msg");
+		out.println("<script>alert('"+msg+"');</script>");
+	}
 %>
 
 <!DOCTYPE html>

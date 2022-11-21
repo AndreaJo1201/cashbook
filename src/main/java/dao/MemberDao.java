@@ -15,16 +15,23 @@ public class MemberDao {
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberPw());
+		System.out.println("Prepare Statement SQL Query : "+ sql);
+		
 		
 		ResultSet rs = stmt.executeQuery();
+		System.out.println("SQL Query EXECUTE");
 		
 		if(rs.next()) {
 			resultMember.setMemberId(rs.getString("memberId"));
 			resultMember.setMemberName(rs.getString("memberName"));
+			System.out.println("SQL Set");
 		}
 		
+		System.out.println("ResultSet CLOSE");
 		rs.close();
+		System.out.println("Statement CLOSE");
 		stmt.close();
+		System.out.println("DB Connection CLOSE");
 		conn.close();
 		
 		return resultMember;
