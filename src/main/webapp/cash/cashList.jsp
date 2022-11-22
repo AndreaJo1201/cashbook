@@ -19,8 +19,8 @@
 		msg = null;
 	}
 
-	Object objLoginMember = session.getAttribute("loginMember");
-	Member loginMember = (Member) objLoginMember;
+	Member loginMember = (Member)session.getAttribute("loginMember");
+	String memberId = loginMember.getMemberId();
 	
 	//request : 년 + 월
 	int year = 0;
@@ -69,7 +69,7 @@
 	
 	//model 호출 : 일별 cash 목록
 	CashDao cashDao = new CashDao();
-	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMont(year, month+1);
+	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMont(year, month+1, memberId);
 	
 	
 	/*************************************************************************************************************/
@@ -86,8 +86,14 @@
 	<body>
 		<div>
 			<!-- 로그인 정보(세션 -> loginMember 변수) 출력 -->
-			<span><%=request.getParameter("msg") %></span>
 			<span>ID : <%=loginMember.getMemberId() %> / Name : <%=loginMember.getMemberName() %>님 반갑습니다.</span>
+			<div>
+				<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
+								      
+				<%=year%>년 <%=month+1%> 월
+								      
+				<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
+			</div>
 			<span><%=month+1 %>월,<%=year %>년</span>
 		</div>
 		<div>
@@ -115,7 +121,26 @@
 							int date = i-beginBlank;
 							if(date > 0 && date <= lastDate) {
 				%>
-								<%=date %>&nbsp;
+								<div>
+									<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>">
+										<%=date %>
+									</a>
+								</div>
+								<div>
+									<%
+										for(HashMap<String, Object> m : list) {
+											String cashDate = (String)(m.get("cashDate"));
+											if(Integer.parseInt(cashDate.substring(8)) == date) {
+									%>
+												[<%=(String)(m.get("categoryKind")) %>]
+												\<%=(Long)(m.get("cashPrice")) %>
+												<%=(String)(m.get("categoryName")) %>
+												<br>
+									<%
+											}
+										}
+									%>
+								</div>
 				<%
 							}
 				%>
@@ -130,22 +155,7 @@
 				%>
 				</tr>
 			</table>
-		</div>
-		<div>
-			<%
-				for(HashMap<String, Object> m : list) {
-			%>
-				<div>
-					<%=(Integer)(m.get("cashNo")) %>번
-					<%=(String)(m.get("cashDate")) %>
-					\<%=(Long)(m.get("cashPrice")) %>
-					<%=(Integer)(m.get("categoryNo")) %>번
-					<%=(String)(m.get("categoryKind")) %>
-					<%=(String)(m.get("categoryName")) %>
-				</div>	
-			<%
-				}
-			%>
+			<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
 		</div>
 	</body>
 </html>

@@ -5,7 +5,7 @@ import java.util.*;
 import util.DBUtil;
 
 public class CashDao {
-	public ArrayList<HashMap<String, Object>> selectCashListByMont(int year, int month) throws Exception {
+	public ArrayList<HashMap<String, Object>> selectCashListByMont(int year, int month, String memberId) throws Exception {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		
 		DBUtil dbUtil = new DBUtil();
@@ -15,12 +15,13 @@ public class CashDao {
 				+ "FROM cash c\r\n"
 				+ "INNER JOIN category ct\r\n"
 				+ "ON c.category_no = ct.category_no\r\n"
-				+ "WHERE YEAR(c.cash_date) = 2022 AND MONTH(c.cash_date) = 11\r\n"
-				+ "ORDER BY cash_date ASC;";
+				+ "WHERE YEAR(c.cash_date) = ? AND MONTH(c.cash_date) = ? AND c.member_id = ?\r\n"
+				+ "ORDER BY c.cash_date ASC, ct.category_kind ASC;";
+		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, year);
 		stmt.setInt(2, month);
-		
+		stmt.setString(3, memberId);
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
