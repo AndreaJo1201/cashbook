@@ -69,7 +69,7 @@
 	
 	//model 호출 : 일별 cash 목록
 	CashDao cashDao = new CashDao();
-	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMont(year, month+1, memberId);
+	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMont(year, month+1, memberId); // cashDao.java 참조
 	
 	
 	/*************************************************************************************************************/

@@ -9,6 +9,6 @@
 	}
 	
 	String msg = "로그아웃";
-	session.invalidate();
+	session.invalidate(); // session 값 초기화
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp?msg="+URLEncoder.encode(msg,"UTF-8")); 
 %>

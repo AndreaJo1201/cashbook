@@ -5,7 +5,7 @@ import java.util.*;
 import util.DBUtil;
 
 public class CashDateDao {
-	public ArrayList<HashMap<String, Object>> selectCashDateList(int year, int month, String date, String ID) throws Exception {
+	public ArrayList<HashMap<String, Object>> selectCashDateList(int year, int month, String date, String ID) throws Exception { // 확인하려는 연,월,일 그리고 이용자를 통해 상세 내용 저장 후 return
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		
 		DBUtil dbUtil = new DBUtil();

@@ -36,5 +36,6 @@
 			</table>
 			<button type="submit">login</button>
 		</form>
+		<a href="<%=request.getContextPath()%>/insertMemberForm.jsp">회원가입</a>
 	</body>
 </html>
