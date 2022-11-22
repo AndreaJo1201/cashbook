@@ -19,7 +19,7 @@
 	Member loginMember = (Member)session.getAttribute("loginMember"); //session 값 get
 	String memberId = loginMember.getMemberId(); // session에서 memberId 값 할당
 	
-	int cashNo = Integer.parseInt(request.getParameter("a"));
+	int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 	
 	int year = Integer.parseInt(request.getParameter("year"));
 	int month = Integer.parseInt(request.getParameter("month"));
@@ -81,16 +81,16 @@
 				
 				<tr>
 					<td>금액</td>
-					<td><input type="text" name="cashPrice" value=""><%=cashData.getCashMemo() %></td>
+					<td><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>"></td>
 				</tr>
 				
 				<tr>
 					<td>상세 내용</td>
-					<td><textarea name="cashMemo"></textarea></td>
+					<td><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
 				</tr>
 				
-				
 			</table>
+			<button type="submit">업데이트</button>
 		</form>
 	</body>
 </html>

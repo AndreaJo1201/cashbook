@@ -24,10 +24,6 @@
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember"); //session 값 get
 	String memberId = loginMember.getMemberId(); // session에서 memberId 값 할당
-
-	int year = Integer.parseInt(request.getParameter("year"));
-	int month = Integer.parseInt(request.getParameter("month"));
-	int date = Integer.parseInt(request.getParameter("date"));
 	
 	if(request.getParameter("year") == null ||
 		request.getParameter("year").equals("") ||
@@ -38,6 +34,10 @@
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 	}
+	
+	int year = Integer.parseInt(request.getParameter("year"));
+	int month = Integer.parseInt(request.getParameter("month"));
+	int date = Integer.parseInt(request.getParameter("date"));
 	
 	CashDao cashDao = new CashDao();
 	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(memberId, year, month+1, date); //cashDateDao 참조
@@ -88,7 +88,7 @@
 						<td><%=(String)(m.get("categoryName"))%></td>
 						<td>\<%=(Long)(m.get("cashPrice"))%></td>
 						<td><%=(String)(m.get("cashMemo"))%></td>
-						<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo="<%=(Integer)(m.get("cashNo"))%>>수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>">수정</a></td>
 						<td><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>">삭제</a></td>
 						</tr><tr>
 				<%
