@@ -81,6 +81,8 @@
 						} else {
 							resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
 						}
+						int a = (Integer)m.get("cashNo");
+						
 				%>
 						<td><%=(String)(m.get("categoryKind"))%></td>
 						<td><%=(String)(m.get("categoryName"))%></td>
@@ -138,7 +140,7 @@
 			<div>
 				<a href="/cash/insert">내역 추가</a>
 			</div>
-			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year<%=year%>&month=<%=month%>">뒤로가기</a>
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>">뒤로가기</a>
 		</div>
 		
 		

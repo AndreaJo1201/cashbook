@@ -18,7 +18,9 @@
 	
 	Member loginMember = (Member)session.getAttribute("loginMember"); //session 값 get
 	String memberId = loginMember.getMemberId(); // session에서 memberId 값 할당
-
+	
+	int cashNo = Integer.parseInt(request.getParameter("a"));
+	
 	int year = Integer.parseInt(request.getParameter("year"));
 	int month = Integer.parseInt(request.getParameter("month"));
 	int date = Integer.parseInt(request.getParameter("date"));
@@ -34,7 +36,7 @@
 	}
 	
 	CashDao cashDao = new CashDao();
-	Cash cashData = cashDao.selectUpdateCashData(Integer.parseInt(request.getParameter("cashNo")));
+	Cash cashData = cashDao.selectUpdateCashData(cashNo);
 	
 	CategoryDao categoryDao = new CategoryDao();
 	ArrayList<Category> categoryList = categoryDao.selectCategoryList();
