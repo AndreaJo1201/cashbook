@@ -27,7 +27,7 @@
 
 	int year = Integer.parseInt(request.getParameter("year"));
 	int month = Integer.parseInt(request.getParameter("month"));
-	String date = request.getParameter("date");
+	int date = Integer.parseInt(request.getParameter("date"));
 	
 	if(request.getParameter("year") == null ||
 		request.getParameter("year").equals("") ||
@@ -39,8 +39,12 @@
 			return;
 	}
 	
-	CashDateDao cashDateDao = new CashDateDao();
-	ArrayList<HashMap<String, Object>> list = cashDateDao.selectCashDateList(year, month+1, date, memberId); //cashDateDao 참조
+	CashDao cashDao = new CashDao();
+	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(memberId, year, month+1, date); //cashDateDao 참조
+	int cashNo = 0;
+	
+	CategoryDao categoryDao = new CategoryDao();
+	ArrayList<Category> categoryList = categoryDao.selectCategoryList();
 	
 	long resultPrice = 0;
 	
@@ -82,8 +86,8 @@
 						<td><%=(String)(m.get("categoryName"))%></td>
 						<td>\<%=(Long)(m.get("cashPrice"))%></td>
 						<td><%=(String)(m.get("cashMemo"))%></td>
-						<td><a href="">수정</a></td>
-						<td><a href="">삭제</a></td>
+						<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo="<%=(Integer)(m.get("cashNo"))%>>수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>">삭제</a></td>
 						</tr><tr>
 				<%
 					}
@@ -94,8 +98,45 @@
 					<td colspan="3">\<%=resultPrice %></td>
 				</tr>
 			</table>
+			
+			<!-- 임시 인설트 폼 -->
+			<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
+				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
+				<table border="1">
+					<tr>
+						<td>수입/지출</td>
+						<td>
+							<select name="categoryNo">
+							<%
+								//category 목록 출력
+								for(Category c : categoryList) {
+							%>
+									<option value="<%=c.getCategoryNo()%>">
+										<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
+									</option>
+							<%
+								}
+							%>
+							</select>
+						</td>
+					</tr>
+						
+					<tr>
+						<td>cashDate</td>
+						<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+					</tr>
+					
+					<tr>
+						<td>cashMemo</td>
+						<td><textarea rows="3" cols="50" name="cashMemo"></textarea></td>
+					</tr>
+				</table>
+				<button type="submit">입력</button>
+			</form>
+			
+			
 			<div>
-				<a href="">내역 추가</a>
+				<a href="/cash/insert">내역 추가</a>
 			</div>
 			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year<%=year%>&month=<%=month%>">뒤로가기</a>
 		</div>
