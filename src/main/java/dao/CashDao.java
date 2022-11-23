@@ -157,4 +157,32 @@ public class CashDao {
 		
 		return cash;
 	}
+	
+	public int insertCashListByDate(Cash cash) throws Exception {
+		int row = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "INSERT INTO cash (category_no, member_id, cash_date, cash_price, cash_memo, updatedate, createdate) VALUES(?, ?, ?, ?, ?, CURDATE(), CURDATE())";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, cash.getCategoryNo());
+		stmt.setString(2, cash.getMemberId());
+		stmt.setString(3, cash.getCashDate());
+		stmt.setLong(4, cash.getCashPrice());
+		stmt.setString(5, cash.getCashMemo());
+		
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("insert false");
+		} else {
+			System.out.println("insert complete");
+		}
+		
+		stmt.close();
+		conn.close();
+		
+		return row;
+	}
 }

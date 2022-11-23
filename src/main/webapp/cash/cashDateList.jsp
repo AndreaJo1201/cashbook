@@ -106,6 +106,9 @@
 			<!-- 임시 인설트 폼 -->
 			<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
 				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
+				<input type="hidden" name="year" value="<%=year %>">
+				<input type="hidden" name="month" value="<%=month %>">
+				<input type="hidden" name="date" value="<%=date %>">
 				<table border="1">
 					<tr>
 						<td>수입/지출</td>
@@ -141,6 +144,11 @@
 					</tr>
 					
 					<tr>
+						<td>cashPrice</td>
+						<td><input type="text" name="cashPrice"></td>
+					</tr>
+					
+					<tr>
 						<td>cashMemo</td>
 						<td><textarea rows="3" cols="50" name="cashMemo"></textarea></td>
 					</tr>
@@ -148,10 +156,6 @@
 				<button type="submit">입력</button>
 			</form>
 			
-			
-			<div>
-				<a href="/cash/insert">내역 추가</a>
-			</div>
 			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>">뒤로가기</a>
 		</div>
 		
