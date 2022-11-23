@@ -114,15 +114,16 @@ public class CashDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
-		String sql = "UPDATE cash SET category_no = ?, cash_date = ?, cash_price = ?, cash_memo = ?, updatedate = CURDATE() WHERE cash_no = ?;";
+		String sql = "UPDATE cash SET category_no = ?, cash_date = ?, cash_price = ?, cash_memo = ?, updatedate = CURDATE() WHERE cash_no = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		
-		row = stmt.executeUpdate();
 		stmt.setInt(1, categoryNo);
 		stmt.setString(2, cashDate);
 		stmt.setLong(3, cashPrice);
 		stmt.setString(4, cashMemo);
 		stmt.setInt(5, cashNo);
+		
+		row = stmt.executeUpdate();
+	
 		
 		if(row == 1) {
 			System.out.println("UPDATE COMPLETE");

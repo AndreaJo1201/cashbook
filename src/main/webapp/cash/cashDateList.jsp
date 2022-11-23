@@ -39,6 +39,8 @@
 	int month = Integer.parseInt(request.getParameter("month"));
 	int date = Integer.parseInt(request.getParameter("date"));
 	
+	
+	//2) 모델 호출
 	CashDao cashDao = new CashDao();
 	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(memberId, year, month+1, date); //cashDateDao 참조
 	int cashNo = 0;
@@ -125,7 +127,17 @@
 						
 					<tr>
 						<td>cashDate</td>
-						<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+						<%
+							if(date < 10) {
+						%>
+								<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+						<%
+							} else {
+						%>
+								<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+						<%
+							}
+						%>
 					</tr>
 					
 					<tr>

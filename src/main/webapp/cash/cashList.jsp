@@ -87,6 +87,10 @@
 		<div>
 			<!-- 로그인 정보(세션 -> loginMember 변수) 출력 -->
 			<span>ID : <%=loginMember.getMemberId() %> / Name : <%=loginMember.getMemberName() %>님 반갑습니다.</span>
+			<br>
+			<span><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">회원정보 수정</a></span>
+			<br>
+			<span><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp">비밀번호 수정</a></span>
 			<div>
 				<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 								      

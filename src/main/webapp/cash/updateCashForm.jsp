@@ -15,6 +15,12 @@
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
 		return;
 	}
+
+	if(request.getParameter("msg") != null) {
+		String msg = request.getParameter("msg");
+		out.println("<script>alert('"+msg+"');</script>");
+		msg = null;
+	}
 	
 	Member loginMember = (Member)session.getAttribute("loginMember"); //session 값 get
 	String memberId = loginMember.getMemberId(); // session에서 memberId 값 할당
@@ -76,7 +82,17 @@
 				
 				<tr>
 					<td>cash_date</td>
-					<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+					<%
+						if(date < 10) {
+					%>
+							<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+					<%
+						} else {
+					%>
+							<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+					<%
+						}
+					%>
 				</tr>
 				
 				<tr>
@@ -88,9 +104,10 @@
 					<td>상세 내용</td>
 					<td><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
 				</tr>
-				
 			</table>
+			<input type="hidden" name="cashNo" value="<%=cashData.getCashNo()%>">
 			<button type="submit">업데이트</button>
 		</form>
+		<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>">뒤로가기</a>
 	</body>
 </html>
