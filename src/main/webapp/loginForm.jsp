@@ -57,22 +57,25 @@
 				%>
 				</tr>
 			</table>
+			<div>
+			<a href="<%=request.getContextPath() %>/loginForm.jsp?currentPage=1">첫 페이지</a>
 			<%
 				if(currentPage > 1) {
 			%>
-					<div>
-						<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1 %>">이전 공지사항</a>
-					</div>
+					<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1 %>">이전 공지사항</a>
 			<%
-				}
+				} 
+			%>
+					<span><%=currentPage %> / <%=lastPage %></span>
+			<%
 				if(currentPage < lastPage) {
 			%>
-				<div>
 					<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1 %>">다음 공지사항</a>
-				</div>
 			<%
 				}
 			%>
+			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막 페이지</a>
+			</div>
 		</div>
 	
 		<div>
