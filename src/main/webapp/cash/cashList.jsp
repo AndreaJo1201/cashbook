@@ -91,6 +91,8 @@
 			<span><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">회원정보 수정</a></span>
 			<br>
 			<span><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp">비밀번호 수정</a></span>
+			<br>
+			<span><a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp">회원 탈퇴</a></span>
 			<div>
 				<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
 								      
@@ -160,6 +162,15 @@
 				</tr>
 			</table>
 			<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
+			<div>
+			<%
+				if(loginMember.getMemberLevel() > 0) {
+			%>
+					<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
+			<%
+				}
+			%>
+			</div>
 		</div>
 	</body>
 </html>

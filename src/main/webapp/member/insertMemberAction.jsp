@@ -48,4 +48,18 @@
 	}
 	
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
+	
+	/*
+	31번라인부터 대체
+	if(memberDao.selectMemberIdCheck(paramMember.setMemberId(request.getParameter("memberId")))) {
+		System.out.println("아이디중복");
+		response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
+		return;
+	}
+	int row = memberDao.insertMember(member);
+	System.out.println("row --> " + row);
+	response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
+	
+	
+	*/
 %>

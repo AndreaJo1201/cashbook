@@ -7,6 +7,7 @@ public class Member {
 	private String memberName;
 	private String updatedate;
 	private String createdate;
+	private int memberLevel;
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -44,6 +45,14 @@ public class Member {
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
+	public int getMemberLevel() {
+		return memberLevel;
+	}
+	public void setMemberLevel(int memberLevel) {
+		this.memberLevel = memberLevel;
+	}
+	
+
 	
 	
 }

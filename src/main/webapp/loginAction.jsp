@@ -32,7 +32,7 @@
 	String redirectUrl = "/loginForm.jsp?&msg=";
 	String msg = "로그인 실패";
 	
-	if(loginMember != null && loginMember.getMemberNo()!=0 ) {
+	if(loginMember != null) {
 		session.setAttribute("loginMember", loginMember); // session안에 로그인 ID, NAME 저장
 		redirectUrl = "/cash/cashList.jsp?&msg=";
 		msg="로그인 성공";

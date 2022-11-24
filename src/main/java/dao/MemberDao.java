@@ -6,12 +6,12 @@ import util.*;
 
 public class MemberDao {
 	public Member login(Member paramMember) throws Exception { // null 값이면 로그인 실패, True면 로그인 성공
-		Member resultMember = new Member();
+		Member resultMember = null;
 		
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
-		String sql = "SELECT member_no memberNo, member_id memberId, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		String sql = "SELECT member_no memberNo, member_id memberId, member_name memberName, member_level memberLevel FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberPw());
@@ -22,9 +22,11 @@ public class MemberDao {
 		System.out.println("SQL Query EXECUTE");
 		
 		if(rs.next()) {
+			resultMember = new Member();
 			resultMember.setMemberNo(rs.getInt("memberNo"));
 			resultMember.setMemberId(rs.getString("memberId"));
 			resultMember.setMemberName(rs.getString("memberName"));
+			resultMember.setMemberLevel(rs.getInt("memberLevel"));
 			System.out.println("SQL Set");
 		}
 		
@@ -62,6 +64,7 @@ public class MemberDao {
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberName());
+		stmt.setString(3, paramMember.getMemberPw());
 		
 		resultRow = stmt.executeUpdate();
 		
@@ -75,6 +78,25 @@ public class MemberDao {
 		conn.close();
 		
 		return resultRow;
+	}
+	
+	//회원가입 신규 방법
+	public int insertMember1(Member member) throws Exception {
+		int row = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "INSERT INTO member (member_id, member_name, member_pw, updatedate, createdate) VALUES(?, ?, PASSWORD(?), NOW(), NOW())";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
+		stmt.setString(2, member.getMemberName());
+		stmt.setString(3, member.getMemberPw());
+		
+		row = stmt.executeUpdate();
+		
+		dbUtil.close(null, stmt, conn);
+		return row;
 	}
 	
 	public int selectDuplicateInsertMember(Member paramMember) throws Exception {
@@ -94,6 +116,28 @@ public class MemberDao {
 		}
 		
 		return row;
+	}
+	
+	//id중복확인 또다른 방법 > t:아이디가 중복, f:아이디를 사용가능
+	public boolean selectMemberIdCheck(String memberId) throws Exception{
+		boolean result = false;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT * FROM member WHERE member_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, memberId);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			result = true;
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		
+		return result;
 	}
 	
 	public int updateMember(Member paramMember) throws Exception {
@@ -210,6 +254,51 @@ public class MemberDao {
 		rs.close();
 		stmt.close();
 		conn.close();
+		
+		return row;
+	}
+	
+	public boolean deleteMemberCheck(Member paramMember) throws Exception {
+		boolean result = false;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql ="SELECT * FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, paramMember.getMemberId());
+		stmt.setString(2, paramMember.getMemberPw());
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			result = true;
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		
+		return result;
+	}
+	
+	public int deleteMember(Member paramMember) throws Exception {
+		int row = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "DELETE FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, paramMember.getMemberId());
+		stmt.setString(2, paramMember.getMemberPw());
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("삭제 실패");
+		} else {
+			System.out.println("삭제 성공");
+		}
+		
+		dbUtil.close(null, stmt, conn);
 		
 		return row;
 	}
