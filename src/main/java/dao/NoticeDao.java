@@ -50,4 +50,42 @@ public class NoticeDao {
 		
 		return count;
 	}
+	
+	public int insertNotice(Notice notice) throws Exception {
+		int row = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "INSERT notice(notice_memo, updatedate, createdate) VALUES(?, NOW(), NOW())";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, notice.getNoticeMemo());
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("공지사항 등록실패");
+		} else {
+			System.out.println("공지사항 등록성공");
+		}
+		
+		dbUtil.close(null, stmt, conn);	
+		return row;
+	}
+	
+	public int updateNotice(Notice notice) throws Exception {
+		int row = 0;
+		
+		//String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
+		
+		return row;
+	}
+	
+	public int deleteNotice(Notice notice) throws Exception {
+		int row = 0;
+		
+		//String sql = "DELETE FROM notice WHERE notice_no = ?";
+		
+		return row;
+	}
+	
 }

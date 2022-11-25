@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import vo.*;
 import util.*;
 
@@ -299,6 +301,39 @@ public class MemberDao {
 		}
 		
 		dbUtil.close(null, stmt, conn);
+		
+		return row;
+	}
+	
+	
+	//관리자 멤버 리스트
+	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception {
+		ArrayList<Member> list = null;
+		
+		/*
+		 ORDER BY createdate DESC
+		 */
+		
+		return list;
+	}
+	
+	//관리자용 회원강제탈퇴
+	public int deleteMemberByAdmin(Member member) throws Exception {
+		int row = 0;
+		
+		return row;
+	}
+	
+	//관리자 : 회원 수 카운트 
+	public int selectMemberCount( ) {
+		int row = 0;
+		
+		return row;
+	}
+	
+	//관리자 멤버 레벨 수정
+	public int updateMemberLevel(Member member) throws Exception {
+		int row = 0;
 		
 		return row;
 	}
