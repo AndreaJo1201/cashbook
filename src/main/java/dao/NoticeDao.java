@@ -103,7 +103,19 @@ public class NoticeDao {
 	public int deleteNotice(Notice notice) throws Exception {
 		int row = 0;
 		
-		//String sql = "DELETE FROM notice WHERE notice_no = ?";
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "DELETE FROM notice WHERE notice_no = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, notice.getNoticeNo());
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("삭제 실패");
+		} else {
+			System.out.println("삭제 성공");
+		}
 		
 		return row;
 	}

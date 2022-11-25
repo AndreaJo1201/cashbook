@@ -4,10 +4,15 @@
 
 <%
 	//Controller
-	Member loginMember = (Member)session.getAttribute("loginMember");
-	if(loginMember == null || loginMember.getMemberLevel() < 1) {
+	if(session.getAttribute("loginMember") == null) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
+	} else {
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		if(loginMember.getMemberLevel() < 1) {
+			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+			return;
+		}
 	}
 	
 	
