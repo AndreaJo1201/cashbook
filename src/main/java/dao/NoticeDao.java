@@ -29,6 +29,8 @@ public class NoticeDao {
 			list.add(n);
 		}
 		
+		dbUtil.close(rs, stmt, conn);
+		
 		return list;
 	}
 	
@@ -47,6 +49,8 @@ public class NoticeDao {
 		while(rs.next()) {
 			count = rs.getInt("COUNT(*)");
 		}
+		
+		dbUtil.close(rs, stmt, conn);
 		
 		return count;
 	}
@@ -69,14 +73,30 @@ public class NoticeDao {
 		}
 		
 		dbUtil.close(null, stmt, conn);	
+		
 		return row;
 	}
 	
 	public int updateNotice(Notice notice) throws Exception {
 		int row = 0;
 		
-		//String sql = "UPDATE notice SET notice_memo = ? WHERE notice_no = ?";
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
 		
+		String sql = "UPDATE notice SET notice_memo = ?, updatedate = NOW() WHERE notice_no = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, notice.getNoticeMemo());
+		stmt.setInt(2, notice.getNoticeNo());
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("공지사항 수정실패");
+		} else {
+			System.out.println("공지사항 수정성공");
+		}
+		
+		dbUtil.close(null, stmt, conn);
+	
 		return row;
 	}
 	
@@ -86,6 +106,33 @@ public class NoticeDao {
 		//String sql = "DELETE FROM notice WHERE notice_no = ?";
 		
 		return row;
+	}
+	
+	public Notice selectNoticeByNo(int noticeNo) throws Exception {
+		Notice notice = null;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT notice_no noticeNo, notice_memo noticeMemo, createdate, updatedate FROM notice WHERE notice_no = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, noticeNo);
+		
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			notice = new Notice();
+			
+			notice.setNoticeNo(rs.getInt("noticeNo"));
+			notice.setNoticeMemo(rs.getString("noticeMemo"));
+			notice.setUpdatedate(rs.getString("updatedate"));
+			notice.setCreatedate(rs.getString("createdate"));
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		
+		return notice;
 	}
 	
 }
