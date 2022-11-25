@@ -16,15 +16,21 @@
 			return;
 		}
 	}
+
+	int currentPage = 1;
+	if(request.getParameter("currentPage") != null ) {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
 	
-	int beginRow = 0;
-	int rowPerPage = 0;
+	int rowPerPage = 10;
+	int beginRow = (currentPage - 1) * rowPerPage;
 	
 	//Model 호출
 	MemberDao memberDao = new MemberDao();
 	ArrayList<Member> memberList = memberDao.selectMemberListByPage(beginRow, rowPerPage);
 	int memberCount = memberDao.selectMemberCount(); // -> lastPage 계산용
 	
+	int lastPage = (int)Math.ceil(((double)(memberCount)/rowPerPage));
 	
 	
 	
@@ -48,7 +54,7 @@
 		<div>
 			<!-- memberList contents... -->
 			<h1>멤버 목록</h1>
-			<table>
+			<table border="1">
 				<tr>
 					<th>회원 번호</th>
 					<th>회원 ID</th>
@@ -61,10 +67,40 @@
 				</tr>
 				<%
 					for(Member m : memberList) {
-						
+				%>
+						<tr>
+							<td><%=m.getMemberNo() %></td>
+							<td><%=m.getMemberId() %></td>
+							<td><%=m.getMemberLevel() %></td>
+							<td><%=m.getMemberName() %></td>
+							<td><%=m.getUpdatedate() %></td>
+							<td><%=m.getCreatedate() %></td>
+							<td><a href="">수정</a></td>
+							<td><a href="">탈퇴</a></td>
+						</tr>
+				<%		
 					}
 				%>
 			</table>
+		</div>
+		<div>
+			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1">처음</a>
+			<%
+				if(currentPage > 1) {
+			%>
+					<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>">이전</a>
+			<%		
+				}
+			%>
+			<span><%=currentPage %> / <%=lastPage %></span>
+			<%
+				if(currentPage < lastPage) {
+			%>
+					<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>">다음</a>
+			<%		
+				}
+			%>
+			<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>">마지막</a>
 		</div>
 	</body>
 </html>

@@ -45,17 +45,6 @@ public class MemberDao {
 	public int insertMember(Member paramMember) throws Exception {
 		int resultRow = 0;
 		
-		/*
-		DataBase db = new DataBase();
-		
-		Class.forName(db.getDriver());
-		Connection conn = DriverManager.getConnection(db.getUrl(), db.getUser(), db.getPassword());
-		-> DB 연결하는 코드는 DAO 메서드에서 거의 공통으로 중복
-		-> 중복되는 코드를 하나의 이름(메서드)로 만들자
-		-> 입력값과 반환값 결정
-		-> 입력값 X, 반환값 : Connection타입의 결과값.
-		*/
-		
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
@@ -308,11 +297,34 @@ public class MemberDao {
 	
 	//관리자 멤버 리스트
 	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception {
-		ArrayList<Member> list = null;
+		ArrayList<Member> list = new ArrayList<Member>();
 		
 		/*
 		 ORDER BY createdate DESC
 		 */
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql="SELECT member_no memberNo, member_id memberId, member_name memberName, updatedate, createdate, member_level memberLevel FROM member ORDER BY createdate DESC LIMIT ?, ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			
+			Member m = new Member();
+			m.setMemberNo(rs.getInt("memberNo"));
+			m.setMemberId(rs.getString("memberId"));
+			m.setMemberName(rs.getString("memberName"));
+			m.setMemberLevel(rs.getInt("memberLevel"));
+			m.setCreatedate(rs.getString("createdate"));
+			m.setUpdatedate(rs.getString("updatedate"));
+			
+			list.add(m);
+		}
 		
 		return list;
 	}
@@ -325,8 +337,19 @@ public class MemberDao {
 	}
 	
 	//관리자 : 회원 수 카운트 
-	public int selectMemberCount( ) {
+	public int selectMemberCount( ) throws Exception {
 		int row = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT COUNT(*) cnt FROM member";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			row = rs.getInt("cnt");
+		}
 		
 		return row;
 	}
