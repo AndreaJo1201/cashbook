@@ -326,6 +326,7 @@ public class MemberDao {
 			list.add(m);
 		}
 		
+		dbUtil.close(rs, stmt, conn);
 		return list;
 	}
 	
@@ -333,6 +334,24 @@ public class MemberDao {
 	public int deleteMemberByAdmin(Member member) throws Exception {
 		int row = 0;
 		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "DELETE FROM member WHERE member_no=? AND member_id=? AND member_level=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberNo());
+		stmt.setString(2, member.getMemberId());
+		stmt.setInt(3, member.getMemberLevel());
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("탈퇴실패");
+		} else {
+			System.out.println("강제탈퇴성공");
+		}
+		
+		
+		dbUtil.close(null, stmt, conn);
 		return row;
 	}
 	
@@ -351,6 +370,7 @@ public class MemberDao {
 			row = rs.getInt("cnt");
 		}
 		
+		dbUtil.close(rs, stmt, conn);
 		return row;
 	}
 	
@@ -358,6 +378,47 @@ public class MemberDao {
 	public int updateMemberLevel(Member member) throws Exception {
 		int row = 0;
 		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "UPDATE member SET member_level = ?, updatedate = NOW() WHERE member_no = ? AND member_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberLevel());
+		stmt.setInt(2, member.getMemberNo());
+		stmt.setString(3, member.getMemberId());
+		
+		row = stmt.executeUpdate();
+		if(row == 0) {
+			System.out.println("업데이트 실패");
+		} else {
+			System.out.println("업데이트 성공");
+		}
+
+		dbUtil.close(null, stmt, conn);
 		return row;
+	}
+	
+	//관리자용 회원 선택기능
+	public Member selectMemberByAdmin(String memberId) throws Exception {
+		Member member = new Member();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT * FROM member WHERE member_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, memberId);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			member.setMemberId(rs.getString("member_id"));
+			member.setMemberName(rs.getString("member_name"));
+			member.setMemberNo(rs.getInt("member_no"));
+			member.setMemberLevel(rs.getInt("member_level"));
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		return member;
 	}
 }

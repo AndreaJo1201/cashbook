@@ -75,8 +75,8 @@
 							<td><%=m.getMemberName() %></td>
 							<td><%=m.getUpdatedate() %></td>
 							<td><%=m.getCreatedate() %></td>
-							<td><a href="">수정</a></td>
-							<td><a href="">탈퇴</a></td>
+							<td><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>">수정</a></td>
+							<td><a href="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminForm.jsp?memberId=<%=m.getMemberId()%>">탈퇴</a></td>
 						</tr>
 				<%		
 					}
