@@ -57,6 +57,7 @@
 			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 메인</a></li>
 			<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a></li>
 			<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(회원 목록 보기, level 수정, 강제회원탈퇴)</a></li>
+			<li><a href="<%=request.getContextPath()%>/admin/">고객센터 관리</a></li>
 		</ul>
 		
 		<div>

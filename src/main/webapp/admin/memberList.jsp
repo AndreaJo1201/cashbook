@@ -49,6 +49,7 @@
 			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 메인</a></li>
 			<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지사항 관리</a></li>
 			<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a></li>
+			<li><a href="<%=request.getContextPath()%>/admin/">고객센터 관리</a></li>
 		</ul>
 		
 		<div>

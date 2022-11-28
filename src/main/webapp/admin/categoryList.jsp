@@ -48,6 +48,7 @@
 			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 메인</a></li>
 			<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지사항 관리</a></li>
 			<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(회원 목록 보기, level 수정, 강제회원탈퇴)</a></li>
+			<li><a href="<%=request.getContextPath()%>/admin/">고객센터 관리</a></li>
 		</ul>
 		
 		<div>
@@ -75,8 +76,8 @@
 							<td><%=c.getCategoryName() %></td>
 							<td><%=c.getUpdatedate() %></td>
 							<td><%=c.getCreatedate() %></td>
-							<td><a href="<%=request.getContextPath()%>/admin/category">수정</a></td>
-							<td><a href="<%=request.getContextPath()%>/admin/category">삭제</a></td>
+							<td><a href="<%=request.getContextPath()%>/admin/category/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo() %>">수정</a></td>
+							<td><a href="<%=request.getContextPath()%>/admin/category/deleteCategoryAction.jsp?categoryNo=<%=c.getCategoryNo() %>">삭제</a></td>
 							</tr><tr>
 					<%
 						}
