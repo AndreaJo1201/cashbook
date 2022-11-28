@@ -100,12 +100,12 @@
 				</div>
 			</div>
 		
-			<div class="mt-4 p-4 bg-dark text-light rounded" id="login">
+			<div class="mt-4 p-4 text-dark rounded" id="login">
 				<h1><label>LOGIN</label></h1>
 			</div>
 			<div class="text-center" id="login">
 				<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post" class="align_middle">
-					<table class="table table-sm">
+					<table class="table table-sm table-bordered">
 						<tr class="text-center">
 							<td>
 								<label>ID</label>
@@ -120,7 +120,7 @@
 						</tr>
 					</table>
 					<div class="d-grid">
-						<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">JOIN</button>
 					</div>
 				</form>
 			</div>

@@ -66,6 +66,8 @@
 	int totalTd = beginBlank + lastDate + endBlank;
 	
 	long totalCash = 0;
+	long expenseCash = 0;
+	long importCash = 0;
 	
 	/*************************************************************************************************************/
 	
@@ -170,8 +172,10 @@
 									<%
 												if(m.get("categoryKind").equals("수입")) {
 													totalCash = totalCash + (Long)m.get("cashPrice");
+													importCash = importCash + (Long)m.get("cashPrice");
 												} else if(m.get("categoryKind").equals("지출")) {
 													totalCash = totalCash - (Long)m.get("cashPrice");
+													expenseCash = expenseCash - (Long)m.get("cashPrice");
 												}
 											}
 										}
@@ -193,6 +197,10 @@
 				</tr>
 			</table>
 			<div class="p-2">
+				<div>
+					<span class="text-info">수입 누계 : <%=importCash %>원</span>
+					<span class="text-danger">지출 누계 : <%=expenseCash %>원</span>
+				</div>
 				<%
 					if(totalCash < 0) {
 				%>
