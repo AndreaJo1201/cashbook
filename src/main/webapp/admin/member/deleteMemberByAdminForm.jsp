@@ -4,6 +4,21 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
+	if(session.getAttribute("loginMember") == null) {
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		return;
+	} else {
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		if(loginMember.getMemberLevel() < 1) {
+			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+			return;
+		}
+	}
+	
+	if(request.getParameter("memberId") == null) {
+		response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp");
+	}
+	
 	String deleteMemberId = request.getParameter("memberId");
 
 	MemberDao memberDao = new MemberDao();

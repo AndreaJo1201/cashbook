@@ -1,10 +1,20 @@
+<%@page import="vo.Member"%>
 <%@page import="dao.NoticeDao"%>
 <%@page import="vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
-	
+	if(session.getAttribute("loginMember") == null) {
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		return;
+	} else {
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		if(loginMember.getMemberLevel() < 1) {
+			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+			return;
+		}
+	}
 
 	if(request.getParameter("noticeNo") == null ||
 		request.getParameter("noticeNo").equals("")) {

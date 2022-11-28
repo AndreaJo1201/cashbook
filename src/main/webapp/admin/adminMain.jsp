@@ -1,3 +1,6 @@
+<%@page import="dao.MemberDao"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.NoticeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8"); %>
 <%@ page import = "vo.*" %>
@@ -14,12 +17,19 @@
 			return;
 		}
 	}
+
+	int beginRow = 0;
+	int rowPerPage = 5;
 	
 	
 	//Model 호출
+	NoticeDao noticeDao = new NoticeDao();
+	MemberDao memberDao = new MemberDao();
 	
 	//최근 공지사항 5개, 최근 가입한 멤버 5명
+	ArrayList<Notice> noticeList = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 	
+	ArrayList<Member> memberList = memberDao.selectMemberListByPage(beginRow, rowPerPage);
 	
 	//view
 %>
@@ -41,34 +51,38 @@
 		<div>
 			<!-- adminMain contents... -->
 			<!-- 최근 공지 5,ㅡ 최근 가입 멤버 5 -->
-			<table>
+			<table border="1">
 				<tr>
-					<th>최신 공지사항</th>
+					<th colspan="3">최신 공지사항</th>
 				</tr>
 				<tr>
 					<%
-						//for() {
+						for(Notice n : noticeList) {
 					%>
-								<td></td>
+								<td><%=n.getNoticeNo() %></td>
+								<td><%=n.getNoticeMemo() %></td>
+								<td><%=n.getCreatedate() %></td>
 							</tr><tr>
 					<%
-						//}
+						}
 					%>
 				</tr>
 			</table>
-			
-			<table>
+			<br>
+			<table border="1">
 				<tr>
-					<th>최근 가입회원</th>
+					<th colspan="3">최근 가입회원</th>
 				</tr>
 				<tr>
 					<%
-						//for() {
+						for(Member m : memberList) {
 					%>
-								<td></td>
+								<td><%=m.getMemberNo() %></td>
+								<td><%=m.getMemberName() %></td>
+								<td><%=m.getCreatedate() %></td>
 							</tr><tr>
 					<%
-						//}
+						}
 					%>
 				</tr>
 			</table>

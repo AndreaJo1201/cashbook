@@ -4,6 +4,26 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
+	if(session.getAttribute("loginMember") == null) {
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		return;
+	} else {
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		if(loginMember.getMemberLevel() < 1) {
+			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+			return;
+		}
+	}
+
+	if(request.getParameter("memberNo") == null ||
+		request.getParameter("memberNo").equals("") ||
+		request.getParameter("memberId") == null ||
+		request.getParameter("memberId").equals("") ||
+		request.getParameter("memberLevel") == null ||
+		request.getParameter("memberLevel").equals("")) {
+			response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp");
+	}
+	
 	Member member = new Member();
 
 	member.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
