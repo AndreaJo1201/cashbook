@@ -65,6 +65,8 @@
 	//전체 td의 개수 : 7로 나누어 떨어져야 한다.
 	int totalTd = beginBlank + lastDate + endBlank;
 	
+	long totalCash = 0;
+	
 	/*************************************************************************************************************/
 	
 	//model 호출 : 일별 cash 목록
@@ -79,42 +81,46 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<title>CASH_LIST</title>
 	</head>
 
 	<body>
-		<div>
+		<div class="container">
 			<!-- 로그인 정보(세션 -> loginMember 변수) 출력 -->
-			<span>ID : <%=loginMember.getMemberId() %> / Name : <%=loginMember.getMemberName() %>님 반갑습니다.</span>
-			<br>
-			<span><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">회원정보 수정</a></span>
-			<br>
-			<span><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp">비밀번호 수정</a></span>
-			<br>
-			<span><a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp">회원 탈퇴</a></span>
-			<div>
-				<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
-								      
-				<%=year%>년 <%=month+1%> 월
-								      
-				<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
+			<div class="row mt-2 p-2">
+				<div class="text-start col-sm-6">
+					<span><%=loginMember.getMemberName() %>님 반갑습니다.</span>
+				</div>
+				<div class="text-end col-sm-6">
+					<span><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp" class="btn btn-primary text-light btn-sm">회원정보 수정</a></span>
+					<span><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp" class="btn btn-primary text-light btn-sm">비밀번호 수정</a></span>
+					<span><a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp" class="btn btn-danger btn-sm">회원 탈퇴</a></span>
+				</div>
 			</div>
-			<span><%=month+1 %>월,<%=year %>년</span>
 		</div>
-		<div>
-			<table border="1">
-				<tr>
-					<th colspan="7"><%=year %>년 <%=month+1 %>월</th>
+		<div class="container">
+			<table class="table table-bordered">
+				<tr class="text-center">
+					<th colspan="7">
+						<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-success btn-sm">&#8701; 이전달</a></span>
+						<span class="col-sm-2"><%=year %>년 <%=month+1 %>월</span>
+						<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-success btn-sm">다음달 &#8702;</a></span>
+					</th>
 				</tr>
 				<tr>
-					<th>일</th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-					<th>토</th>
+					<th class="text-danger"><label>일</label></th>
+					<th><label>월</label></th>
+					<th><label>화</label></th>
+					<th><label>수</label></th>
+					<th><label>목</label></th>
+					<th><label>금</label></th>
+					<th class="text-primary">토</th>
 				</tr>
 				
 				<tr>
@@ -128,11 +134,30 @@
 							if(date > 0 && date <= lastDate) {
 				%>
 								<div>
-									<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>">
-										<%=date %>
-									</a>
+								<%
+									if(i%7 ==1) {
+								%>
+										<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-danger">
+											<%=date %>
+										</a>
+								<%
+									} else if(i%7==0) {
+								%>
+										<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-primary">
+											<%=date %>
+										</a>
+								<%
+									} else {
+								%>
+										<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-dark">
+											<%=date %>
+										</a>
+								<%		
+									}
+								%>
 								</div>
 								<div>
+									<label>
 									<%
 										for(HashMap<String, Object> m : list) {
 											String cashDate = (String)(m.get("cashDate"));
@@ -143,9 +168,15 @@
 												<%=(String)(m.get("categoryName")) %>
 												<br>
 									<%
+												if(m.get("categoryKind").equals("수입")) {
+													totalCash = totalCash + (Long)m.get("cashPrice");
+												} else if(m.get("categoryKind").equals("지출")) {
+													totalCash = totalCash - (Long)m.get("cashPrice");
+												}
 											}
 										}
 									%>
+									</label>
 								</div>
 				<%
 							}
@@ -161,15 +192,33 @@
 				%>
 				</tr>
 			</table>
-			<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
-			<div>
-			<%
-				if(loginMember.getMemberLevel() > 0) {
-			%>
-					<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
-			<%
-				}
-			%>
+			<div class="p-2">
+				<%
+					if(totalCash < 0) {
+				%>
+						<span class="text-danger">월 누계 : <%=totalCash %>원</span>
+				<%
+					} else {
+				%>
+						<span class="text-info">월 누계 : <%=totalCash %>원</span>
+				<%
+					}
+				%>
+				
+			</div>
+			<div class="container row p-1">
+				<div class="text-start col-sm-6">
+					<a href="<%=request.getContextPath()%>/logout.jsp" class="btn-dark btn btn-sm">로그아웃</a>
+				</div>
+				<%
+					if(loginMember.getMemberLevel() > 0) {
+				%>
+						<div class="text-end col-sm-6">
+							<a href="<%=request.getContextPath()%>/admin/adminMain.jsp" class="btn-dark btn btn-sm text-end">관리자 페이지</a>
+						</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</body>

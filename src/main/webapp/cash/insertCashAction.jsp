@@ -47,7 +47,7 @@
 	} else {
 		System.out.println("INSERT 성공");
 		String msg = "내역 저장 성공";
-		response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp?year="+request.getParameter("year")+"&month="+request.getParameter("month")+"&date="+request.getParameter("date")+"&msg="+URLEncoder.encode(msg,"UTF-8"));
+		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp?year="+request.getParameter("year")+"&month="+request.getParameter("month")+"&msg="+URLEncoder.encode(msg,"UTF-8"));
 		return;
 	}
 
