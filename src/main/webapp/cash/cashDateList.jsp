@@ -55,64 +55,53 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>Cash Date List</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<style>
+			#login {
+			  height: 100px;
+			  width: 500px;
+			  margin: auto;
+			  text-align: center;
+			}
+			
+			textarea {
+				width:100%;
+				height: 100px;
+				resize: none;
+			}
+		</style>
+		<title>Cash_Date_List</title>
 	</head>
 
 	<body>
-		<div>
-			<h1>수입 지출 내역</h1>
-			<span><%=year %>년 <%=month+1%>월 <%=date %>일</span>
+	<div class="container">
+		<div class="mt-2 p-2 text-end">
+			<span><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>" class="btn btn-sm btn-dark">뒤로가기</a></span>
+		</div>
+		<div class="mt-4 p-4 text-dark bg-light rounded" >
+			<h1><label>수입 지출 내역</label></h1>
+			<p><label><%=year %>년 <%=month+1%>월 <%=date %>일</label></p>
 		</div>
 		
-		<div>
-			<table border="1">
-				<tr>
-					<th>수입/지출</th>
-					<th>내역</th>
-					<th>금액</th>
-					<th>상세내역</th>
-					<th>수정</th>
-					<th>삭제</th>
-				</tr>
-				<tr>
-				<%
-					for (HashMap<String, Object> m : list) {
-						if(m.get("categoryKind").equals("지출")) { // 총 수입, 지출값 계산
-							resultPrice = resultPrice - ((Long)(m.get("cashPrice")));
-						} else {
-							resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
-						}
-						int a = (Integer)m.get("cashNo");
-						
-				%>
-						<td><%=(String)(m.get("categoryKind"))%></td>
-						<td><%=(String)(m.get("categoryName"))%></td>
-						<td>\<%=(Long)(m.get("cashPrice"))%></td>
-						<td><%=(String)(m.get("cashMemo"))%></td>
-						<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>">삭제</a></td>
-						</tr><tr>
-				<%
-					}
-				%>
-				</tr>
-				<tr>
-					<td colspan="3">총 지출 :</td>
-					<td colspan="3">\<%=resultPrice %></td>
-				</tr>
-			</table>
-			
+		<div class="mt-2">		
 			<!-- 임시 인설트 폼 -->
 			<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
 				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
 				<input type="hidden" name="year" value="<%=year %>">
 				<input type="hidden" name="month" value="<%=month %>">
 				<input type="hidden" name="date" value="<%=date %>">
-				<table border="1">
+				<table class="table table-bordered">
+					<tr class="bg-dark text-light">
+						<th colspan="2" class="text-center">내역 추가</th>
+					</tr>
 					<tr>
-						<td>수입/지출</td>
-						<td>
+						<td class="text-center col-sm-1">수입/지출</td>
+						<td class="col-sm-11">
 							<select name="categoryNo">
 							<%
 								//category 목록 출력
@@ -129,36 +118,79 @@
 					</tr>
 						
 					<tr>
-						<td>cashDate</td>
+						<td class="text-center col-sm-1">cashDate</td>
 						<%
 							if(date < 10) {
 						%>
-								<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+								<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
 						<%
 							} else {
 						%>
-								<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+								<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
 						<%
 							}
 						%>
 					</tr>
 					
 					<tr>
-						<td>cashPrice</td>
-						<td><input type="text" name="cashPrice"></td>
+						<td class="col-sm-1 text-center">cashPrice</td>
+						<td class="col-sm-11"><input type="text" name="cashPrice"></td>
 					</tr>
 					
 					<tr>
-						<td>cashMemo</td>
-						<td><textarea rows="3" cols="50" name="cashMemo"></textarea></td>
+						<td class="col-sm-1 text-center">cashMemo</td>
+						<td class="col-sm-11"><textarea name="cashMemo"></textarea></td>
 					</tr>
 				</table>
-				<button type="submit">입력</button>
+				<div class="d-grid">
+					<button type="submit" class="btn btn-success">입력</button>
+				</div>
 			</form>
 			
-			<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>">뒤로가기</a>
+			<div class="mt-4">
+				<table class="table table-bordered table-hover">
+					<tr>
+						<th colspan="6" class="text-center bg-dark text-light"><label>상세 내역</label></th>
+					</tr>
+					<tr>
+						<th class="col-sm-1 text-center">수입/지출</th>
+						<th class="col-sm-1 text-center">내역</th>
+						<th class="col-sm-1 text-center">금액</th>
+						<th class="col-sm-7 text-center">지출 메모</th>
+						<th class="col-sm-1 text-center">수정</th>
+						<th class="col-sm-1 text-center">삭제</th>
+					</tr>
+					<tr>
+					<%
+						for (HashMap<String, Object> m : list) {
+							if(m.get("categoryKind").equals("지출")) { // 총 수입, 지출값 계산
+								resultPrice = resultPrice - ((Long)(m.get("cashPrice")));
+							} else {
+								resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
+							}
+							int a = (Integer)m.get("cashNo");
+							
+					%>
+							<td class="col-sm-1 text-center"><%=(String)(m.get("categoryKind"))%></td>
+							<td class="col-sm-1 text-center"><%=(String)(m.get("categoryName"))%></td>
+							<td class="col-sm-1 text-center">\<%=(Long)(m.get("cashPrice"))%></td>
+							<td class="col-sm-7"><%=(String)(m.get("cashMemo"))%></td>
+							<td class="col-sm-1 text-center"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>" class="btn btn-primary btn-sm">수정</a></td>
+							<td class="col-sm-1 text-center"><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>" class="btn btn-danger btn-sm">삭제</a></td>
+							</tr><tr>
+					<%
+						}
+					%>
+					</tr>
+					<tr>
+						<td colspan="1" class="col-sm-1 text-center">누계</td>
+						<td colspan="5" class="col-sm-11">\<%=resultPrice %></td>
+					</tr>
+				</table>
+			</div>
+
 		</div>
 		
-		
+	</div>	
 	</body>
 </html>

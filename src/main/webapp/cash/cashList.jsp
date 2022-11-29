@@ -97,7 +97,18 @@
 			<!-- 로그인 정보(세션 -> loginMember 변수) 출력 -->
 			<div class="row mt-2 p-2">
 				<div class="text-start col-sm-6">
-					<span><%=loginMember.getMemberName() %>님 반갑습니다.</span>
+					<span><label><%=loginMember.getMemberName() %>님 반갑습니다.</label></span>
+					<%
+						if(loginMember.getMemberLevel() < 1) {
+					%>
+							<span><a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">문의내역</a></span>
+					<%
+						} else {
+					%>
+							<span><a href="<%=request.getContextPath()%>/admin/adminMain.jsp" class="btn-dark btn btn-sm text-end">관리자 페이지</a></span>
+					<%
+						}
+					%>
 				</div>
 				<div class="text-end col-sm-6">
 					<span><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp" class="btn btn-primary text-light btn-sm">회원정보 수정</a></span>
@@ -196,11 +207,15 @@
 				%>
 				</tr>
 			</table>
-			<div class="p-2">
-				<div>
+			<div class="p-2 container row">
+				<div class="text-start col-sm-6">
 					<span class="text-info">수입 누계 : <%=importCash %>원</span>
 					<span class="text-danger">지출 누계 : <%=expenseCash %>원</span>
 				</div>
+				<div class="text-end col-sm-6">
+					<a href="<%=request.getContextPath()%>/logout.jsp" class="btn-dark btn btn-sm">로그아웃</a>
+				</div>
+				<div>
 				<%
 					if(totalCash < 0) {
 				%>
@@ -212,21 +227,7 @@
 				<%
 					}
 				%>
-				
-			</div>
-			<div class="container row p-1">
-				<div class="text-start col-sm-6">
-					<a href="<%=request.getContextPath()%>/logout.jsp" class="btn-dark btn btn-sm">로그아웃</a>
 				</div>
-				<%
-					if(loginMember.getMemberLevel() > 0) {
-				%>
-						<div class="text-end col-sm-6">
-							<a href="<%=request.getContextPath()%>/admin/adminMain.jsp" class="btn-dark btn btn-sm text-end">관리자 페이지</a>
-						</div>
-				<%
-					}
-				%>
 			</div>
 		</div>
 	</body>

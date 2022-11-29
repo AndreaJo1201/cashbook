@@ -6,7 +6,7 @@
 <%@ page import ="vo.*" %>
 
 <%
-	if(session.getAttribute("loginEmpNo") != null) {
+	if(session.getAttribute("loginMember") != null) {
 		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 		return;
 	}

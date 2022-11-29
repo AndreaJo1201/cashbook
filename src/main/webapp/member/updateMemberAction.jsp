@@ -30,6 +30,7 @@
 	paramMember.setMemberId(request.getParameter("memberId"));
 	paramMember.setMemberName(request.getParameter("memberName"));
 	paramMember.setMemberPw(request.getParameter("memberPw"));
+	paramMember.setMemberLevel(loginMember.getMemberLevel());
 	
 	MemberDao memberDao = new MemberDao();
 	

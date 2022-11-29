@@ -23,7 +23,7 @@
 	request.getParameter("cashMemo") == null ||
 	request.getParameter("cashMemo").equals("")) {
 		String msg = "빈칸을 입력해주세요.";
-		response.sendRedirect(request.getContextPath()+"/member/cashDateList.jsp?year="+request.getParameter("year")+"&month="+request.getParameter("month")+"&date="+request.getParameter("date"));
+		response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp?year="+request.getParameter("year")+"&month="+request.getParameter("month")+"&date="+request.getParameter("date")+"&msg="+URLEncoder.encode(msg,"UTF-8"));
 		return;
 	}
 	
