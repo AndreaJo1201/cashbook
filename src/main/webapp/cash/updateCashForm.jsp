@@ -61,7 +61,7 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<style>
-			#login {
+			#update {
 			  height: 100px;
 			  width: 500px;
 			  margin: auto;
@@ -74,59 +74,69 @@
 				resize: none;
 			}
 		</style>
-		<title>Insert title here</title>
+		<title>세부 내역 수정</title>
 	</head>
 
 	<body>
-		<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
-			<table border="1">
-			
-				<tr>
-					<td>수입지출</td>
-					<td>
-						<select name="categoryNo">
+		<div class="container">
+			<div class="mt-2 p-2 text-end">
+				<span><a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="btn btn-sm btn-dark">뒤로가기</a></span>
+			</div>
+			<div class="container" id="update">
+				<div class="mt-4 p-4 text-dark">
+					<h1><label>세부 내역 수정</label></h1>
+				</div>
+				<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
+					<table class="table table-bordered">
+						<tr>
+							<td>분류</td>
+							<td class="text-start">
+								<select name="categoryNo">
+									<%
+										//category 목록 출력
+										for(Category c : categoryList) {
+									%>
+											<option value="<%=c.getCategoryNo()%>">
+												<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
+											</option>
+									<%
+										}
+									%>
+								</select>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>일자</td>
 							<%
-								//category 목록 출력
-								for(Category c : categoryList) {
+								if(date < 10) {
 							%>
-									<option value="<%=c.getCategoryNo()%>">
-										<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
-									</option>
+									<td class="text-start"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+							<%
+								} else {
+							%>
+									<td class="text-start"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
 							<%
 								}
 							%>
-						</select>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>cash_date</td>
-					<%
-						if(date < 10) {
-					%>
-							<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
-					<%
-						} else {
-					%>
-							<td><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
-					<%
-						}
-					%>
-				</tr>
-				
-				<tr>
-					<td>금액</td>
-					<td><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>"></td>
-				</tr>
-				
-				<tr>
-					<td>상세 내용</td>
-					<td><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
-				</tr>
-			</table>
-			<input type="hidden" name="cashNo" value="<%=cashData.getCashNo()%>">
-			<button type="submit">업데이트</button>
-		</form>
-		<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>">뒤로가기</a>
+						</tr>
+						
+						<tr>
+							<td>금액</td>
+							<td class="text-start"><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>"></td>
+						</tr>
+						
+						<tr>
+							<td>메모</td>
+							<td><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
+						</tr>
+					</table>
+					<input type="hidden" name="cashNo" value="<%=cashData.getCashNo()%>">
+					<div class="d-grid">
+						<button type="submit" class="btn btn-primary btn-block">업데이트</button>
+					</div>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>

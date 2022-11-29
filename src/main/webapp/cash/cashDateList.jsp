@@ -100,7 +100,7 @@
 						<th colspan="2" class="text-center">내역 추가</th>
 					</tr>
 					<tr>
-						<td class="text-center col-sm-1">수입/지출</td>
+						<td class="text-center col-sm-1">분류</td>
 						<td class="col-sm-11">
 							<select name="categoryNo">
 							<%
@@ -118,7 +118,7 @@
 					</tr>
 						
 					<tr>
-						<td class="text-center col-sm-1">cashDate</td>
+						<td class="text-center col-sm-1">일자</td>
 						<%
 							if(date < 10) {
 						%>
@@ -133,12 +133,12 @@
 					</tr>
 					
 					<tr>
-						<td class="col-sm-1 text-center">cashPrice</td>
+						<td class="col-sm-1 text-center">금액</td>
 						<td class="col-sm-11"><input type="text" name="cashPrice"></td>
 					</tr>
 					
 					<tr>
-						<td class="col-sm-1 text-center">cashMemo</td>
+						<td class="col-sm-1 text-center">메모</td>
 						<td class="col-sm-11"><textarea name="cashMemo"></textarea></td>
 					</tr>
 				</table>
@@ -153,10 +153,10 @@
 						<th colspan="6" class="text-center bg-dark text-light"><label>상세 내역</label></th>
 					</tr>
 					<tr>
-						<th class="col-sm-1 text-center">수입/지출</th>
-						<th class="col-sm-1 text-center">내역</th>
+						<th class="col-sm-1 text-center">분류</th>
+						<th class="col-sm-1 text-center">사용내역</th>
 						<th class="col-sm-1 text-center">금액</th>
-						<th class="col-sm-7 text-center">지출 메모</th>
+						<th class="col-sm-7 text-center">메모</th>
 						<th class="col-sm-1 text-center">수정</th>
 						<th class="col-sm-1 text-center">삭제</th>
 					</tr>

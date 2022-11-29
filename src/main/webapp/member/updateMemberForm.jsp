@@ -52,7 +52,7 @@
 			<div class="mt-4 p-4 text-dark">
 				<h1><label>회원정보 수정</label></h1>
 			</div>
-			<form action="<%=request.getContextPath()%>/member/updateMemberAction.jsp" method="post" class="align-middle">
+			<form action="<%=request.getContextPath()%>/member/updateMemberAction.jsp" method="post">
 				<table class="table table-bordered">
 					<tr>
 						<td><label>ID</label></td>
