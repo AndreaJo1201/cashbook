@@ -30,13 +30,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<title>Insert title here</title>
 	</head>
 
 	<body>
-		<!-- top include 메뉴 -->
-		<!-- 내용 -->
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		
 		<table border="1">
 			<tr>

@@ -37,56 +37,89 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<title>MainByAdmin</title>
+		
+		<style>
+			.leftcolumn {
+				float:left;
+				width:75%
+			}
+			
+			.rightcolumn {
+				float: left;
+				width: 25%;
+				padding-left: 20px;
+			}
+			
+			th {
+				vertical-align: middle;
+				text-align: cneter;
+			}
+			
+			td {
+				vertical-align: middle;
+				text-align: center;
+			}
+		</style>
 	</head>
 
 	<body>
-		<ul>
-			<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지사항 관리</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(회원 목록 보기, level 수정, 강제회원탈퇴)</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">고객센터 관리</a></li>
-		</ul>
+	<div class="container">
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+		<div class="mt-4 p-5 bg-primary text-white">
+			<h1>INDEX</h1>
+		</div>
+		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		
-		<div>
+		<div class="row mt-2 p-2">
 			<!-- adminMain contents... -->
 			<!-- 최근 공지 5,ㅡ 최근 가입 멤버 5 -->
-			<table border="1">
-				<tr>
-					<th colspan="3">최신 공지사항</th>
-				</tr>
-				<tr>
-					<%
-						for(Notice n : noticeList) {
-					%>
-								<td><%=n.getNoticeNo() %></td>
-								<td><%=n.getNoticeMemo() %></td>
-								<td><%=n.getCreatedate() %></td>
-							</tr><tr>
-					<%
-						}
-					%>
-				</tr>
-			</table>
-			<br>
-			<table border="1">
-				<tr>
-					<th colspan="3">최근 가입회원</th>
-				</tr>
-				<tr>
-					<%
-						for(Member m : memberList) {
-					%>
-								<td><%=m.getMemberNo() %></td>
-								<td><%=m.getMemberName() %></td>
-								<td><%=m.getCreatedate() %></td>
-							</tr><tr>
-					<%
-						}
-					%>
-				</tr>
-			</table>
+			<div class="leftcolumn">
+				<table class="table table-bordered text-center">
+					<tr>
+						<th colspan="3">최신 공지사항</th>
+					</tr>
+					<tr>
+						<%
+							for(Notice n : noticeList) {
+						%>
+									<td><%=n.getNoticeNo() %></td>
+									<td><%=n.getNoticeMemo() %></td>
+									<td><%=n.getCreatedate() %></td>
+								</tr><tr>
+						<%
+							}
+						%>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="rightcolumn">
+				<table class="table table-bordered text-center">
+					<tr>
+						<th colspan="3">신규 가입회원</th>
+					</tr>
+					<tr>
+						<%
+							for(Member m : memberList) {
+						%>
+									<td><%=m.getMemberNo() %></td>
+									<td><%=m.getMemberName() %></td>
+									<td><%=m.getCreatedate() %></td>
+								</tr><tr>
+						<%
+							}
+						%>
+					</tr>
+				</table>
+			</div>
 		</div>
+	</div>	
 	</body>
 </html>

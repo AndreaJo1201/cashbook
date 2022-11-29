@@ -45,9 +45,7 @@
 
 	<body>
 	<div class="container">
-		<div class="mt-2 p-2 text-end">
-			<span><a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="btn btn-sm btn-dark">뒤로가기</a></span>
-		</div>
+		<jsp:include page="/inc/header.jsp"></jsp:include>
 		<div class="container" id="update">
 			<div class="mt-4 p-4 text-dark">
 				<h1><label>회원정보 수정</label></h1>

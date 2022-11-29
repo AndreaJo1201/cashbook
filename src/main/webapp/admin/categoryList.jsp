@@ -39,18 +39,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<title>Insert title here</title>
 	</head>
 
 	<body>
-		<ul>
-			<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 메인</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지사항 관리</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(회원 목록 보기, level 수정, 강제회원탈퇴)</a></li>
-			<li><a href="<%=request.getContextPath()%>/admin/">고객센터 관리</a></li>
-		</ul>
-		
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		<div>
 			<!-- category contents... -->
 			<h1>카테고리 목록</h1>

@@ -112,10 +112,5 @@
 		<div>
 			<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp">문의하기</a>
 		</div>
-		<!-- 
-		<div>
-			<jsp:include page="/inc/footer.jsp"></jsp:include>
-		</div>
-		-->
 	</body>
 </html>

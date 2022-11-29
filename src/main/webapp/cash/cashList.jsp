@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.net.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8"); %>
@@ -69,6 +70,9 @@
 	long expenseCash = 0;
 	long importCash = 0;
 	
+	//숫자 천단위 , 출력
+	NumberFormat  numberFormat = NumberFormat.getInstance();
+	
 	/*************************************************************************************************************/
 	
 	//model 호출 : 일별 cash 목록
@@ -90,32 +94,25 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<title>CASH_LIST</title>
+		
+		<style>
+			th {
+				height: 30px;
+				width: 100px;
+			}
+			
+			td{
+				height: 100px;
+				width: 100px;
+			}
+			
+			
+		</style>
 	</head>
 
 	<body>
 		<div class="container">
-			<!-- 로그인 정보(세션 -> loginMember 변수) 출력 -->
-			<div class="row mt-2 p-2">
-				<div class="text-start col-sm-6">
-					<span><label><%=loginMember.getMemberName() %>님 반갑습니다.</label></span>
-					<%
-						if(loginMember.getMemberLevel() < 1) {
-					%>
-							<span><a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">문의내역</a></span>
-					<%
-						} else {
-					%>
-							<span><a href="<%=request.getContextPath()%>/admin/adminMain.jsp" class="btn-dark btn btn-sm text-end">관리자 페이지</a></span>
-					<%
-						}
-					%>
-				</div>
-				<div class="text-end col-sm-6">
-					<span><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp" class="btn btn-primary text-light btn-sm">회원정보 수정</a></span>
-					<span><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp" class="btn btn-primary text-light btn-sm">비밀번호 수정</a></span>
-					<span><a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp" class="btn btn-danger btn-sm">회원 탈퇴</a></span>
-				</div>
-			</div>
+				<jsp:include page="/inc/header.jsp"></jsp:include>
 		</div>
 		<div class="container">
 			<table class="table table-bordered">
@@ -177,7 +174,7 @@
 											if(Integer.parseInt(cashDate.substring(8)) == date) {
 									%>
 												[<%=(String)(m.get("categoryKind")) %>]
-												\<%=(Long)(m.get("cashPrice")) %>
+												\<%=numberFormat.format((Long)(m.get("cashPrice"))) %>
 												<%=(String)(m.get("categoryName")) %>
 												<br>
 									<%
@@ -209,21 +206,19 @@
 			</table>
 			<div class="p-2 container row">
 				<div class="text-start col-sm-6">
-					<span class="text-info">수입 누계 : <%=importCash %>원</span>
-					<span class="text-danger">지출 누계 : <%=expenseCash %>원</span>
+					<span class="text-info"><label>수입 :  <%=numberFormat.format(importCash)%>원</label></span>
+					<br>
+					<span class="text-danger"><label>지출 : <%=numberFormat.format(expenseCash) %>원</label></span>
 				</div>
 				<div class="text-end col-sm-6">
-					<a href="<%=request.getContextPath()%>/logout.jsp" class="btn-dark btn btn-sm">로그아웃</a>
-				</div>
-				<div>
 				<%
 					if(totalCash < 0) {
 				%>
-						<span class="text-danger">월 누계 : <%=totalCash %>원</span>
+						<span class="text-danger"><label>월 누계 : <%=numberFormat.format(totalCash) %>원</label></span>
 				<%
 					} else {
 				%>
-						<span class="text-info">월 누계 : <%=totalCash %>원</span>
+						<span class="text-info"><label>월 누계 : <%=numberFormat.format(totalCash) %>원</label></span>
 				<%
 					}
 				%>
