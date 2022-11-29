@@ -18,27 +18,54 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<title>SIGN UP</title>
+		
+		<style>
+			#update {
+			  height: 100px;
+			  width: 500px;
+			  margin: auto;
+			  text-align: center;
+			}
+		</style>
 	</head>
 
 	<body>
-		<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
-			<table border="1">
-				<tr>
-					<td>ID</td>
-					<td><input type="text" name="memberId"></td>
-				</tr>
-				<tr>
-					<td>PW</td>
-					<td><input type="password" name="memberPw"></td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td><input type="text" name="memberName"></td>
-				</tr>
-			</table>
-			<button type="submit">회원가입</button>
-		</form>
+	<div class="container">
+		<div class="mt-2 p-2 text-end">
+			<span><a href="<%=request.getContextPath()%>/loginForm.jsp" class="btn btn-sm btn-dark">뒤로가기</a></span>
+		</div>
+		
+		<div class="container" id="update">
+			<div class="mt-4 p-4 text-white bg-dark">
+				<h1><label>회원가입</label></h1>
+			</div>
+			<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
+				<table class="table table-bordered">
+					<tr>
+						<td>ID</td>
+						<td><input type="text" name="memberId"></td>
+					</tr>
+					<tr>
+						<td>PW</td>
+						<td><input type="password" name="memberPw"></td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td><input type="text" name="memberName"></td>
+					</tr>
+				</table>
+				<div class="d-grid">
+					<button type="submit" class="btn btn-dark btn-block">회원가입</button>
+				</div>
+			</form>
+		</div>
+	</div>	
 	</body>
 </html>
