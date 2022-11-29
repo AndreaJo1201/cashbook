@@ -3,7 +3,7 @@ package vo;
 public class Comment {
 	private int commentNo;
 	private int helpNo;
-	private String commnetMemo;
+	private String commentMemo;
 	private String memberId;
 	private String updatedate;
 	
@@ -19,11 +19,11 @@ public class Comment {
 	public void setHelpNo(int helpNo) {
 		this.helpNo = helpNo;
 	}
-	public String getCommnetMemo() {
-		return commnetMemo;
+	public String getCommentMemo() {
+		return commentMemo;
 	}
-	public void setCommnetMemo(String commnetMemo) {
-		this.commnetMemo = commnetMemo;
+	public void setCommentMemo(String commentMemo) {
+		this.commentMemo = commentMemo;
 	}
 	public String getMemberId() {
 		return memberId;

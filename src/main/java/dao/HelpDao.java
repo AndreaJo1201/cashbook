@@ -115,5 +115,31 @@ public class HelpDao {
 		
 		return list;
 	}
+	
+	public Help selectHelp (int helpNo) throws Exception {
+		Help help = null;
+		
+		String sql="SELECT * FROM help WHERE help_no = ?";
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, helpNo);
+		
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			help = new Help();
+			help.setHelpMemo(rs.getString("help_memo"));
+			help.setMemberId(rs.getString("member_id"));
+			help.setCreatedate(rs.getString("createdate"));
+		}
+		
+		return help;
+	}
 
 }

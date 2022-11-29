@@ -38,7 +38,7 @@
 		<!-- top include 메뉴 -->
 		<!-- 내용 -->
 		
-		<table>
+		<table border="1">
 			<tr>
 				<th>번호</th>
 				<th>문의내용</th>
@@ -73,6 +73,7 @@
 							}
 						%>
 					</td>
+					</tr><tr>
 			<%
 				}
 			%>
