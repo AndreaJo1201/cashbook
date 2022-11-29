@@ -17,7 +17,7 @@
 		request.getParameter("memberName") == null ||
 		request.getParameter("memberName").equals("")) {
 			String msg = "빈칸을 입력해주세요.";
-			response.sendRedirect(request.getContextPath()+"/member/insertMemberForm.jsp");
+			response.sendRedirect(request.getContextPath()+"/member/insertMemberForm.jsp?msg="+URLEncoder.encode(msg,"UTF-8"));
 			return;
 	}
 	

@@ -34,7 +34,7 @@
 			
 			th {
 				vertical-align: middle;
-				text-align: cneter;
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -51,8 +51,8 @@
 			<form action="<%=request.getContextPath()%>/admin/notice/insertNoticeAction.jsp" method="post" id="form">
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center col-sm-1">내용</th>
-						<td class="col-sm-11"><textarea name="noticeMemo"></textarea></td>
+						<th class="col-sm-1">내용</th>
+						<td class="col-sm-11"><textarea name="noticeMemo" placeholder="공지사항 내용을 입력해주세요."></textarea></td>
 					</tr>
 				</table>
 			</form>

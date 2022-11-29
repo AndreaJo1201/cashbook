@@ -44,7 +44,7 @@
 		<style>
 			#login {
 			  height: 100px;
-			  width: 500px;
+			  width: 300px;
 			  margin: auto;
 			  text-align: center;
 			}

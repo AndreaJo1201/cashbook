@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="dao.MemberDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.NoticeDao"%>
@@ -8,7 +9,8 @@
 <%
 	//Controller
 	if(session.getAttribute("loginMember") == null) {
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		String msg = "로그인이 필요합니다.";
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
 		return;
 	} else {
 		Member loginMember = (Member)session.getAttribute("loginMember");
@@ -83,15 +85,15 @@
 			<div class="leftcolumn">
 				<table class="table table-bordered text-center">
 					<tr>
-						<th colspan="3">최신 공지사항</th>
+						<th colspan="3"><label>최신 공지사항</label></th>
 					</tr>
 					<tr>
 						<%
 							for(Notice n : noticeList) {
 						%>
-									<td><%=n.getNoticeNo() %></td>
-									<td><%=n.getNoticeMemo() %></td>
-									<td><%=n.getCreatedate() %></td>
+									<td><label><%=n.getNoticeNo() %></label></td>
+									<td><label><%=n.getNoticeMemo() %></label></td>
+									<td><label><%=n.getCreatedate() %></label></td>
 								</tr><tr>
 						<%
 							}
@@ -103,15 +105,15 @@
 			<div class="rightcolumn">
 				<table class="table table-bordered text-center">
 					<tr>
-						<th colspan="3">신규 가입회원</th>
+						<th colspan="3"><label>신규 가입회원</label></th>
 					</tr>
 					<tr>
 						<%
 							for(Member m : memberList) {
 						%>
-									<td><%=m.getMemberNo() %></td>
-									<td><%=m.getMemberName() %></td>
-									<td><%=m.getCreatedate() %></td>
+									<td><label><%=m.getMemberNo() %></label></td>
+									<td><label><%=m.getMemberName() %></label></td>
+									<td><label><%=m.getCreatedate() %></label></td>
 								</tr><tr>
 						<%
 							}

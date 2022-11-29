@@ -154,12 +154,12 @@
 						
 						<tr>
 							<td class="col-sm-1 text-center center_middle">금액</td>
-							<td class="col-sm-11"><input type="text" name="cashPrice"></td>
+							<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(\)"></td>
 						</tr>
 						
 						<tr>
 							<td class="col-sm-1 text-center center_middle">메모</td>
-							<td class="col-sm-11"><textarea name="cashMemo"></textarea></td>
+							<td class="col-sm-11"><textarea name="cashMemo" placeholder="세부 사항을 적어주세요."></textarea></td>
 						</tr>
 					</table>
 					<div class="d-grid">

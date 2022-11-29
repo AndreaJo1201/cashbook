@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="vo.Cash"%>
 <%@page import="vo.Member"%>
 <%@page import="java.util.HashMap"%>
@@ -47,7 +48,7 @@
 	CategoryDao categoryDao = new CategoryDao();
 	ArrayList<Category> categoryList = categoryDao.selectCategoryList();
 	
-	
+	NumberFormat numberFormat = NumberFormat.getInstance();
 	
 %>
 
