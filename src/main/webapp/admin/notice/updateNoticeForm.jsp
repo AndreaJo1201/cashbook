@@ -66,7 +66,7 @@
 		<div class="mt-4">
 			<table class="table table-bordered">
 				<tr>
-					<th colspan="2" class="col-sm12 table-dark"><label>기존 공지사항</label></th>
+					<th colspan="2" class="col-sm-12 table-dark"><label>기존 공지사항</label></th>
 				</tr>
 				<tr>
 					<th class="col-sm-1"><label>내용</label></th>

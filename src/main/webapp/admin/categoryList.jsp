@@ -29,7 +29,7 @@
 	CategoryDao categoryDao = new CategoryDao();
 	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	
-	int categoryCount = categoryDao.selectCoategoryCount();
+	int categoryCount = categoryDao.selectCategoryCount();
 	int lastPage = (int)Math.ceil(((double)(categoryCount)/rowPerPage));
 	
 	

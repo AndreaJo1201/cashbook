@@ -47,70 +47,94 @@
 			  margin: auto;
 			  text-align: center;
 			}
+			
+			th {
+				vertical-align: middle;
+				text-align: center;
+			}
+			
+			td {
+				vertical-align: middle;
+				text-align: center;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div>
-			<h1>개인 문의내역</h1>
-			<table border="1">
-				<tr>
-					<th>번호</th>
-					<th>문의내용</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>답변일</th>
-					<th>수정</th>
-					<th>삭제</th>
-				</tr>
-				<tr>
-				<%
-					for(HashMap<String, Object> h : helpList) {
-				%>
-						<td><%=h.get("helpNo") %></td>
-						<td><%=h.get("helpMemo") %></td>
-						<td><%=h.get("memberId") %></td>
-						<td><%=h.get("helpCreatedate") %></td>
-						<td>
-							<%
-								if(h.get("commentCreateDate") == null) {
-							%>
-									답변대기중
-							<%
-								} else {
-							%>
-									<%=h.get("commentCreateDate") %>
-							<%
-								}
-							%>
-						</td>
-						<td>
-							<%
-								if(h.get("commentMemo") == null) {
-							%>
-									<a href="">수정</a>
-							<%
-								}
-							%>
-						</td>
-						<td>
-							<%
-								if(h.get("commentMemo") == null) {
-							%>
-									<a href="">삭제</a>
-							<%
-								}
-							%>
-						</td>
-						</tr><tr>
-				<%
-					}
-				%>
-				</tr>
-			</table>
+		<div class="container">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
 		</div>
-		<div>
-			<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp">문의하기</a>
+		
+		<div class="container">
+			<div class="mt-4 p-5 text-dark bg-light rounded">
+				<h1><label>개인 문의 내역</label></h1>
+			</div>
+			
+			<div class="mt-2">
+				<table class="table table-bordered table-hover">
+					<tr class="table-dark">
+						<th colspan="7"><label>문의하기</label></th>
+					</tr>
+					<tr>
+						<th><label>번호</label></th>
+						<th><label>문의내용</label></th>
+						<th><label>작성자</label></th>
+						<th><label>작성일</label></th>
+						<th><label>답변일</label></th>
+						<th><label>수정</label></th>
+						<th><label>삭제</label></th>
+					</tr>
+					<tr>
+					<%
+						for(HashMap<String, Object> h : helpList) {
+					%>
+							<td><label><%=h.get("helpNo") %></label></td>
+							<td><a href="<%=request.getContextPath() %>/help/helpListOne.jsp?helpNo=<%=h.get("helpNo") %>" class="text-decoration-none"><%=h.get("helpMemo") %></a></td>
+							<td><label><%=h.get("memberId") %></label></td>
+							<td><label><%=h.get("helpCreatedate") %></label></td>
+							<td>
+								<%
+									if(h.get("commentCreateDate") == null) {
+								%>
+										<label>답변대기중</label>
+								<%
+									} else {
+								%>
+										<label><%=h.get("commentCreateDate") %></label>
+								<%
+									}
+								%>
+							</td>
+							<td>
+								<%
+									if(h.get("commentMemo") == null) {
+								%>
+										<a href="<%=request.getContextPath() %>/help/updateHelpForm.jsp?helpNo=<%=h.get("helpNo") %>" class="btn btn-outline-primary btn-sm">수정</a>
+								<%
+									}
+								%>
+							</td>
+							<td>
+								<%
+									if(h.get("commentMemo") == null) {
+								%>
+										<a href="<%=request.getContextPath() %>/help/deleteHelpAction.jsp?helpNo=<%=h.get("helpNo") %>" class="btn btn-outline-danger btn-sm">삭제</a>
+								<%
+									}
+								%>
+							</td>
+							</tr><tr>
+					<%
+						}
+					%>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="d-flex justify-content-end">
+				<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp" class="btn btn-dark btn-sm">문의하기</a>
+			</div>
 		</div>
+
 	</body>
 </html>

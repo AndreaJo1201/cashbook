@@ -24,23 +24,55 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>문의사항 작성</title>
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<style>
+			textarea {
+				width:100%;
+				height: 400px;
+				border: none;
+				resize: none;
+			}
+			
+			th {
+				vertical-align: middle;
+				text-align: center;
+			}
+		</style>
 	</head>
 
 	<body>
-		<div>
-			<h1>문의하기</h1>
+		<div class="container">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
 		</div>
-		<div>
-			<form action="<%=request.getContextPath()%>/help/insertHelpAction.jsp" method="post">
-				<table>
+	<div class="container">
+		<div class="mt-4 p-5 text-dark bg-light rounded">
+			<h1><label>문의사항 작성</label></h1>
+		</div>
+		
+		<div class="mt-2 p-2">
+			<form action="<%=request.getContextPath()%>/help/insertHelpAction.jsp" method="post" id="form">
+				<table class="table table-bordered">
 					<tr>
-						<th>문의내용</th>
-						<td><textarea name="helpMemo"></textarea></td>
+						<th colspan="2" class="table-dark col-sm-12"><label>문의사항 작성</label></th>
+					</tr>
+					<tr>
+						<th class="col-sm-1"><label>내용</label></th>
+						<td class="col-sm-11"><textarea name="helpMemo"></textarea></td>
 					</tr>
 				</table>
-				<button type="submit">문의하기</button>
+				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 			</form>
+			
+			<div class="d-flex justify-content-between">
+				<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="form">문의하기</button>
+			</div>
 		</div>
+	</div>
 	</body>
 </html>

@@ -91,7 +91,7 @@
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 		</div>
 		<div class="container">
-			<div class="mt-4 p-4 text-dark bg-light rounded" >
+			<div class="mt-4 p-5 text-dark bg-light rounded" >
 				<h1><label>수입 지출 내역</label></h1>
 				<p><label><%=year %>년 <%=month+1%>월 <%=date %>일</label></p>
 			</div>

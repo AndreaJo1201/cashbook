@@ -64,7 +64,7 @@ public class CategoryDao {
 		return list;
 	}
 	
-	public int selectCoategoryCount() throws Exception {
+	public int selectCategoryCount() throws Exception {
 		int row = 0;
 		
 		String sql = "SELECT COUNT(*) cnt FROM category";
@@ -81,6 +81,8 @@ public class CategoryDao {
 		if(rs.next()) {
 			row = rs.getInt("cnt");
 		}
+		
+		dbUtil.close(rs, stmt, conn);
 		
 		return row;
 	}

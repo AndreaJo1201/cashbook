@@ -134,12 +134,135 @@ public class HelpDao {
 		
 		if(rs.next()) {
 			help = new Help();
+			help.setHelpNo(rs.getInt("help_no"));
 			help.setHelpMemo(rs.getString("help_memo"));
 			help.setMemberId(rs.getString("member_id"));
 			help.setCreatedate(rs.getString("createdate"));
 		}
 		
+		dbUtil.close(rs, stmt, conn);
+		
 		return help;
+	}
+	
+	public int updateHelp (Help help) throws Exception {
+		int row = 0;
+		
+		String sql ="UPDATE help SET help_memo = ? WHERE help_no =? AND member_id = ? ";
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, help.getHelpMemo());
+		stmt.setInt(2, help.getHelpNo());
+		stmt.setString(3, help.getMemberId());
+		
+		row = stmt.executeUpdate();
+		
+		if(row == 0) {
+			System.out.println("업데이트 실패");
+		} else {
+			System.out.println("업데이트 성공");
+		}
+		
+		dbUtil.close(null, stmt, conn);
+		
+		return row;
+	}
+	
+	public int deleteHelp (Help help) throws Exception {
+		int row = 0;
+		
+		String sql ="DELETE FROM help WHERE help_no =? AND member_id = ? ";
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, help.getHelpNo());
+		stmt.setString(2, help.getMemberId());
+		
+		row = stmt.executeUpdate();
+		
+		if(row == 0) {
+			System.out.println("삭제 실패");
+		} else {
+			System.out.println("삭제 성공");
+		}
+		
+		dbUtil.close(null, stmt, conn);
+		
+		return row;
+	}
+	
+	public int selectHelpListCount() throws Exception{
+		int row = 0;
+		
+		String sql ="SELECT COUNT(*) cnt FROM help";
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			row = rs.getInt("cnt");
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		
+		return row;
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectHelpListOne(Help help) throws Exception {
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		
+		String sql = "SELECT h.*, c.* FROM HELP h LEFT OUTER JOIN COMMENT c ON h.help_no = c.help_no WHERE h.member_id = ? AND h.help_no = ? ORDER BY h.help_no DESC";
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, help.getMemberId());
+		stmt.setInt(2, help.getHelpNo());
+		
+		rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, Object> h = new HashMap<String, Object>();
+			h.put("helpNo", rs.getInt("h.help_no"));
+			h.put("helpMemo", rs.getString("h.help_memo"));
+			h.put("memberId", rs.getString("h.member_id"));
+			h.put("helpUpdateDate", rs.getString("h.updatedate"));
+			h.put("helpCreatedate", rs.getString("h.createdate"));
+			
+			h.put("commentNo", rs.getInt("c.comment_no"));
+			h.put("commentMemberId", rs.getString("c.member_id"));
+			h.put("commentMemo", rs.getString("c.comment_memo"));
+			h.put("commentUpdateDate", rs.getString("c.updatedate"));
+			h.put("commentCreateDate", rs.getString("c.createdate"));
+			
+			list.add(h);
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		
+		return list;
 	}
 
 }
