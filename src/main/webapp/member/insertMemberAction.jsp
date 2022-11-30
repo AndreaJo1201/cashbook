@@ -5,7 +5,7 @@
 <%@ page import="dao.*" %>
 
 <%
-	if(session.getAttribute("loginMember") != null) {
+	if(session.getAttribute("loginMember") != null) { // 로그인 상태로는 접속 불가, 로그인 상태일시 가계부 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 		return;
 	}

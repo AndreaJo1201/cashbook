@@ -6,12 +6,12 @@
 <%@ page import="java.util.*" %>
 
 <%
-	if(session.getAttribute("loginMember") == null) {
+	if(session.getAttribute("loginMember") == null) { // 세션 정보가 없을 시 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	} else {
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember.getMemberLevel() < 1) {
+		if(loginMember.getMemberLevel() < 1) { // 관리자 레벨이 아닐 시 가계부 페이지로 이동
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 		}
@@ -29,7 +29,7 @@
 	int helpListCount = helpDao.selectHelpListCount();
 	int lastPage = (int)Math.ceil(((double)(helpListCount)/rowPerPage));
 	
-	if(currentPage < 1) {
+	if(currentPage < 1) { // 없는 페이지로 이동시 자동 이동
 		response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp?currentPage=1");
 	} else if(currentPage > lastPage) {
 		response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp?currentPage="+lastPage);

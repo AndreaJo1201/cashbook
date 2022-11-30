@@ -6,12 +6,12 @@
 
 <%
 	//Controller
-	if(session.getAttribute("loginMember") == null) {
+	if(session.getAttribute("loginMember") == null) { // 세션 정보가 없을 시 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	} else {
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember.getMemberLevel() < 1) {
+		if(loginMember.getMemberLevel() < 1) { // 관리자 레벨이 아닐 시 가계부 페이지로 이동
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 		}
@@ -23,14 +23,23 @@
 	}
 	
 	int rowPerPage = 10;
+	
+	MemberDao memberDao = new MemberDao();
+	int memberCount = memberDao.selectMemberCount(); // -> lastPage 계산용
+	int lastPage = (int)Math.ceil(((double)(memberCount)/rowPerPage));
+	
+	if(currentPage < 1) { // 없는 페이지로 이동시 자동 이동
+		response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp?currentPage=1");
+	} else if(currentPage > lastPage) {
+		response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp?currentPage="+lastPage);
+	}
+	
 	int beginRow = (currentPage - 1) * rowPerPage;
 	
 	//Model 호출
-	MemberDao memberDao = new MemberDao();
-	ArrayList<Member> memberList = memberDao.selectMemberListByPage(beginRow, rowPerPage);
-	int memberCount = memberDao.selectMemberCount(); // -> lastPage 계산용
 	
-	int lastPage = (int)Math.ceil(((double)(memberCount)/rowPerPage));
+	ArrayList<Member> memberList = memberDao.selectMemberListByPage(beginRow, rowPerPage);
+	
 	
 	
 	

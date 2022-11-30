@@ -3,7 +3,7 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
-	if(session.getAttribute("loginMember") == null) {
+	if(session.getAttribute("loginMember") == null) { //로그인 상태가 아닐시 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}

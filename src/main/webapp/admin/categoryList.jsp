@@ -5,32 +5,41 @@
 <%@ page import = "java.util.*" %>
 
 <%
-	if(session.getAttribute("loginMember") == null) {
+	if(session.getAttribute("loginMember") == null) { // 세션 정보가 없을 시 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	} else {
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember.getMemberLevel() < 1) {
+		if(loginMember.getMemberLevel() < 1) { // 관리자 레벨이 아닐 시 가계부 페이지로 이동
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 		}
 	}
 
 	int currentPage = 1;
-	if(request.getParameter("currentPage") != null ) {
+	if(request.getParameter("currentPage") != null ) { // 현재 페이지 
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	int rowPerPage = 10;
-	int beginRow = (currentPage - 1) * rowPerPage;
+	int rowPerPage = 10; // 페이지당 보여줄 갯수
+	
+	CategoryDao categoryDao = new CategoryDao();
+	int categoryCount = categoryDao.selectCategoryCount(); // 총 칼럼 갯수
+	int lastPage = (int)Math.ceil(((double)(categoryCount)/rowPerPage)); // 마지막 페이지
+	
+	if(currentPage < 1) { // 없는 페이지로 이동 시 페이지 자동 이동
+		response.sendRedirect(request.getContextPath()+"/admin/categoryList.jsp?currentPage=1");
+	} else if(currentPage > lastPage) {
+		response.sendRedirect(request.getContextPath()+"/admin/categoryList.jsp?currentPage="+lastPage);
+	}
+	
+	int beginRow = (currentPage - 1) * rowPerPage; // 페이지 가장 첫 글
 	
 	
 	//Model 호출
-	CategoryDao categoryDao = new CategoryDao();
+
 	ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	
-	int categoryCount = categoryDao.selectCategoryCount();
-	int lastPage = (int)Math.ceil(((double)(categoryCount)/rowPerPage));
 	
 	
 	//view

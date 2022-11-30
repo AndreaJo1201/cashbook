@@ -5,6 +5,11 @@
 <%@ page import="dao.*" %>
 
 <%
+	if(session.getAttribute("loginMember") == null) { //비 로그인 페이지 접속 시 로그인 폼으로 안내
+		String msg = "로그인이 필요합니다.";
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
+		return;
+	}
 	Member loginMember = (Member)session.getAttribute("loginMember");
 
 	Member paramMember = new Member();

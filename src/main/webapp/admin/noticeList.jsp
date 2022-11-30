@@ -26,21 +26,23 @@
 	
 	int rowPerPage = 10;
 	
+	NoticeDao noticeDao = new NoticeDao();
+	int noticeCount = noticeDao.selectNoticeCount();
+	int lastPage =(int) Math.ceil((double)(noticeDao.selectNoticeCount()) / (double)rowPerPage);
+	
+	if(currentPage < 1) { // 존재하지 않는 페이지로 이동 시 자동 이동
+		response.sendRedirect(request.getContextPath()+"/admin/noticeList.jsp?currentPage=1");
+	} else if(currentPage > lastPage) {
+		response.sendRedirect(request.getContextPath()+"/admin/noticeList.jsp?currentPage="+lastPage);
+	}
+	
 	int beginRow = (currentPage-1)*rowPerPage;
 	
 	
 	//Model 호출
 	
 	//notice List 출력
-	NoticeDao noticeDao = new NoticeDao();
 	ArrayList<Notice> list = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
-	int lastPage =(int) Math.ceil((double)(noticeDao.selectNoticeCount()) / (double)rowPerPage);
-	
-	
-	if(currentPage < 1 || currentPage > lastPage) {
-		String msg = "";
-		response.sendRedirect(request.getContextPath()+"/admin/noticeList.jsp?msg="+URLEncoder.encode(msg,"UTF-8"));
-	}
 	
 	//view
 %>

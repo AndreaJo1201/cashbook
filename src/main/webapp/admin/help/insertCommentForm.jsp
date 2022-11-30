@@ -5,19 +5,19 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
-	if(session.getAttribute("loginMember") == null) {
+	if(session.getAttribute("loginMember") == null) { // 세션 정보가 없을 시 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	} else {
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember.getMemberLevel() < 1) {
+		if(loginMember.getMemberLevel() < 1) { // 관리자 레벨이 아닐 시 가계부 페이지로 이동
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 		}
 	}
 	
 	if(request.getParameter("helpNo") == null ||
-		request.getParameter("helpNo").equals("")) {
+		request.getParameter("helpNo").equals("")) { // 답변 달려는 문의사항 식별 번호가 없을 시 문의 list로 이동
 			response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp");
 			return;
 	}

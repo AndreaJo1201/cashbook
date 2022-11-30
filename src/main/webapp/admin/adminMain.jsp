@@ -10,18 +10,19 @@
 
 <%
 	//Controller
-	if(session.getAttribute("loginMember") == null) {
+	if(session.getAttribute("loginMember") == null) { // 세션 정보가 없을시 메시지 경고창과 함께 로그인 페이지로 이동
 		String msg = "로그인이 필요합니다.";
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
 		return;
 	} else {
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		if(loginMember.getMemberLevel() < 1) {
+		if(loginMember.getMemberLevel() < 1) { // 관리자 레벨이 아닐시 가계 부 페이지로 이동
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 		}
 	}
-
+	
+	//리스트 출력 조건(가장 최신 0번부터 5개만)
 	int beginRow = 0;
 	int rowPerPage = 5;
 	
@@ -31,7 +32,7 @@
 	MemberDao memberDao = new MemberDao();
 	HelpDao helpDao = new HelpDao();
 	
-	//최근 공지사항 5개, 최근 가입한 멤버 5명
+	//최근 공지사항 5개, 최근 가입한 멤버 5명, 최근 등록된 문의사항 5개
 	ArrayList<Notice> noticeList = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 	
 	ArrayList<Member> memberList = memberDao.selectMemberListByPage(beginRow, rowPerPage);

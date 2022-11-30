@@ -4,11 +4,11 @@
 
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	if(loginMember == null) {
+	if(loginMember == null) { // 세션 정보가 없을시 로그인 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
-	} else if(loginMember.getMemberLevel() < 1) {
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+	} else if(loginMember.getMemberLevel() < 1) { // 관리자 레벨이 아닐 시 가계부 페이지로 이동
+		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 		return;
 	}
 
