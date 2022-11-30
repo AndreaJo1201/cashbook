@@ -81,7 +81,7 @@
 	<div class="container">
 		<jsp:include page="/inc/header.jsp"></jsp:include>
 		<div class="mt-4 p-5 bg-primary text-white">
-			<h1>INDEX</h1>
+			<h1><label>INDEX</label></h1>
 		</div>
 		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		

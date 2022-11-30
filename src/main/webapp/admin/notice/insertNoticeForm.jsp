@@ -43,7 +43,7 @@
 	<div class="container">
 		<jsp:include page="/inc/header.jsp"></jsp:include>
 		<div class="mt-4 p-5 bg-primary text-white">
-			<h1>공지사항 작성</h1>
+			<h1><label>공지사항 작성</label></h1>
 		</div>
 		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		
@@ -51,7 +51,7 @@
 			<form action="<%=request.getContextPath()%>/admin/notice/insertNoticeAction.jsp" method="post" id="form">
 				<table class="table table-bordered">
 					<tr>
-						<th class="col-sm-1">내용</th>
+						<th class="col-sm-1"><label>내용</label></th>
 						<td class="col-sm-11"><textarea name="noticeMemo" placeholder="공지사항 내용을 입력해주세요."></textarea></td>
 					</tr>
 				</table>

@@ -65,14 +65,14 @@
 				<form action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp" method="post" id="form">
 					<table class="table table-bordered">
 						<tr>
-							<th class="col-sm-2">카테고리 번호</th>
-							<th class="col-sm-2">카테고리 종류</th>
-							<th class="col-sm-8">카테고리 이름</th>
+							<th class="col-sm-2"><label>카테고리 번호</label></th>
+							<th class="col-sm-2"><label>카테고리 종류</label></th>
+							<th class="col-sm-8"><label>카테고리 이름</label></th>
 	
 						</tr>
 						<tr>
-							<td class="col-sm-2 alignCenter"><%=categoryOne.getCategoryNo() %></td>
-							<td class="col-sm-2 alignCenter"><%=categoryOne.getCategoryKind() %></td>
+							<td class="col-sm-2 alignCenter"><label><%=categoryOne.getCategoryNo() %></label></td>
+							<td class="col-sm-2 alignCenter"><label><%=categoryOne.getCategoryKind() %></label></td>
 							<td class="col-sm-8"><input type="text" name ="categoryName" value="<%=categoryOne.getCategoryName() %>"></td>
 						</tr>
 					</table>

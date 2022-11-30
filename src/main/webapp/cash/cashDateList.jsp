@@ -105,10 +105,10 @@
 					<input type="hidden" name="date" value="<%=date %>">
 					<table class="table table-bordered">
 						<tr class="bg-dark text-light">
-							<th colspan="2" class="text-center">내역 추가</th>
+							<th colspan="2" class="text-center"><label>내역 추가</label></th>
 						</tr>
 						<tr>
-							<td class="text-center col-sm-1 center_middle">분류</td>
+							<td class="text-center col-sm-1 center_middle"><label>분류</label></td>
 							<td class="col-sm-11">
 								<select name="categoryNo">
 								<%
@@ -126,7 +126,7 @@
 						</tr>
 							
 						<tr>
-							<td class="text-center col-sm-1 center_middle">일자</td>
+							<td class="text-center col-sm-1 center_middle"><label>일자</label></td>
 							<%
 								if(month+1 < 10) {
 									if(date < 10) {
@@ -153,12 +153,12 @@
 						</tr>
 						
 						<tr>
-							<td class="col-sm-1 text-center center_middle">금액</td>
+							<td class="col-sm-1 text-center center_middle"><label>금액</label></td>
 							<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(\)"></td>
 						</tr>
 						
 						<tr>
-							<td class="col-sm-1 text-center center_middle">메모</td>
+							<td class="col-sm-1 text-center center_middle"><label>메모</label></td>
 							<td class="col-sm-11"><textarea name="cashMemo" placeholder="세부 사항을 적어주세요."></textarea></td>
 						</tr>
 					</table>
@@ -173,12 +173,12 @@
 							<th colspan="6" class="text-center bg-dark text-light"><label>상세 내역</label></th>
 						</tr>
 						<tr>
-							<th class="col-sm-1 text-center">분류</th>
-							<th class="col-sm-1 text-center">사용내역</th>
-							<th class="col-sm-1 text-center">금액</th>
-							<th class="col-sm-7 text-center">메모</th>
-							<th class="col-sm-1 text-center">수정</th>
-							<th class="col-sm-1 text-center">삭제</th>
+							<th class="col-sm-1 text-center"><label>분류</label></th>
+							<th class="col-sm-1 text-center"><label>사용내역</label></th>
+							<th class="col-sm-1 text-center"><label>금액</label></th>
+							<th class="col-sm-7 text-center"><label>메모</label></th>
+							<th class="col-sm-1 text-center"><label>수정</label></th>
+							<th class="col-sm-1 text-center"><label>삭제</label></th>
 						</tr>
 						<tr>
 						<%
@@ -191,10 +191,10 @@
 								int a = (Integer)m.get("cashNo");
 								
 						%>
-								<td class="col-sm-1 text-center center_middle"><%=(String)(m.get("categoryKind"))%></td>
-								<td class="col-sm-1 text-center center_middle"><%=(String)(m.get("categoryName"))%></td>
-								<td class="col-sm-1 text-center center_middle">\<%=numberFormat.format((Long)(m.get("cashPrice")))%></td>
-								<td class="col-sm-7"><%=(String)(m.get("cashMemo"))%></td>
+								<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryKind"))%></label></td>
+								<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryName"))%></label></td>
+								<td class="col-sm-1 text-center center_middle"><label>\<%=numberFormat.format((Long)(m.get("cashPrice")))%></label></td>
+								<td class="col-sm-7"><label><%=(String)(m.get("cashMemo"))%></label></td>
 								<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>" class="btn btn-primary btn-sm">수정</a></td>
 								<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>" class="btn btn-danger btn-sm">삭제</a></td>
 								</tr><tr>
@@ -203,8 +203,8 @@
 						%>
 						</tr>
 						<tr>
-							<td colspan="1" class="col-sm-1 text-center">누계</td>
-							<td colspan="5" class="col-sm-11">\<%=numberFormat.format(resultPrice) %></td>
+							<td colspan="1" class="col-sm-1 text-center"><label>누계</label></td>
+							<td colspan="5" class="col-sm-11"><label>\<%=numberFormat.format(resultPrice) %></label></td>
 						</tr>
 					</table>
 				</div>
