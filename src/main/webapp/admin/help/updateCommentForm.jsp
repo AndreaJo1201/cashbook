@@ -87,7 +87,7 @@
 			</div>
 			
 			<div class="mt-2 p-2">
-				<form action="<%=request.getContextPath()%>/admin/help/updateCommentAction.jsp" method="post">
+				<form action="<%=request.getContextPath()%>/admin/help/updateCommentAction.jsp" method="post" id="form">
 					<table class="table table-bordered">
 						<tr>
 							<th colspan="2" class="table-dark col-sm-12"><label>수정 사항</label></th>

@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="dao.HelpDao"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="dao.MemberDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,11 +29,14 @@
 	//Model 호출
 	NoticeDao noticeDao = new NoticeDao();
 	MemberDao memberDao = new MemberDao();
+	HelpDao helpDao = new HelpDao();
 	
 	//최근 공지사항 5개, 최근 가입한 멤버 5명
 	ArrayList<Notice> noticeList = noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 	
 	ArrayList<Member> memberList = memberDao.selectMemberListByPage(beginRow, rowPerPage);
+	
+	ArrayList<HashMap<String,Object>> helpList = helpDao.selectHelpList(beginRow, rowPerPage);
 	
 	//view
 %>
@@ -121,6 +126,26 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		
+		<div class="leftcolumn">
+			<table class="table table-bordered text-center">
+				<tr>
+					<th colspan="3"><label>신규 문의사항</label></th>
+				</tr>
+				<tr>
+					<%
+						for(HashMap<String,Object> h : helpList) {
+					%>
+								<td class="col-sm-1"><label><%=h.get("helpNo") %></label></td>
+								<td class="col-sm-8"><label><%=h.get("helpMemo") %></label></td>
+								<td class="col-sm-3"><label><%=h.get("helpCreateDate") %></label></td>
+							</tr><tr>
+					<%
+						}
+					%>
+				</tr>
+			</table>
 		</div>
 	</div>	
 	</body>
