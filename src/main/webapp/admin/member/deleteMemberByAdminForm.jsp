@@ -35,6 +35,7 @@
 		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>회원 강제 탈퇴</title>
 		
 		<style>		

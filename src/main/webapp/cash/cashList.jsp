@@ -9,15 +9,14 @@
 <%	
 	// Controller : session, request 요청
 	if(session.getAttribute("loginMember") == null) {
-		String msg = "로그인이 필요합니다.";
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
+		// 비 로그인 접속 시 로그인 페이지로 이동
+		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
-
+	
+	String msg = null;
 	if(request.getParameter("msg") != null) {
-		String msg = request.getParameter("msg");
-		out.println("<script>alert('"+msg+"');</script>");
-		msg = null;
+		msg = request.getParameter("msg");
 	}
 
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -93,21 +92,8 @@
 		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>CASH_LIST</title>
-		
-		<style>
-			th {
-				height: 30px;
-				width: 100px;
-			}
-			
-			td{
-				height: 100px;
-				width: 100px;
-			}
-			
-			
-		</style>
 	</head>
 
 	<body>

@@ -16,7 +16,7 @@
 		request.getParameter("memberPw") == null ||
 		request.getParameter("memberPw").equals("")) {
 			String msg = "로그인 정보를 입력해주세요.";
-			response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
+			response.sendRedirect(request.getContextPath()+"/loginForm.jsp?msg="+URLEncoder.encode(msg,"UTF-8"));
 			return;
 	}
 	
@@ -29,12 +29,12 @@
 	Member loginMember = memberDao.login(paramMember);
 	
 	
-	String redirectUrl = "/loginForm.jsp?&msg=";
+	String redirectUrl = "/loginForm.jsp?msg=";
 	String msg = "로그인 실패";
 	
 	if(loginMember != null) {
 		session.setAttribute("loginMember", loginMember); // session안에 로그인 ID, NAME 저장
-		redirectUrl = "/cash/cashList.jsp?&msg=";
+		redirectUrl = "/cash/cashList.jsp?msg=";
 		msg="로그인 성공";
 	}
 	
