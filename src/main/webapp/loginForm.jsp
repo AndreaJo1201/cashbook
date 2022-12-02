@@ -56,7 +56,7 @@
 						for(Notice n : list) {
 					%>
 								<td class="col-sm-10"><label><%=n.getNoticeMemo() %></label></td>
-								<td class="col-sm-2"><label><%=n.getCreatedate() %></label></td> 
+								<td class="col-sm-2 text-center"><label><%=n.getCreatedate() %></label></td> 
 							</tr><tr class="table-light">
 					<%
 						}
