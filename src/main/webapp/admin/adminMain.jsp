@@ -91,51 +91,51 @@
 				<!-- adminMain contents... -->
 				<!-- 최근 공지 5,ㅡ 최근 가입 멤버 5 -->
 				<div class="leftcolumn">
-				<div class="card">
-				<div class="card-body">
-					<table class="table table-bordered text-center">
-						<tr>
-							<th colspan="3"><label>최신 공지사항</label></th>
-						</tr>
-						<tr>
-							<%
-								for(Notice n : noticeList) {
-							%>
-										<td><label><%=n.getNoticeNo() %></label></td>
-										<td><label><%=n.getNoticeMemo() %></label></td>
-										<td><label><%=n.getCreatedate() %></label></td>
-									</tr><tr>
-							<%
-								}
-							%>
-						</tr>
-					</table>
-				</div>
-				</div>
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered text-center">
+								<tr>
+									<th colspan="3"><label>최신 공지사항</label></th>
+								</tr>
+								<tr>
+									<%
+										for(Notice n : noticeList) {
+									%>
+												<td><label><%=n.getNoticeNo() %></label></td>
+												<td><label><%=n.getNoticeMemo() %></label></td>
+												<td><label><%=n.getCreatedate() %></label></td>
+											</tr><tr>
+									<%
+										}
+									%>
+								</tr>
+							</table>
+						</div>
+					</div>
 				</div>
 				
 				<div class="rightcolumn">
-				<div class="card">
-				<div class="card-body">
-					<table class="table table-bordered text-center">
-						<tr>
-							<th colspan="3"><label>신규 가입회원</label></th>
-						</tr>
-						<tr>
-							<%
-								for(Member m : memberList) {
-							%>
-										<td><label><%=m.getMemberNo() %></label></td>
-										<td><label><%=m.getMemberName() %></label></td>
-										<td><label><%=m.getCreatedate() %></label></td>
-									</tr><tr>
-							<%
-								}
-							%>
-						</tr>
-					</table>
-				</div>
-				</div>
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered text-center">
+								<tr>
+									<th colspan="3"><label>신규 가입회원</label></th>
+								</tr>
+								<tr>
+									<%
+										for(Member m : memberList) {
+									%>
+												<td><label><%=m.getMemberNo() %></label></td>
+												<td><label><%=m.getMemberName() %></label></td>
+												<td><label><%=m.getCreatedate() %></label></td>
+											</tr><tr>
+									<%
+										}
+									%>
+								</tr>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		
