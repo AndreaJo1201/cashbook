@@ -91,7 +91,7 @@ public class HelpDao {
 			try {
 				dbUtil.close(rs, stmt, conn);
 			} catch(Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 		
@@ -140,7 +140,7 @@ public class HelpDao {
 			try{
 				dbUtil.close(rs, stmt, conn);
 			} catch(Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 		
@@ -215,7 +215,7 @@ public class HelpDao {
 			try {
 				dbUtil.close(null, stmt, conn);
 			} catch (Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 		
@@ -251,7 +251,7 @@ public class HelpDao {
 			try {
 				dbUtil.close(null, stmt, conn);
 			} catch(Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 		
