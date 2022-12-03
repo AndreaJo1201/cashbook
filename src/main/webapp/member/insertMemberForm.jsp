@@ -26,47 +26,50 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>SIGN UP</title>
-		
-		<style>
-			#update {
-			  height: 100px;
-			  width: 500px;
-			  margin: auto;
-			  text-align: center;
-			}
-		</style>
 	</head>
 
 	<body>
-	<div class="container">
-		<div class="mt-2 p-2 text-end">
-			<span><a href="<%=request.getContextPath()%>/loginForm.jsp" class="btn btn-sm btn-dark">뒤로가기</a></span>
-		</div>
-		
-		<div class="container" id="update">
-			<div class="mt-4 p-4 text-white bg-dark">
-				<h1><label>회원가입</label></h1>
+		<div class="table-reponsive container-fluid">
+			<div class="text-end mt-2 p-2">
+				<a href="<%=request.getContextPath()%>/loginForm.jsp" class="btn btn-sm btn-dark">뒤로가기</a>
 			</div>
-			<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
-				<table class="table table-bordered">
-					<tr>
-						<td>ID</td>
-						<td><input type="text" name="memberId"></td>
-					</tr>
-					<tr>
-						<td>PW</td>
-						<td><input type="password" name="memberPw"></td>
-					</tr>
-					<tr>
-						<td>닉네임</td>
-						<td><input type="text" name="memberName"></td>
-					</tr>
-				</table>
-				<div class="d-grid">
-					<button type="submit" class="btn btn-dark btn-block">회원가입</button>
+			<div class="login-form-bg h-100">
+				<div class="container h-100">
+					<div class="row justify-content-center h-100">
+						<div class="col-xl-6">
+							<div class="form-input-content">
+								<div class="card login-form mb-0">
+									<div class="card-body pt-5">
+										<a class="text-center" href="<%=request.getContextPath()%>/member/insertMemberForm.jsp"><h1>회원가입</h1></a>
+										<form class="mt-5 mb-5 login-input" action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="ID" name="memberId">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" placeholder="Password" name="memberPw">
+											</div>
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="Nick Name" name="memberName">
+											</div>
+											<button type="submit" class="btn login-form__btn submit w-100">Register</button>
+											<%
+												if(request.getParameter("msg") != null) {
+											%>
+											<div class="alert alert-danger mt-1 alert-dismissible">
+												<label><%=request.getParameter("msg") %></label>
+												<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+											</div>
+											<%
+												}
+											%>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</form>
-		</div>
-	</div>	
+			</div>
+		</div>	
 	</body>
 </html>

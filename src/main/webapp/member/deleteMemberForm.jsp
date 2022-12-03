@@ -21,44 +21,49 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>DELETE</title>
-		
-		<style>
-			#update {
-			  height: 100px;
-			  width: 500px;
-			  margin: auto;
-			  text-align: center;
-			}
-		</style>
 	</head>
 
 	<body>
-	<div class="container">
-		<jsp:include page="/inc/header.jsp"></jsp:include>
-		<div class="container" id="update">
-			<div class="mt-4 p-4 text-dark">
-				<h1><label>회원탈퇴</label></h1>
-			</div>
-			<form action="<%=request.getContextPath()%>/member/deleteMemberAction.jsp" method="post">
-				<table class="table table-bordered">
-					<tr>
-						<td><label>ID 확인</label></td>
-						<td><input type="text" name ="memberId"></td>
-					</tr>
-					<tr>
-						<td><label>비밀번호</label></td>
-						<td><input type="password" name="memberPw"></td>
-					</tr>
-					<tr>
-						<td><label>비밀번호 확인</label></td>
-						<td><input type="password" name="memberPwCheck"></td>
-					</tr>
-				</table>
-				<div class="d-grid">
-					<button type="submit" class="btn btn-danger btn-lg btn-block">탈퇴</button>
+		<div class="table-reponsive container-fluid">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
+			
+			<div class="login-form-bg h-100">
+				<div class="container h-100">
+					<div class="row justify-content-center h-100">
+						<div class="col-xl-6">
+							<div class="form-input-content">
+								<div class="card login-form mb-0">
+									<div class="card-body pt-5">
+										<a class="text-center" href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp"><h1>회원탈퇴</h1></a>
+										<form class="mt-5 mb-5 login-input" action="<%=request.getContextPath()%>/member/deleteMemberAction.jsp" method="post">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="ID" name="memberId">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" placeholder="Password" name="memberPw">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" placeholder="Password Check" name="memberPwCheck">
+											</div>
+											<button type="submit" class="btn login-form__btn submit w-100" style="background-color:red">Unregister</button>
+											<%
+												if(request.getParameter("msg") != null) {
+											%>
+											<div class="alert alert-danger mt-1 alert-dismissible">
+												<label><%=request.getParameter("msg") %></label>
+												<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+											</div>
+											<%
+												}
+											%>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>	
 	</body>
 </html>
