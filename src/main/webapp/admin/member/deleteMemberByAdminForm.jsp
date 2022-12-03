@@ -52,46 +52,56 @@
 	</head>
 	
 	<body>
-	<div class="container">
-		<jsp:include page="/inc/header.jsp"></jsp:include>
-		<div class="mt-4 p-5 bg-danger text-white">
-			<h1><label>회원 강제 탈퇴</label></h1>
-		</div>
-		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
-		
-		<div class="mt-2 p-2">
-			<form action="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminAction.jsp" method="post" id="form">
-				<table class="table table-bordered table-hover">
-					<tr>
-						<th colspan="2" class="table-dark"><label>회원 내역</label></th>
-					</tr>
-					<tr>
-						<th><span><label>회원번호</label></span></th>
-						<td><input type="text" name="memberNo" value="<%=member.getMemberNo() %>" readonly="readonly"></td>
-					</tr>
-				
-					<tr>
-						<th><span><label>회원ID</label></span></th>
-						<td><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<th><span><label>회원닉네임</label></span></th>
-						<td><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<th><span><label>회원 레벨</label></span></th>
-						<td>
-							<input type="text" name="memberLevel" value="<%=member.getMemberLevel() %>" readonly="readonly">
-						</td>
-					</tr>
-				</table>
-			</form>
-			<div class="d-flex justify-content-between">
-				<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-				<button type="submit" class="btn btn-sm btn-outline-danger" form="form">회원추방</button>
+		<div class="container-fluid">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
+			<div class="mt-4 p-5 bg-danger text-white">
+				<h1><label>회원 강제 탈퇴</label></h1>
+			</div>
+			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
+			
+			<div class="table-responsive container-fluid">
+				<div class="mt-2 p-2">
+					<div class="card">
+						<div class="card-body">
+							<form action="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminAction.jsp" method="post" id="form">
+								<table class="table table-bordered table-hover">
+									<thead class="thead-light">
+										<tr>
+											<th colspan="2"><label>회원 내역</label></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="text-center"><span><label><strong>회원번호</strong></label></span></td>
+											<td><input type="text" name="memberNo" value="<%=member.getMemberNo() %>" readonly="readonly"></td>
+										</tr>
+									
+										<tr>
+											<td class="text-center"><span><label><strong>회원ID</strong></label></span></td>
+											<td><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
+										</tr>
+										<tr>
+											<td class="text-center"><span><label><strong>회원닉네임</strong></label></span></td>
+											<td><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
+										</tr>
+										<tr>
+											<td class="text-center"><span><label><strong>회원 레벨</strong></label></span></td>
+											<td>
+												<input type="text" name="memberLevel" value="<%=member.getMemberLevel() %>" readonly="readonly">
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-sm btn-outline-danger" form="form">회원추방</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
 	</body>
 	
 </html>

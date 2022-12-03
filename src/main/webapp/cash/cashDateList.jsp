@@ -88,87 +88,91 @@
 			
 			<div class="table-reponsive">
 				<div class="card">
-				<div class="card-body">
-				<!-- 임시 인설트 폼 -->
-				<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
-					<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
-					<input type="hidden" name="year" value="<%=year %>">
-					<input type="hidden" name="month" value="<%=month %>">
-					<input type="hidden" name="date" value="<%=date %>">
-					<table class="table table-bordered">
-						<tr class="bg-dark text-light">
-							<th colspan="2" class="text-center"><label>내역 추가</label></th>
-						</tr>
-						<tr class="table-light">
-							<td class="text-center col-sm-1 center_middle"><label>분류</label></td>
-							<td class="col-sm-11">
-								<select name="categoryNo">
-								<%
-									//category 목록 출력
-									for(Category c : categoryList) {
-								%>
-										<option value="<%=c.getCategoryNo()%>">
-											<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
-										</option>
-								<%
-									}
-								%>
-								</select>
-							</td>
-						</tr>
-							
-						<tr class="table-light">
-							<td class="text-center col-sm-1 center_middle"><label>일자</label></td>
-							<%
-								if(month+1 < 10) {
-									if(date < 10) {
-							%>
-										<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-0<%=date%>" readonly="readonly"></td>
-							<%
-									} else {
-							%>
-										<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-<%=date%>" readonly="readonly"></td>
-							<%
-									}
-								} else {
-									if(date < 10) {
-							%>
-										<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
-							<%
-									} else {
-							%>
-										<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
-							<%
-									}
-								}
-							%>
-						</tr>
-						
-						<tr class="table-light">
-							<td class="col-sm-1 text-center center_middle"><label>금액</label></td>
-							<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(₩)"></td>
-						</tr>
-						
-						<tr class="table-light">
-							<td class="col-sm-1 text-center center_middle"><label>메모</label></td>
-							<td class="col-sm-11"><textarea name="cashMemo" placeholder="세부 사항을 적어주세요."></textarea></td>
-						</tr>
-					</table>
-					<div class="d-grid bg-light">
-	                   <%
-	             	      	if(request.getParameter("msg") != null) {
-	                   %>
-	               	    		<div class="alert alert-danger mt-1 alert-dismissible">
-	              	     			<label><%=request.getParameter("msg") %></label>
-	             	      			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	           	        		</div>
-	                   <%
-	                   		}
-	                   %>
-						<button type="submit" class="btn btn-primary">입력</button>
+					<div class="card-body">
+					<!-- 임시 인설트 폼 -->
+						<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
+							<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
+							<input type="hidden" name="year" value="<%=year %>">
+							<input type="hidden" name="month" value="<%=month %>">
+							<input type="hidden" name="date" value="<%=date %>">
+							<table class="table table-bordered">
+								<thead class="bg-dark">
+									<tr class="text-light">
+										<th colspan="2" class="text-center"><label>내역 추가</label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-light">
+										<td class="text-center col-sm-1 center_middle"><label><strong>분류</strong></label></td>
+										<td class="col-sm-11">
+											<select name="categoryNo">
+											<%
+												//category 목록 출력
+												for(Category c : categoryList) {
+											%>
+													<option value="<%=c.getCategoryNo()%>">
+														<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
+													</option>
+											<%
+												}
+											%>
+											</select>
+										</td>
+									</tr>
+										
+									<tr class="table-light">
+										<td class="text-center col-sm-1 center_middle"><label><strong>일자</strong></label></td>
+										<%
+											if(month+1 < 10) {
+												if(date < 10) {
+										%>
+													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+										<%
+												} else {
+										%>
+													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-<%=date%>" readonly="readonly"></td>
+										<%
+												}
+											} else {
+												if(date < 10) {
+										%>
+													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+										<%
+												} else {
+										%>
+													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+										<%
+												}
+											}
+										%>
+									</tr>
+									
+									<tr class="table-light">
+										<td class="col-sm-1 text-center center_middle"><label><strong>금액</strong></label></td>
+										<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(₩)"></td>
+									</tr>
+									
+									<tr class="table-light">
+										<td class="col-sm-1 text-center center_middle"><label><strong>메모</strong></label></td>
+										<td class="col-sm-11"><textarea name="cashMemo" placeholder="세부 사항을 적어주세요."></textarea></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="d-grid bg-light">
+			                   <%
+			             	      	if(request.getParameter("msg") != null) {
+			                   %>
+			               	    		<div class="alert alert-danger mt-1 alert-dismissible">
+			              	     			<label><%=request.getParameter("msg") %></label>
+			             	      			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			           	        		</div>
+			                   <%
+			                   		}
+			                   %>
+								<button type="submit" class="btn btn-primary">입력</button>
+							</div>
+						</form>
 					</div>
-				</form>
-				</div>
 				</div>
 				
 				<div class="card">
@@ -212,8 +216,8 @@
 							%>
 							</tr>
 							<tr>
-								<td colspan="1" class="col-sm-1 text-center"><label>누계</label></td>
-								<td colspan="5" class="col-sm-11"><label>₩<%=numberFormat.format(resultPrice) %></label></td>
+								<td colspan="1" class="col-sm-1 text-center"><label><strong>누계</strong></label></td>
+								<td colspan="5" class="col-sm-11"><label>₩&nbsp;<%=numberFormat.format(resultPrice) %></label></td>
 							</tr>
 						</tbody>
 					</table>

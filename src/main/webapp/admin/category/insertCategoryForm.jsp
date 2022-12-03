@@ -40,35 +40,47 @@
 	</head>
 
 	<body>
-	<div class="container">
-		<jsp:include page="/inc/header.jsp"></jsp:include>
-		<div class="mt-4 p-5 bg-primary text-white">
-			<h1><label>카테고리 추가</label></h1>
-		</div>
-		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
-		
-		<div class="mt-2 p-2">
-			<form action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp" method="post" id="form">
-				<table class="table table-bordered">
-					<tr>
-						<th class="col-sm-2"><label>카테고리 종류</label></th>
-						<td class="col-sm-10">
-							<input type="radio" name="categoryKind" value="수입"><label>수입</label>
-							<input type="radio" name="categoryKind" value="지출"><label>지출</label>
-						</td>
-					</tr>
-					<tr>
-						<th class="col-sm-2"><label>카테고리 이름</label></th>
-						<td class="col-sm-10"><input type="text" name="categoryName" placeholder="카테고리 이름을 입력해주세요." class="NameCategory"></td>
-					</tr>
-				</table>
-			</form>
-			<div class="d-flex justify-content-between">
-				<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-				<button type="submit" class="btn btn-outline-secondary btn-sm" form="form">추가</button>
+		<div class="container-fluid">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
+			<div class="mt-4 p-5 bg-light text-white">
+				<h1><label>카테고리 추가</label></h1>
 			</div>
+			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
+			<div class="table-responsive container-fluid">
+				<div class="mt-2 p-2">
+					<div class="card">
+						<div class="card-body">
+							<form action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp" method="post" id="form">
+								<table class="table table-bordered">
+									<thead class="thead-light">
+										<tr>
+											<th class="col-sm-12" colspan="2">카테고리 추가</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="col-sm-2 text-center"><label><strong>카테고리 종류</strong></label></td>
+											<td class="col-sm-10">
+												<input type="radio" name="categoryKind" value="수입"><label>수입</label>
+												<input type="radio" name="categoryKind" value="지출"><label>지출</label>
+											</td>
+										</tr>
+										<tr>
+											<td class="col-sm-2 text-center"><label><strong>카테고리 이름</strong></label></td>
+											<td class="col-sm-10"><input type="text" name="categoryName" placeholder="카테고리 이름을 입력해주세요." class="NameCategory"></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-outline-secondary btn-sm" form="form">추가</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
 	</body>
 </html>

@@ -56,33 +56,43 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-primary text-white">
+			<div class="mt-4 p-5 bg-light text-white">
 				<h1><label>카테고리 수정</label></h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="mt-4">
-				<form action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp" method="post" id="form">
-					<table class="table table-bordered">
-						<tr>
-							<th class="col-sm-2"><label>카테고리 번호</label></th>
-							<th class="col-sm-2"><label>카테고리 종류</label></th>
-							<th class="col-sm-8"><label>카테고리 이름</label></th>
-	
-						</tr>
-						<tr>
-							<td class="col-sm-2 alignCenter"><label><%=categoryOne.getCategoryNo() %></label></td>
-							<td class="col-sm-2 alignCenter"><label><%=categoryOne.getCategoryKind() %></label></td>
-							<td class="col-sm-8"><input type="text" name ="categoryName" value="<%=categoryOne.getCategoryName() %>"></td>
-						</tr>
-					</table>
-					<input type="hidden" name="categoryNo" value="<%=categoryOne.getCategoryNo() %>">
-				</form>
-				<div class="d-flex justify-content-between">
-					<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-					<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
+			<div class="table-responsive container-fluid">
+				<div class="mt-4">
+					<div class="card">
+						<div class="card-body">
+							<form action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp" method="post" id="form">
+								<table class="table table-bordered">
+									<thead class="thead-light">
+										<tr>
+											<th class="col-sm-2"><label>카테고리 번호</label></th>
+											<th class="col-sm-2"><label>카테고리 종류</label></th>
+											<th class="col-sm-8"><label>카테고리 이름</label></th>
+					
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="col-sm-2 alignCenter"><label><%=categoryOne.getCategoryNo() %></label></td>
+											<td class="col-sm-2 alignCenter"><label><%=categoryOne.getCategoryKind() %></label></td>
+											<td class="col-sm-8"><input type="text" name ="categoryName" value="<%=categoryOne.getCategoryName() %>"></td>
+										</tr>
+									</tbody>
+								</table>
+								<input type="hidden" name="categoryNo" value="<%=categoryOne.getCategoryNo() %>">
+							</form>
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -62,49 +62,67 @@
 	</head>
 
 	<body>
-	<div class='container'>
+	<div class='container-fluid'>
 		<jsp:include page="/inc/header.jsp"></jsp:include>
-		<div class="mt-4 p-5 bg-primary text-white">
+		<div class="mt-4 p-5 bg-light text-white">
 			<h1><label>문의사항 답변 작성</label></h1>
 		</div>
 		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		
-		<div class="mt-4">
-			<table class="table table-bordered">
-				<tr>
-					<th colspan="2" class="col-sm-12 table-dark"><label>회원 문의사항</label></th>
-				</tr>
-				<tr>
-					<th class="col-sm-1"><label>문의내용</label></th>
-					<td class="col-sm-11"><p><label><%=help.getHelpMemo() %></label></p></td>
-				</tr>
-				<tr>
-					<th class="col-sm-1"><label>작성자</label></th>
-					<td class="col-sm-11"><span><label><%=help.getMemberId() %></label></span></td>
-				</tr>
-				<tr>
-					<th class="col-sm-1"><label>작성일</label></th>
-					<td class="col-sm-11"><span><label><%=help.getCreatedate() %></label></span></td>
-				</tr>
-			</table>
-		</div>
-		
-		<div class="mt-2 p-2">
-			<form action="<%=request.getContextPath()%>/admin/help/insertCommentAction.jsp" method="post" id="form">
-				<table class="table table-bordered">
-					<tr>
-						<th colspan="2" class="table-dark col-sm-12"><label>답변 작성</label></th>
-					</tr>
-					<tr>
-						<th class="col-sm-1"><label>답변</label></th>
-						<td class="col-sm-11"><textarea name="commentMemo" placeholder="코멘트를 입력해주세요."></textarea></td>
-					</tr>
-				</table>
-				<input type="hidden" name="helpNo" value="<%=helpNo %>">
-			</form>
-			<div class="d-flex justify-content-between">
-				<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-				<button type="submit" class="btn btn-outline-success btn-sm" form="form">답변작성</button>
+		<div class="table-responsive container-fluid">
+			<div class="mt-4">
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-bordered">
+							<thead class="thead-light">
+								<tr>
+									<th colspan="2" class="col-sm-12"><label>회원 문의사항</label></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="col-sm-1 text-center"><label><strong>문의내용</strong></label></td>
+									<td class="col-sm-11"><p><label><%=help.getHelpMemo() %></label></p></td>
+								</tr>
+								<tr>
+									<td class="col-sm-1 text-center"><label><strong>작성자</strong></label></td>
+									<td class="col-sm-11"><span><label><%=help.getMemberId() %></label></span></td>
+								</tr>
+								<tr>
+									<td class="col-sm-1 text-center"><label><strong>작성일</strong></label></td>
+									<td class="col-sm-11"><span><label><%=help.getCreatedate() %></label></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="mt-2 p-2">
+				<div class="card">
+					<div class="card-body">
+						<form action="<%=request.getContextPath()%>/admin/help/insertCommentAction.jsp" method="post" id="form">
+							<table class="table table-bordered">
+								<thead class="thead-light">
+									<tr>
+										<th colspan="2" class="col-sm-12"><label>답변 작성</label></th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td class="col-sm-1 text-center"><label><strong>답변</strong></label></td>
+									<td class="col-sm-11"><textarea name="commentMemo" placeholder="코멘트를 입력해주세요."></textarea></td>
+								</tr>
+								</tbody>
+							</table>
+							<input type="hidden" name="helpNo" value="<%=helpNo %>">
+						</form>
+						<div class="d-flex justify-content-between">
+							<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+							<button type="submit" class="btn btn-outline-success btn-sm" form="form">답변작성</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>	
