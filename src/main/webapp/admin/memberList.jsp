@@ -71,61 +71,71 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-primary text-white">
+			<div class="mt-4 p-5 bg-light text-white">
 				<h1><label>회원 관리</label></h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="mt-2 p-2">
-				<!-- memberList contents... -->
-				<table class="table table-bordered table-hover">
-					<tr>
-						<th class="col-sm-1"><label>회원 번호</label></th>
-						<th class="col-sm-2"><label>회원 ID</label></th>
-						<th class="col-sm-1"><label>회원 레벨</label></th>
-						<th class="col-sm-2"><label>회원 이름</label></th>
-						<th class="col-sm-2"><label>최신 수정일</label></th>
-						<th class="col-sm-2"><label>가입일자</label></th>
-						<th class="col-sm-1"><label>레벨 수정</label></th>
-						<th class="col-sm-1"><label>탈퇴</label></th>
-					</tr>
-					<%
-						for(Member m : memberList) {
-					%>
-							<tr>
-								<td class="col-sm-1"><label><%=m.getMemberNo() %></label></td>
-								<td  class="col-sm-2"><label><%=m.getMemberId() %></label></td>
-								<td class="col-sm-1"><label><%=m.getMemberLevel() %></label></td>
-								<td  class="col-sm-2"><label><%=m.getMemberName() %></label></td>
-								<td  class="col-sm-2"><label><%=m.getUpdatedate() %></label></td>
-								<td  class="col-sm-2"><label><%=m.getCreatedate() %></label></td>
-								<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-primary btn-sm">수정</a></td>
-								<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-danger btn-sm">탈퇴</a></td>
-							</tr>
-					<%		
-						}
-					%>
-				</table>
-				<div class="text-center">
-					<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1" class="btn btn-light">처음</a>
-					<%
-						if(currentPage > 1) {
-					%>
-							<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>"  class="btn btn-light">이전</a>
-					<%		
-						}
-					%>
-					<span><label><%=currentPage %> / <%=lastPage %></label></span>
-					<%
-						if(currentPage < lastPage) {
-					%>
-							<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>"  class="btn btn-light">다음</a>
-					<%		
-						}
-					%>
-					<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>"  class="btn btn-light">마지막</a>
+			<div class="table-reponsiove container-fluid">
+				<div class="mt-2 p-2">
+					<!-- memberList contents... -->
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered table-hover">
+								<thead class="thead-light">
+									<tr>
+										<th class="col-sm-1"><label>회원 번호</label></th>
+										<th class="col-sm-2"><label>회원 ID</label></th>
+										<th class="col-sm-1"><label>회원 레벨</label></th>
+										<th class="col-sm-2"><label>회원 이름</label></th>
+										<th class="col-sm-2"><label>최신 수정일</label></th>
+										<th class="col-sm-2"><label>가입일자</label></th>
+										<th class="col-sm-1"><label>레벨 수정</label></th>
+										<th class="col-sm-1"><label>탈퇴</label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+										for(Member m : memberList) {
+									%>
+											<tr>
+												<td class="col-sm-1"><label><%=m.getMemberNo() %></label></td>
+												<td  class="col-sm-2"><label><%=m.getMemberId() %></label></td>
+												<td class="col-sm-1"><label><%=m.getMemberLevel() %></label></td>
+												<td  class="col-sm-2"><label><%=m.getMemberName() %></label></td>
+												<td  class="col-sm-2"><label><%=m.getUpdatedate() %></label></td>
+												<td  class="col-sm-2"><label><%=m.getCreatedate() %></label></td>
+												<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-primary btn-sm">수정</a></td>
+												<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-danger btn-sm">탈퇴</a></td>
+											</tr>
+									<%		
+										}
+									%>
+								</tbody>
+							</table>
+							<div class="text-center">
+								<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1" class="btn btn-light">처음</a>
+								<%
+									if(currentPage > 1) {
+								%>
+										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>"  class="btn btn-light">이전</a>
+								<%		
+									}
+								%>
+								<span><label><%=currentPage %> / <%=lastPage %></label></span>
+								<%
+									if(currentPage < lastPage) {
+								%>
+										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>"  class="btn btn-light">다음</a>
+								<%		
+									}
+								%>
+								<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>"  class="btn btn-light">마지막</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>	

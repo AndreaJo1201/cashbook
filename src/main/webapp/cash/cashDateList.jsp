@@ -175,43 +175,47 @@
 				<div class="card-body">
 				<div class="mt-4">
 					<table class="table table-bordered table-hover">
-						<tr>
-							<th colspan="6" class="text-center bg-dark text-light"><label>상세 내역</label></th>
-						</tr>
-						<tr>
-							<th class="col-sm-1 text-center"><label>분류</label></th>
-							<th class="col-sm-1 text-center"><label>사용내역</label></th>
-							<th class="col-sm-1 text-center"><label>금액</label></th>
-							<th class="col-sm-7 text-center"><label>메모</label></th>
-							<th class="col-sm-1 text-center"><label>수정</label></th>
-							<th class="col-sm-1 text-center"><label>삭제</label></th>
-						</tr>
-						<tr>
-						<%
-							for (HashMap<String, Object> m : list) {
-								if(m.get("categoryKind").equals("지출")) { // 총 수입, 지출값 계산
-									resultPrice = resultPrice - ((Long)(m.get("cashPrice")));
-								} else {
-									resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
+						<thead>
+							<tr>
+								<th colspan="6" class="text-center bg-dark text-light"><label>상세 내역</label></th>
+							</tr>
+							<tr class="thead-light">
+								<th class="col-sm-1 text-center"><label>분류</label></th>
+								<th class="col-sm-1 text-center"><label>사용내역</label></th>
+								<th class="col-sm-1 text-center"><label>금액</label></th>
+								<th class="col-sm-7 text-center"><label>메모</label></th>
+								<th class="col-sm-1 text-center"><label>수정</label></th>
+								<th class="col-sm-1 text-center"><label>삭제</label></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							<%
+								for (HashMap<String, Object> m : list) {
+									if(m.get("categoryKind").equals("지출")) { // 총 수입, 지출값 계산
+										resultPrice = resultPrice - ((Long)(m.get("cashPrice")));
+									} else {
+										resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
+									}
+									int a = (Integer)m.get("cashNo");
+									
+							%>
+									<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryKind"))%></label></td>
+									<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryName"))%></label></td>
+									<td class="col-sm-1 text-center center_middle"><label>₩<%=numberFormat.format((Long)(m.get("cashPrice")))%></label></td>
+									<td class="col-sm-7"><label><%=(String)(m.get("cashMemo"))%></label></td>
+									<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>" class="btn btn-primary btn-sm">수정</a></td>
+									<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>" class="btn btn-danger btn-sm">삭제</a></td>
+									</tr><tr>
+							<%
 								}
-								int a = (Integer)m.get("cashNo");
-								
-						%>
-								<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryKind"))%></label></td>
-								<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryName"))%></label></td>
-								<td class="col-sm-1 text-center center_middle"><label>₩<%=numberFormat.format((Long)(m.get("cashPrice")))%></label></td>
-								<td class="col-sm-7"><label><%=(String)(m.get("cashMemo"))%></label></td>
-								<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>" class="btn btn-primary btn-sm">수정</a></td>
-								<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>" class="btn btn-danger btn-sm">삭제</a></td>
-								</tr><tr>
-						<%
-							}
-						%>
-						</tr>
-						<tr>
-							<td colspan="1" class="col-sm-1 text-center"><label>누계</label></td>
-							<td colspan="5" class="col-sm-11"><label>₩<%=numberFormat.format(resultPrice) %></label></td>
-						</tr>
+							%>
+							</tr>
+							<tr>
+								<td colspan="1" class="col-sm-1 text-center"><label>누계</label></td>
+								<td colspan="5" class="col-sm-11"><label>₩<%=numberFormat.format(resultPrice) %></label></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 				</div>

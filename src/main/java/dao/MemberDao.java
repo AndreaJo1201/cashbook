@@ -298,7 +298,7 @@ public class MemberDao {
 			
 			dbUtil = new DBUtil();
 			conn = dbUtil.getConnection();
-			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, paramMember.getMemberId());
 			stmt.setString(2, paramMember.getMemberPw());
 			

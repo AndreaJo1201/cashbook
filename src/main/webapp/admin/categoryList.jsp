@@ -71,75 +71,85 @@
 	</head>
 
 	<body>
-	<div class="container">
-		<jsp:include page="/inc/header.jsp"></jsp:include>
-		<div class="mt-4 p-5 bg-primary text-white">
-			<h1><label>카테고리</label></h1>
-		</div>
-		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
-		<div class="mt-2 p-2">
-			<!-- category contents... -->
-			<table class="table table-bordered table-striped">
-				<!-- 모델 데이터 카테고리 리스트 출력 -->
-				<tr>
-					<th class="col-sm-1"><label>번호</label></th>
-					<th class="col-sm-1"><label>종류</label></th>
-					<th class="col-sm-1"><label>이름</label></th>
-					<th class="col-sm-2"><label>갱신일</label></th>
-					<th class="col-sm-2"><label>추가일</label></th>
-					<th class="col-sm-1"><label>수정</label></th>
-					<th class="col-sm-1"><label>삭제</label></th>
-				</tr>
-				
-				<tr>
-					<%
-						for(Category c : categoryList) {
-					%>
-							<td><label><%=c.getCategoryNo() %></label></td>
-							<td><label><%=c.getCategoryKind() %></label></td>
-							<td><label><%=c.getCategoryName() %></label></td>
-							<td><label><%=c.getUpdatedate() %></label></td>
-							<td><label><%=c.getCreatedate() %></label></td>
-							<td>
-								<a href="<%=request.getContextPath()%>/admin/category/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo() %>" class="btn btn-primary btn-sm">
-									수정
-								</a>
-							</td>
-							<td>
-								<a href="<%=request.getContextPath()%>/admin/category/deleteCategoryAction.jsp?categoryNo=<%=c.getCategoryNo() %>" class="btn btn-danger btn-sm">
-									삭제
-								</a>
-							</td>
-							</tr><tr>
-					<%
-						}
-					%>
-				</tr>
-				
-			</table>
-		</div>
-		<div class="text-center">
-			<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=1" class="btn btn-light">처음</a>
-			<%
-				if(currentPage > 1) {
-			%>
-					<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-light">이전</a>
-			<%		
-				}
-			%>
-			<span><label><%=currentPage %> / <%=lastPage %></label></span>
-			<%
-				if(currentPage < lastPage) {
-			%>
-					<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-light">다음</a>
-			<%		
-				}
-			%>
-			<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=<%=lastPage%>" class="btn btn-light">마지막</a>
-		</div>
-		<div class="d-flex justify-content-end">
-			<a href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp" class="btn btn-sm btn-outline-secondary">카테고리 추가</a>
-		</div>
-	</div>	
+		<div class="container-fluid">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
+			<div class="mt-4 p-5 bg-light text-white">
+				<h1><label>카테고리</label></h1>
+			</div>
+			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
+		
+			<div class="table-reponsive container-fluid">
+				<div class="mt-2 p-2">
+					<!-- category contents... -->
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered table-hover">
+								<!-- 모델 데이터 카테고리 리스트 출력 -->
+								<thead class="thead-light">
+									<tr>
+										<th class="col-sm-1"><label>번호</label></th>
+										<th class="col-sm-1"><label>종류</label></th>
+										<th class="col-sm-1"><label>이름</label></th>
+										<th class="col-sm-2"><label>갱신일</label></th>
+										<th class="col-sm-2"><label>추가일</label></th>
+										<th class="col-sm-1"><label>수정</label></th>
+										<th class="col-sm-1"><label>삭제</label></th>
+									</tr>
+								</thead>
+								
+								<tbody>
+								<tr>
+									<%
+										for(Category c : categoryList) {
+									%>
+											<td><label><%=c.getCategoryNo() %></label></td>
+											<td><label><%=c.getCategoryKind() %></label></td>
+											<td><label><%=c.getCategoryName() %></label></td>
+											<td><label><%=c.getUpdatedate() %></label></td>
+											<td><label><%=c.getCreatedate() %></label></td>
+											<td>
+												<a href="<%=request.getContextPath()%>/admin/category/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo() %>" class="btn btn-primary btn-sm">
+													수정
+												</a>
+											</td>
+											<td>
+												<a href="<%=request.getContextPath()%>/admin/category/deleteCategoryAction.jsp?categoryNo=<%=c.getCategoryNo() %>" class="btn btn-danger btn-sm">
+													삭제
+												</a>
+											</td>
+											</tr><tr class="table-hover">
+									<%
+										}
+									%>
+								</tr>
+								</tbody>
+							</table>
+							<div class="text-center">
+								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=1" class="btn btn-light">처음</a>
+								<%
+									if(currentPage > 1) {
+								%>
+										<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-light">이전</a>
+								<%		
+									}
+								%>
+								<span><label><%=currentPage %> / <%=lastPage %></label></span>
+								<%
+									if(currentPage < lastPage) {
+								%>
+										<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-light">다음</a>
+								<%		
+									}
+								%>
+								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp?currentPage=<%=lastPage%>" class="btn btn-light">마지막</a>
+							</div>
+							<div class="d-flex justify-content-end">
+								<a href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp" class="btn btn-sm btn-outline-secondary">카테고리 추가</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
 	</body>
 </html>
