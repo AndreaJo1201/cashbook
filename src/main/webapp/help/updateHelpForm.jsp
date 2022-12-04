@@ -27,6 +27,8 @@
 	HelpDao helpDao = new HelpDao();
 	Help help = helpDao.selectHelp(helpNo);
 	
+	//test commit
+	
 %>
 
 <!DOCTYPE html>
@@ -98,8 +100,6 @@
 					<button type="submit" class="btn btn-outline-success btn-sm" form="form">수정</button>
 				</div>
 			</div>
-			
 		</div>
-
 	</body>
 </html>
