@@ -41,14 +41,7 @@
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>개인 문의내역</title>
 		
-		<style>
-			#login {
-			  height: 100px;
-			  width: 500px;
-			  margin: auto;
-			  text-align: center;
-			}
-			
+		<style>		
 			th {
 				vertical-align: middle;
 				text-align: center;
@@ -62,80 +55,87 @@
 	</head>
 
 	<body>
-		<div class="container">
-			<jsp:include page="/inc/header.jsp"></jsp:include>
-		</div>
+		<div class="container-fluid">
 		
-		<div class="container">
+			<jsp:include page="/inc/header.jsp"></jsp:include>
+			
 			<div class="mt-4 p-5 text-dark bg-light rounded">
 				<h1><label>개인 문의 내역</label></h1>
 			</div>
 			
-			<div class="mt-2">
-				<table class="table table-bordered table-hover">
-					<tr class="table-dark">
-						<th colspan="7"><label>문의하기</label></th>
-					</tr>
-					<tr>
-						<th><label>번호</label></th>
-						<th><label>문의내용</label></th>
-						<th><label>작성자</label></th>
-						<th><label>작성일</label></th>
-						<th><label>답변일</label></th>
-						<th><label>수정</label></th>
-						<th><label>삭제</label></th>
-					</tr>
-					<tr>
-					<%
-						for(HashMap<String, Object> h : helpList) {
-					%>
-							<td><label><%=h.get("helpNo") %></label></td>
-							<td><a href="<%=request.getContextPath() %>/help/helpListOne.jsp?helpNo=<%=h.get("helpNo") %>" class="text-decoration-none"><%=h.get("helpMemo") %></a></td>
-							<td><label><%=h.get("memberId") %></label></td>
-							<td><label><%=h.get("helpCreatedate") %></label></td>
-							<td>
-								<%
-									if(h.get("commentCreateDate") == null) {
-								%>
-										<label>답변대기중</label>
-								<%
-									} else {
-								%>
-										<label><%=h.get("commentCreateDate") %></label>
-								<%
-									}
-								%>
-							</td>
-							<td>
-								<%
-									if(h.get("commentMemo") == null) {
-								%>
-										<a href="<%=request.getContextPath() %>/help/updateHelpForm.jsp?helpNo=<%=h.get("helpNo") %>" class="btn btn-outline-primary btn-sm">수정</a>
-								<%
-									}
-								%>
-							</td>
-							<td>
-								<%
-									if(h.get("commentMemo") == null) {
-								%>
-										<a href="<%=request.getContextPath() %>/help/deleteHelpAction.jsp?helpNo=<%=h.get("helpNo") %>" class="btn btn-outline-danger btn-sm">삭제</a>
-								<%
-									}
-								%>
-							</td>
-							</tr><tr>
-					<%
-						}
-					%>
-					</tr>
-				</table>
-			</div>
-			
-			<div class="d-flex justify-content-end">
-				<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp" class="btn btn-dark btn-sm">문의하기</a>
+			<div class="table-responsive container-fluid">
+				<div class="mt-2 p-2">
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered table-hover">
+								<thead class="thead-light">
+									<tr>
+										<th colspan="7"><label>문의하기</label></th>
+									</tr>
+									<tr>
+										<td><label><strong>번호</strong></label></td>
+										<td><label><strong>문의내용</strong></label></td>
+										<td><label><strong>작성자</strong></label></td>
+										<td><label><strong>작성일</strong></label></td>
+										<td><label><strong>답변일</strong></label></td>
+										<td><label><strong>수정</strong></label></td>
+										<td><label><strong>삭제</strong></label></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+									<%
+										for(HashMap<String, Object> h : helpList) {
+									%>
+											<td><label><%=h.get("helpNo") %></label></td>
+											<td><a href="<%=request.getContextPath() %>/help/helpListOne.jsp?helpNo=<%=h.get("helpNo") %>" class="text-decoration-none"><%=h.get("helpMemo") %></a></td>
+											<td><label><%=h.get("memberId") %></label></td>
+											<td><label><%=h.get("helpCreatedate") %></label></td>
+											<td>
+												<%
+													if(h.get("commentCreateDate") == null) {
+												%>
+														<label>답변대기중</label>
+												<%
+													} else {
+												%>
+														<label><%=h.get("commentCreateDate") %></label>
+												<%
+													}
+												%>
+											</td>
+											<td>
+												<%
+													if(h.get("commentMemo") == null) {
+												%>
+														<a href="<%=request.getContextPath() %>/help/updateHelpForm.jsp?helpNo=<%=h.get("helpNo") %>" class="btn btn-outline-primary btn-sm">수정</a>
+												<%
+													}
+												%>
+											</td>
+											<td>
+												<%
+													if(h.get("commentMemo") == null) {
+												%>
+														<a href="<%=request.getContextPath() %>/help/deleteHelpAction.jsp?helpNo=<%=h.get("helpNo") %>" class="btn btn-outline-danger btn-sm">삭제</a>
+												<%
+													}
+												%>
+											</td>
+											</tr><tr>
+									<%
+										}
+									%>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-end">
+					<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp" class="btn btn-dark btn-sm">문의하기</a>
+				</div>
 			</div>
 		</div>
-
 	</body>
 </html>
