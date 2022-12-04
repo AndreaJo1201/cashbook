@@ -96,8 +96,8 @@
 							<input type="hidden" name="month" value="<%=month %>">
 							<input type="hidden" name="date" value="<%=date %>">
 							<table class="table table-bordered">
-								<thead class="bg-dark">
-									<tr class="text-light">
+								<thead class="thead-light">
+									<tr>
 										<th colspan="2" class="text-center"><label>내역 추가</label></th>
 									</tr>
 								</thead>
@@ -179,17 +179,17 @@
 				<div class="card-body">
 				<div class="mt-4">
 					<table class="table table-bordered table-hover">
-						<thead>
+						<thead class="thead-light">
 							<tr>
-								<th colspan="6" class="text-center bg-dark text-light"><label>상세 내역</label></th>
+								<th colspan="6" class="text-center"><label>상세 내역</label></th>
 							</tr>
-							<tr class="thead-light">
-								<th class="col-sm-1 text-center"><label>분류</label></th>
-								<th class="col-sm-1 text-center"><label>사용내역</label></th>
-								<th class="col-sm-1 text-center"><label>금액</label></th>
-								<th class="col-sm-7 text-center"><label>메모</label></th>
-								<th class="col-sm-1 text-center"><label>수정</label></th>
-								<th class="col-sm-1 text-center"><label>삭제</label></th>
+							<tr>
+								<td class="col-sm-1 text-center"><label><strong>분류</strong></label></td>
+								<td class="col-sm-1 text-center"><label><strong>사용내역</strong></label></td>
+								<td class="col-sm-1 text-center"><label><strong>금액</strong></label></td>
+								<td class="col-sm-7 text-center"><label><strong>메모</strong></label></td>
+								<td class="col-sm-1 text-center"><label><strong>수정</strong></label></td>
+								<td class="col-sm-1 text-center"><label><strong>삭제</strong></label></td>
 							</tr>
 						</thead>
 						<tbody>

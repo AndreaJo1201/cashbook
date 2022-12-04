@@ -58,46 +58,60 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-		</div>
 		
-		<div class="container">
 			<div class="mt-4 p-5 text-dark bg-light rounded">
 				<h1><label>문의사항 수정</label></h1>
 			</div>
 			
-			<div class="mt-4">
-				<table class="table table-bordered">
-					<tr>
-						<th colspan="2" class="col-sm-12 table-dark"><label>기존 문의내역</label></th>
-					</tr>
-					<tr>
-						<th class="col-sm-1"><label>내용</label></th>
-						<td>
-							<p><label><%=help.getHelpMemo() %></label></p>
-						</td>
-					</tr>
-				</table>
-			</div>
+			<div class="table-responsive container-fluid">
+				<div class="mt-4">
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered">
+								<thead class="thead-light">
+									<tr>
+										<th colspan="2" class="col-sm-12"><label><strong>기존 문의내역</strong></label></th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td class="col-sm-1 text-center"><label><strong>내용</strong></label></td>
+									<td class="col-sm-11">
+										<p><label><%=help.getHelpMemo() %></label></p>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			
-			<div class="mt-2 p-2">
-				<form action="<%=request.getContextPath()%>/help/updateHelpAction.jsp" method="post" id="form">
-					<table class="table table-bordered">
-						<tr>
-							<th colspan="2" class="table-dark col-sm-12"><label>수정 사항</label></th>
-						</tr>
-						<tr>
-							<th class="col-sm-1"><label>내용</label></th>
-							<td class="col-sm-11"><textarea name="helpMemo" placeholder="수정할 내용을 작성해주세요."></textarea></td>
-						</tr>
-					</table>
-					<input type="hidden" name="helpNo" value="<%=help.getHelpNo() %>">	
-				</form>
-				
-				<div class="d-flex justify-content-between">
-					<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-					<button type="submit" class="btn btn-outline-success btn-sm" form="form">수정</button>
+				<div class="mt-2 p-2">
+					<div class="card">
+						<div class="card-body">
+							<form action="<%=request.getContextPath()%>/help/updateHelpAction.jsp" method="post" id="form">
+								<table class="table table-bordered">
+									<thead class="thead-light">
+										<tr>
+											<th colspan="2" class="col-sm-12"><label>수정 사항</label></th>
+										</tr>
+									</thead>
+									<tr>
+										<td class="col-sm-1 text-center"><label><strong>내용</strong></label></td>
+										<td class="col-sm-11"><textarea name="helpMemo" placeholder="수정할 내용을 작성해주세요."></textarea></td>
+									</tr>
+								</table>
+								<input type="hidden" name="helpNo" value="<%=help.getHelpNo() %>">	
+							</form>
+						</div>
+					</div>
+					
+					<div class="d-flex justify-content-between">
+						<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+						<button type="submit" class="btn btn-outline-success btn-sm" form="form">수정</button>
+					</div>	
 				</div>
 			</div>
 		</div>
