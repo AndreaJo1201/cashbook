@@ -26,7 +26,7 @@
 	
 	MemberDao memberDao = new MemberDao();
 	int memberCount = memberDao.selectMemberCount(); // -> lastPage 계산용
-	int lastPage = (int)Math.ceil(((double)(memberCount)/rowPerPage));
+	int lastPage = (int)Math.ceil(((double)(memberCount)/(double)rowPerPage));
 	
 	if(currentPage < 1) { // 없는 페이지로 이동시 자동 이동
 		response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp?currentPage=1");
@@ -35,6 +35,10 @@
 	}
 	
 	int beginRow = (currentPage - 1) * rowPerPage;
+	
+	final int PAGE_COUNT = 10;
+	int beginPage = (currentPage-1)/PAGE_COUNT*PAGE_COUNT+1;
+	int endPage = beginPage+PAGE_COUNT-1;
 	
 	//Model 호출
 	
@@ -116,23 +120,63 @@
 								</tbody>
 							</table>
 							<div class="text-center">
-								<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1" class="btn btn-light">처음</a>
-								<%
-									if(currentPage > 1) {
-								%>
-										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>"  class="btn btn-light">이전</a>
-								<%		
-									}
-								%>
-								<span><label><%=currentPage %> / <%=lastPage %></label></span>
-								<%
-									if(currentPage < lastPage) {
-								%>
-										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>"  class="btn btn-light">다음</a>
-								<%		
-									}
-								%>
-								<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>"  class="btn btn-light">마지막</a>
+								<ul class="pagination justify-content-center">				
+									<li class="page-item">
+										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1" class="page-link">처음</a>
+									</li>
+									<%
+										if(currentPage > 1){
+									%>
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
+											</li>
+									<%
+										}
+										if(endPage <= lastPage) {
+											for(int i=beginPage; i<=endPage; i++){
+												if(currentPage == i){
+												%>
+													<li class="page-item active">
+														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+													</li>
+												<%		
+												}else{
+												%>
+													<li class="page-item">
+														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+													</li>
+												<%	
+												}
+											}
+										} else if(endPage > lastPage) {
+											for(int i=beginPage; i<=lastPage; i++) {
+												if(currentPage == i) {
+									%>
+													<li class="page-item active">
+														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+													</li>
+									<%				
+												} else {
+									%>
+													<li class="page-item">
+														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+													</li>
+									<%				
+												}
+											}
+										}
+										if(currentPage < lastPage){
+									%>
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+											</li>
+									<%
+										}
+									%>
+									<li class="page-item">
+										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>

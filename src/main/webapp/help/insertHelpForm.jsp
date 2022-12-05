@@ -53,6 +53,16 @@
 			<div class="mt-4 p-5 text-white bg-light rounded">
 				<h1><label>문의사항 작성</label></h1>
 			</div>
+			<%
+             	if(request.getParameter("msg") != null) {
+             %>
+             		<div class="alert alert-danger mt-1 alert-dismissible">
+             			<label><%=request.getParameter("msg") %></label>
+             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+             		</div>
+             <%
+             	}
+             %>
 			
 			<div class="table-responsive container-fluid">
 				<div class="mt-2 p-2">

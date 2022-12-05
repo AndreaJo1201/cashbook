@@ -12,12 +12,6 @@
 		return;
 	}
 	
-	if(request.getParameter("msg") != null) {
-		String msg = request.getParameter("msg");
-		out.println("<script>alert('"+msg+"');</script>");
-		msg = null;
-	}
-	
 	if(request.getParameter("helpNo") ==null ||
 		request.getParameter("helpNo").equals("")) {
 			response.sendRedirect(request.getContextPath()+"/help/helpList.jsp");

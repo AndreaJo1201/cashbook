@@ -174,6 +174,16 @@
 						</form>
 					</div>
 				</div>
+				<%
+	             	if(request.getParameter("msg") != null) {
+	             %>
+	             		<div class="alert alert-danger mt-1 alert-dismissible">
+	             			<label><%=request.getParameter("msg") %></label>
+	             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	             		</div>
+	             <%
+	             	}
+	             %>
 				
 				<div class="card">
 				<div class="card-body">

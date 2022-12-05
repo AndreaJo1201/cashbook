@@ -18,6 +18,7 @@
 	if(request.getParameter("cashNo") == null ||
 		request.getParameter("cashNo").equals("")) {
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+			return;
 	}
 	
 	if(request.getParameter("categoryNo") == null ||
@@ -31,6 +32,20 @@
 			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 			return;
 	}
+	
+	if(request.getParameter("year") == null ||
+		request.getParameter("year").equals("") ||
+		request.getParameter("month") == null ||
+		request.getParameter("month").equals("") ||
+		request.getParameter("date") == null ||
+		request.getParameter("date").equals("")) { // 확인하려는 날짜를 알 수 없으므로 cashList 페이지로 이동
+			response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+			return;
+	}
+	
+	int year = Integer.parseInt(request.getParameter("year"));
+	int month = Integer.parseInt(request.getParameter("month"));
+	int date = Integer.parseInt(request.getParameter("date"));
 	
 	int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 	int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
@@ -47,6 +62,6 @@
 		System.out.println("UPDATE FALSE");
 	}
 	
-	response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
+	response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp?year="+year+"&month="+month+"&date="+date);
 
 %>

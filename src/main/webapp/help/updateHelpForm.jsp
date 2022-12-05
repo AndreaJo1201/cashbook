@@ -11,12 +11,6 @@
 		return;
 	}
 	
-	if(request.getParameter("msg") != null) {
-		String msg = request.getParameter("msg");
-		out.println("<script>alert('"+msg+"');</script>");
-		msg = null;
-	}
-	
 	if(request.getParameter("helpNo") == null ||
 		request.getParameter("helpNo").equals("")) {
 			response.sendRedirect(request.getContextPath()+"/help/helpList.jsp");
@@ -87,7 +81,16 @@
 						</div>
 					</div>
 				</div>
-			
+				<%
+	             	if(request.getParameter("msg") != null) {
+	             %>
+	             		<div class="alert alert-danger mt-1 alert-dismissible">
+	             			<label><%=request.getParameter("msg") %></label>
+	             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	             		</div>
+	             <%
+	             	}
+	             %>
 				<div class="mt-2 p-2">
 					<div class="card">
 						<div class="card-body">

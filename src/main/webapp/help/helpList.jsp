@@ -11,12 +11,6 @@
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?&msg="+URLEncoder.encode(msg,"UTF-8"));
 		return;
 	}
-
-	if(request.getParameter("msg") != null) {
-		String msg = request.getParameter("msg");
-		out.println("<script>alert('"+msg+"');</script>");
-		msg = null;
-	}
 	
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	String memberId = loginMember.getMemberId();
@@ -62,6 +56,16 @@
 			<div class="mt-4 p-5 text-dark bg-light rounded">
 				<h1><label>개인 문의 내역</label></h1>
 			</div>
+			<%
+            	if(request.getParameter("msg") != null) {
+            %>
+            		<div class="alert alert-danger mt-1 alert-dismissible">
+            			<label><%=request.getParameter("msg") %></label>
+            			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            		</div>
+            <%
+            	}
+            %>
 			
 			<div class="table-responsive container-fluid">
 				<div class="mt-2 p-2">
