@@ -70,7 +70,7 @@
 	long importCash = 0;
 	
 	//숫자 천단위 , 출력
-	NumberFormat  numberFormat = NumberFormat.getInstance();
+	NumberFormat numberFormat = NumberFormat.getInstance();
 	
 	/*************************************************************************************************************/
 	
