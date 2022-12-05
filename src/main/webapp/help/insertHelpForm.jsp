@@ -48,7 +48,6 @@
 
 	<body>
 		<div class="container-fluid">
-		
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			<div class="mt-4 p-5 text-white bg-light rounded">
 				<h1><label>문의사항 작성</label></h1>
@@ -63,7 +62,6 @@
              <%
              	}
              %>
-			
 			<div class="table-responsive container-fluid">
 				<div class="mt-2 p-2">
 					<div class="card">
@@ -84,16 +82,14 @@
 								</table>
 								<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
 							</form>
-							
-							<div class="d-flex justify-content-between">
-								<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-								<button type="submit" class="btn btn-outline-success btn-sm" form="form">문의하기</button>
-							</div>
 						</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+						<button type="submit" class="btn btn-outline-success btn-sm" form="form">문의하기</button>
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</body>
 </html>

@@ -87,11 +87,11 @@
 								</table>
 								<input type="hidden" name="categoryNo" value="<%=categoryOne.getCategoryNo() %>">
 							</form>
-							<div class="d-flex justify-content-between">
-								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-								<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
-							</div>
 						</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+						<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
 					</div>
 				</div>
 			</div>

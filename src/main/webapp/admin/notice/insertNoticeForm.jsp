@@ -67,12 +67,11 @@
 								</tbody>
 							</table>
 						</form>
-						
-						<div class="d-flex justify-content-between">
-							<a href="<%=request.getContextPath()%>/admin/noticeList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-							<button type="submit" class="btn btn-outline-primary btn-sm" form="form">입력</button>
-						</div>
 					</div>
+				</div>
+				<div class="d-flex justify-content-between">
+					<a href="<%=request.getContextPath()%>/admin/noticeList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+					<button type="submit" class="btn btn-outline-primary btn-sm" form="form">입력</button>
 				</div>
 			</div>
 		</div>

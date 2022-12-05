@@ -93,11 +93,11 @@
 									</tbody>
 								</table>
 							</form>
-							<div class="d-flex justify-content-between">
-								<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-								<button type="submit" class="btn btn-sm btn-outline-danger" form="form">회원추방</button>
-							</div>
 						</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+						<button type="submit" class="btn btn-sm btn-outline-danger" form="form">회원추방</button>
 					</div>
 				</div>
 			</div>

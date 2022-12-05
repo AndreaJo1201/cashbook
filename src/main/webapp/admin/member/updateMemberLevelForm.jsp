@@ -103,12 +103,11 @@
 								</table>
 								<input type="hidden" name="memberNo" value="<%=member.getMemberNo()%>">
 							</form>
-							
-							<div class="d-flex justify-content-between">
-								<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-								<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
-							</div>
 						</div>
+					</div>				
+					<div class="d-flex justify-content-between">
+						<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+						<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
 					</div>
 				</div>
 			</div>

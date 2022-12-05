@@ -116,11 +116,11 @@
 								</table>
 								<input type="hidden" name="commentNo" value="<%=comment.getCommentNo() %>">
 							</form>
-							<div class="d-flex justify-content-between">
-								<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-								<button type="submit" class="btn btn-sm btn-outline-success" form="form">수정</button>
-							</div>
 						</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+						<button type="submit" class="btn btn-sm btn-outline-success" form="form">수정</button>
 					</div>
 				</div>
 			</div>
