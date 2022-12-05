@@ -132,7 +132,7 @@
 										
 										<tr>
 											<td class="text-center col-sm-1"><label><strong>금액</strong></label></td>
-											<td class="text-start col-sm-11"><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>"></td>
+											<td class="text-start col-sm-11"><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0[^.]/, '0');"></td>
 										</tr>
 										
 										<tr>

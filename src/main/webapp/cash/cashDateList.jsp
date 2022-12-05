@@ -149,7 +149,7 @@
 									
 									<tr class="table-light">
 										<td class="col-sm-1 text-center center_middle"><label><strong>금액</strong></label></td>
-										<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(₩)"></td>
+										<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(₩)" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0[^.]/, '0');"></td>
 									</tr>
 									
 									<tr class="table-light">
