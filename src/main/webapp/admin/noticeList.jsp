@@ -184,10 +184,11 @@
 							</div>
 						</div>
 						
-						<div class="d-flex justify-content-end">
-							<a href="<%=request.getContextPath() %>/admin/notice/insertNoticeForm.jsp" class="btn btn-sm btn-outline-primary">공지사항 작성</a>
-						</div>
+					
 					</div>	
+					<div class="d-flex justify-content-end">
+						<a href="<%=request.getContextPath() %>/admin/notice/insertNoticeForm.jsp" class="btn btn-sm btn-outline-primary">공지사항 작성</a>
+					</div>
 				</div>
 			</div>
 		</div>	

@@ -187,11 +187,12 @@
 									</li>
 								</ul>
 							</div>
-							<div class="d-flex justify-content-end">
-								<a href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp" class="btn btn-sm btn-outline-secondary">카테고리 추가</a>
-							</div>
+
 						</div>
 					</div>
+				</div>
+				<div class="d-flex justify-content-end">
+					<a href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp" class="btn btn-sm btn-outline-primary">카테고리 추가</a>
 				</div>
 			</div>
 		</div>	
