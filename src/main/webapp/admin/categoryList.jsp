@@ -53,11 +53,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>CategoryList</title>
 		
@@ -78,7 +74,7 @@
 		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			<div class="mt-4 p-5 bg-light text-white">
-				<h1><label>카테고리</label></h1>
+				<h1>카테고리</h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		
@@ -91,13 +87,13 @@
 								<!-- 모델 데이터 카테고리 리스트 출력 -->
 								<thead class="thead-light">
 									<tr>
-										<th class="col-sm-1"><label>번호</label></th>
-										<th class="col-sm-1"><label>종류</label></th>
-										<th class="col-sm-1"><label>이름</label></th>
-										<th class="col-sm-2"><label>갱신일</label></th>
-										<th class="col-sm-2"><label>추가일</label></th>
-										<th class="col-sm-1"><label>수정</label></th>
-										<th class="col-sm-1"><label>삭제</label></th>
+										<th class="col-sm-1">번호</th>
+										<th class="col-sm-1">종류</th>
+										<th class="col-sm-1">이름</th>
+										<th class="col-sm-2">갱신일</th>
+										<th class="col-sm-2">추가일</th>
+										<th class="col-sm-1">수정</th>
+										<th class="col-sm-1">삭제</th>
 									</tr>
 								</thead>
 								
@@ -106,11 +102,11 @@
 									<%
 										for(Category c : categoryList) {
 									%>
-											<td><label><%=c.getCategoryNo() %></label></td>
-											<td><label><%=c.getCategoryKind() %></label></td>
-											<td><label><%=c.getCategoryName() %></label></td>
-											<td><label><%=c.getUpdatedate() %></label></td>
-											<td><label><%=c.getCreatedate() %></label></td>
+											<td><%=c.getCategoryNo() %></td>
+											<td><%=c.getCategoryKind() %></td>
+											<td><%=c.getCategoryName() %></td>
+											<td><%=c.getUpdatedate() %></td>
+											<td><%=c.getCreatedate() %></td>
 											<td>
 												<a href="<%=request.getContextPath()%>/admin/category/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo() %>" class="btn btn-primary btn-sm">
 													수정
@@ -195,6 +191,7 @@
 					<a href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp" class="btn btn-sm btn-outline-primary">카테고리 추가</a>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>	
 	</body>
 </html>

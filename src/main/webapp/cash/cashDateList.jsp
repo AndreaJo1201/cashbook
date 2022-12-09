@@ -53,11 +53,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<style>	
 			textarea {
@@ -75,169 +71,176 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<jsp:include page="/inc/header.jsp"></jsp:include>
-		</div>
-		<div class="container-fliud mt-2">
-			<div class="mt-2 card" >
-				<div class="card-body p-2">
-					<span class="h1"><label>수입 지출 내역</label></span>
-					<p><label><%=year %>년 <%=month+1%>월 <%=date %>일</label></p>
-				</div>
-			</div>
-			
-			<div class="table-reponsive">
-				<div class="card">
-					<div class="card-body">
-					<!-- 임시 인설트 폼 -->
-						<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
-							<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
-							<input type="hidden" name="year" value="<%=year %>">
-							<input type="hidden" name="month" value="<%=month %>">
-							<input type="hidden" name="date" value="<%=date %>">
-							<table class="table table-bordered">
-								<thead class="thead-light">
-									<tr>
-										<th colspan="2" class="text-center"><label>내역 추가</label></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="table-light">
-										<td class="text-center col-sm-1 center_middle"><label><strong>분류</strong></label></td>
-										<td class="col-sm-11">
-											<select name="categoryNo">
-											<%
-												//category 목록 출력
-												for(Category c : categoryList) {
-											%>
-													<option value="<%=c.getCategoryNo()%>">
-														<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
-													</option>
-											<%
-												}
-											%>
-											</select>
-										</td>
-									</tr>
-										
-									<tr class="table-light">
-										<td class="text-center col-sm-1 center_middle"><label><strong>일자</strong></label></td>
-										<%
-											if(month+1 < 10) {
-												if(date < 10) {
-										%>
-													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-0<%=date%>" readonly="readonly"></td>
-										<%
-												} else {
-										%>
-													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-<%=date%>" readonly="readonly"></td>
-										<%
-												}
-											} else {
-												if(date < 10) {
-										%>
-													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
-										<%
-												} else {
-										%>
-													<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
-										<%
-												}
-											}
-										%>
-									</tr>
-									
-									<tr class="table-light">
-										<td class="col-sm-1 text-center center_middle"><label><strong>금액</strong></label></td>
-										<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(₩)" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0[^.]/, '0');"></td>
-									</tr>
-									
-									<tr class="table-light">
-										<td class="col-sm-1 text-center center_middle"><label><strong>메모</strong></label></td>
-										<td class="col-sm-11"><textarea name="cashMemo" placeholder="세부 사항을 적어주세요."></textarea></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="d-grid bg-light">
-			                   <%
-			             	      	if(request.getParameter("msg") != null) {
-			                   %>
-			               	    		<div class="alert alert-danger mt-1 alert-dismissible">
-			              	     			<label><%=request.getParameter("msg") %></label>
-			             	      			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-			           	        		</div>
-			                   <%
-			                   		}
-			                   %>
-								<button type="submit" class="btn btn-primary">입력</button>
-							</div>
-						</form>
+	<div class="main-wrapper">
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+		
+		<div class="content-body">
+			<div class="container-fliud table-reponsive mt-2">
+				<div class="container-fluid">
+					<div class="mt-2 card" >
+						<div class="card-body p-5 mt-4 text-dark">
+							<span class="h1">수입 지출 내역</span>
+							<p><%=year %>년 <%=month+1%>월 <%=date %>일</p>
+						</div>
 					</div>
 				</div>
-				<%
-	             	if(request.getParameter("msg") != null) {
-	             %>
-	             		<div class="alert alert-danger mt-1 alert-dismissible">
-	             			<label><%=request.getParameter("msg") %></label>
-	             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-	             		</div>
-	             <%
-	             	}
-	             %>
 				
-				<div class="card">
-				<div class="card-body">
-				<div class="mt-4">
-					<table class="table table-bordered table-hover">
-						<thead class="thead-light">
-							<tr>
-								<th colspan="6" class="text-center"><label>상세 내역</label></th>
-							</tr>
-							<tr>
-								<td class="col-sm-1 text-center"><label><strong>분류</strong></label></td>
-								<td class="col-sm-1 text-center"><label><strong>사용내역</strong></label></td>
-								<td class="col-sm-1 text-center"><label><strong>금액</strong></label></td>
-								<td class="col-sm-7 text-center"><label><strong>메모</strong></label></td>
-								<td class="col-sm-1 text-center"><label><strong>수정</strong></label></td>
-								<td class="col-sm-1 text-center"><label><strong>삭제</strong></label></td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-							<%
-								for (HashMap<String, Object> m : list) {
-									if(m.get("categoryKind").equals("지출")) { // 총 수입, 지출값 계산
-										resultPrice = resultPrice - ((Long)(m.get("cashPrice")));
-									} else {
-										resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
-									}
-									int a = (Integer)m.get("cashNo");
-									
-							%>
-									<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryKind"))%></label></td>
-									<td class="col-sm-1 text-center center_middle"><label><%=(String)(m.get("categoryName"))%></label></td>
-									<td class="col-sm-1 text-center center_middle"><label>₩<%=numberFormat.format((Long)(m.get("cashPrice")))%></label></td>
-									<td class="col-sm-7"><label><%=(String)(m.get("cashMemo"))%></label></td>
-									<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>" class="btn btn-primary btn-sm">수정</a></td>
-									<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>" class="btn btn-danger btn-sm">삭제</a></td>
-									</tr><tr>
-							<%
-								}
-							%>
-							</tr>
-							<tr>
-								<td colspan="1" class="col-sm-1 text-center"><label><strong>누계</strong></label></td>
-								<td colspan="5" class="col-sm-11"><label>₩&nbsp;<%=numberFormat.format(resultPrice) %></label></td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="table-reponsive container-fluid">
+					<div class="card">
+						<div class="card-body">
+						<!-- 임시 인설트 폼 -->
+							<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
+								<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
+								<input type="hidden" name="year" value="<%=year %>">
+								<input type="hidden" name="month" value="<%=month %>">
+								<input type="hidden" name="date" value="<%=date %>">
+								<table class="table table-bordered">
+									<thead class="thead-light">
+										<tr>
+											<th colspan="2" class="text-center">내역 추가</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="table-light">
+											<td class="text-center col-sm-1 center_middle"><strong>분류</strong></td>
+											<td class="col-sm-11">
+												<select name="categoryNo">
+												<%
+													//category 목록 출력
+													for(Category c : categoryList) {
+												%>
+														<option value="<%=c.getCategoryNo()%>">
+															<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
+														</option>
+												<%
+													}
+												%>
+												</select>
+											</td>
+										</tr>
+											
+										<tr class="table-light">
+											<td class="text-center col-sm-1 center_middle"><strong>일자</strong></td>
+											<%
+												if(month+1 < 10) {
+													if(date < 10) {
+											%>
+														<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+											<%
+													} else {
+											%>
+														<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-0<%=month+1%>-<%=date%>" readonly="readonly"></td>
+											<%
+													}
+												} else {
+													if(date < 10) {
+											%>
+														<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+											<%
+													} else {
+											%>
+														<td class="col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
+											<%
+													}
+												}
+											%>
+										</tr>
+										
+										<tr class="table-light">
+											<td class="col-sm-1 text-center center_middle"><strong>금액</strong></td>
+											<td class="col-sm-11"><input type="text" name="cashPrice" placeholder="단위 : 원(₩)" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0[^.]/, '0');"></td>
+										</tr>
+										
+										<tr class="table-light">
+											<td class="col-sm-1 text-center center_middle"><strong>메모</strong></td>
+											<td class="col-sm-11"><textarea name="cashMemo" placeholder="세부 사항을 적어주세요."></textarea></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="d-grid bg-light">
+				                   <%
+				             	      	if(request.getParameter("msg") != null) {
+				                   %>
+				               	    		<div class="alert alert-danger mt-1 alert-dismissible">
+				              	     			<%=request.getParameter("msg") %>
+				             	      			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				           	        		</div>
+				                   <%
+				                   		}
+				                   %>
+									<button type="submit" class="btn btn-primary">입력</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<%
+		             	if(request.getParameter("msg") != null) {
+		             %>
+		             		<div class="alert alert-danger mt-1 alert-dismissible">
+		             			<%=request.getParameter("msg") %>
+		             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		             		</div>
+		             <%
+		             	}
+		             %>
+					<div class="card">
+						<div class="card-body">
+							<div class="mt-4">
+								<table class="table table-bordered table-hover">
+									<thead class="thead-light">
+										<tr>
+											<th colspan="6" class="text-center">상세 내역</th>
+										</tr>
+										<tr>
+											<td class="col-sm-1 text-center"><strong>분류</strong></td>
+											<td class="col-sm-1 text-center"><strong>사용내역</strong></td>
+											<td class="col-sm-1 text-center"><strong>금액</strong></td>
+											<td class="col-sm-7 text-center"><strong>메모</strong></td>
+											<td class="col-sm-1 text-center"><strong>수정</strong></td>
+											<td class="col-sm-1 text-center"><strong>삭제</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<%
+											for (HashMap<String, Object> m : list) {
+												if(m.get("categoryKind").equals("지출")) { // 총 수입, 지출값 계산
+													resultPrice = resultPrice - ((Long)(m.get("cashPrice")));
+												} else {
+													resultPrice = resultPrice + ((Long)(m.get("cashPrice")));
+												}
+												int a = (Integer)m.get("cashNo");
+												
+										%>
+												<td class="col-sm-1 text-center center_middle"><%=(String)(m.get("categoryKind"))%></td>
+												<td class="col-sm-1 text-center center_middle"><%=(String)(m.get("categoryName"))%></td>
+												<td class="col-sm-1 text-center center_middle">₩<%=numberFormat.format((Long)(m.get("cashPrice")))%></td>
+												<td class="col-sm-7"><%=(String)(m.get("cashMemo"))%></td>
+												<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=m.get("cashNo")%>" class="btn btn-primary btn-sm">수정</a></td>
+												<td class="col-sm-1 text-center center_middle"><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>&cashNo=<%=(Integer)(m.get("cashNo"))%>" class="btn btn-danger btn-sm">삭제</a></td>
+												</tr><tr>
+										<%
+											}
+										%>
+										</tr>
+										<tr>
+											<td colspan="1" class="col-sm-1 text-center"><strong>누계</strong></td>
+											<td colspan="5" class="col-sm-11">₩&nbsp;<%=numberFormat.format(resultPrice) %></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
-				</div>
+				<div class="container-fluid">
+					<div class="d-flex justify-content-end">
+						<span><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>" class="btn btn-sm btn-dark">뒤로가기</a></span>
+					</div>
 				</div>
 			</div>
-			<div class="mt-2 p-2 text-end">
-				<span><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month%>" class="btn btn-sm btn-dark">뒤로가기</a></span>
-			</div>
-		</div>	
+		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
+		</div>
 	</body>
 </html>

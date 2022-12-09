@@ -112,14 +112,20 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #76838f;
-  text-align: left;
-  background-color: #F3F3F9; }
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #76838f;
+	text-align: left;
+	background-color: #F3F3F9;
+	  
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -7746,6 +7752,8 @@ sub {
     margin-top: 17px; }
     .header-left .input-group input {
       border-radius: 5px !important; }
+    .header-left .input-group span {
+    	margin-top: 10px;	}
     .header-left .input-group .input-group-text {
       font-size: 1.375rem; }
       @media (max-width: 575.98px) {

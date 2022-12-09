@@ -15,7 +15,7 @@
 	
 	if(request.getParameter("helpNo") == null ||
 		request.getParameter("helpNo").equals("")) {
-			response.sendRedirect(request.getContextPath()+"help/helpList.jsp");
+			response.sendRedirect(request.getContextPath()+"/help/helpList.jsp");
 			return;
 	}
 	
@@ -34,12 +34,9 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
+		<title>상세 문의 내역</title>
 		<style>
 			.center_middle {
 				vertical-align: middle;
@@ -60,89 +57,101 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
+		<div class="main-wrapper">
 		
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 text-dark bg-light rounded">
-				<h1><label>문의사항 확인</label></h1>
-			</div>
 			
-			<div class="table-responsive container-fluid">
-				<div class="mt-2">
-					<div class="card">
-						<div class="card-body">
-							<table class="table table-bordered">
-								<thead class="thead-light">
-									<tr>
-										<th colspan="4" class="col-sm-12 text-center">문의 내용</th>
-									</tr>
-									<tr>
-										<td class="col-sm-1"><label><strong>번호</strong></label></td>
-										<td class="col-sm-7"><label><strong>내용</strong></label></td>
-										<td class="col-sm-2"><label><strong>수정일</strong></label></td>
-										<td class="col-sm-2"><label><strong>작성일</strong></label></td>
-									</tr>
-								</thead>
-								<tr>
-									<%
-										for(HashMap<String,Object> h : list) {
-									%>
-											<td class="col-sm-1"><label><%=h.get("helpNo") %></label></td>
-											<td class="col-sm-7"><label><%=h.get("helpMemo") %></label></td>
-											<td class="col-sm-2"><label><%=h.get("helpUpdateDate") %></label></td>
-											<td class="col-sm-2"><label><%=h.get("helpCreatedate") %></label></td>
-									<%
-										}
-									%>
-								</tr>
-							</table>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="card-body p-2">
+								<div class="mt-4 p-5 text-dark">
+									<h1>문의사항 확인</h1>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
 				
-				<div class="mt-2">
-					<div class="card">
-						<div class="card-body">
-							<table class="table table-bordered">
-								<thead class="thead-light">
-									<tr>
-										<th colspan="4" class="col-sm-12 text-center">관리자 답변</th>
-									</tr>
-									<tr>
-										<td class="col-sm-1 text-center"><label><strong>번호</strong></label></td>
-										<td class="col-sm-7 text-center"><label><strong>내용</strong></label></td>
-										<td class="col-sm-2 text-center"><label><strong>작성자</strong></label></td>
-										<td class="col-sm-2 text-center"><label><strong>작성일</strong></label></td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<%
-											for(HashMap<String,Object> h : list) {
-												if(h.get("commentMemo") != null) {
-										%>
-													<td class="col-sm-1"><label><%=h.get("commentNo") %></label></td>
-													<td class="col-sm-7"><label><%=h.get("commentMemo") %></label></td>
-													<td class="col-sm-2"><label><%=h.get("commentMemberId") %></label></td>
-													<td class="col-sm-2"><label><%=h.get("commentCreateDate") %></label></td>
-										<%
-												} else {
-										%>
-													<td colspan="4" class="col-sm-12"><label>답변된 작성이 없습니다.</label></td>
-										<%
+					<div class="table-responsive container-fluid">
+						<div class="mt-2">
+							<div class="card">
+								<div class="card-body">
+									<table class="table table-bordered">
+										<thead class="thead-light">
+											<tr>
+												<th colspan="4" class="col-sm-12 text-center">문의 내용</th>
+											</tr>
+											<tr>
+												<td class="col-sm-1"><strong>번호</strong></td>
+												<td class="col-sm-7"><strong>내용</strong></td>
+												<td class="col-sm-2"><strong>수정일</strong></td>
+												<td class="col-sm-2"><strong>작성일</strong></td>
+											</tr>
+										</thead>
+										<tr>
+											<%
+												for(HashMap<String,Object> h : list) {
+											%>
+													<td class="col-sm-1"><%=h.get("helpNo") %></td>
+													<td class="col-sm-7"><%=h.get("helpMemo") %></td>
+													<td class="col-sm-2"><%=h.get("helpUpdateDate") %></td>
+													<td class="col-sm-2"><%=h.get("helpCreatedate") %></td>
+											<%
 												}
-											}
-										%>
-									</tr>
-								</tbody>
-							</table>
+											%>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						
+						<div class="mt-2">
+							<div class="card">
+								<div class="card-body">
+									<table class="table table-bordered">
+										<thead class="thead-light">
+											<tr>
+												<th colspan="4" class="col-sm-12 text-center">관리자 답변</th>
+											</tr>
+											<tr>
+												<td class="col-sm-1 text-center"><strong>번호</strong></td>
+												<td class="col-sm-7 text-center"><strong>내용</strong></td>
+												<td class="col-sm-2 text-center"><strong>작성자</strong></td>
+												<td class="col-sm-2 text-center"><strong>작성일</strong></td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<%
+													for(HashMap<String,Object> h : list) {
+														if(h.get("commentMemo") != null) {
+												%>
+															<td class="col-sm-1"><%=h.get("commentNo") %></td>
+															<td class="col-sm-7"><%=h.get("commentMemo") %></td>
+															<td class="col-sm-2"><%=h.get("commentMemberId") %></td>
+															<td class="col-sm-2"><%=h.get("commentCreateDate") %></td>
+												<%
+														} else {
+												%>
+															<td colspan="4" class="col-sm-12">답변된 작성이 없습니다.</td>
+												<%
+														}
+													}
+												%>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="mt-2 p-2 text-end">
+							<span><a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-sm btn-dark">뒤로가기</a></span>
 						</div>
 					</div>
-				</div>
-				<div class="mt-2 p-2 text-end">
-					<span><a href="<%=request.getContextPath()%>/help/helpList.jsp" class="btn btn-sm btn-dark">뒤로가기</a></span>
 				</div>
 			</div>
 		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

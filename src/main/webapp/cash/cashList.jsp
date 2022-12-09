@@ -87,135 +87,139 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>CASH_LIST</title>
+		<style>
+			#td {
+				width:14.28%;
+			}			
+		</style>
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<jsp:include page="/inc/header.jsp"></jsp:include>
-		</div>
-		<div class="container-fluid table-responsive mt-2">
-			<div class="card">
-				<div class="card-body">
-					<table class="table table-bordered">
-						<thead>
-						<tr class="text-center table-dark">
-							<th colspan="7">
-								<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-success btn-sm">&#8701; 이전달</a></span>
-								<span class="col-sm-2"><%=year %>년 <%=month+1 %>월</span>
-								<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-success btn-sm">다음달 &#8702;</a></span>
-							</th>
-						</tr>
-						<tr class="table-light">
-							<th class="text-danger"><label>일</label></th>
-							<th><label>월</label></th>
-							<th><label>화</label></th>
-							<th><label>수</label></th>
-							<th><label>목</label></th>
-							<th><label>금</label></th>
-							<th class="text-primary">토</th>
-						</tr>
-						</thead>
-						
-						<tr class="table-light">
-						<!-- 달력 -->
-						<%
-							for(int i=1; i<=totalTd; i++) {
-						%>
-								<td>
-						<%
-									int date = i-beginBlank;
-									if(date > 0 && date <= lastDate) {
-						%>
-										<div>
-										<%
-											if(i%7 ==1) {
-										%>
-												<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-danger">
-													<%=date %>
-												</a>
-										<%
-											} else if(i%7==0) {
-										%>
-												<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-primary">
-													<%=date %>
-												</a>
-										<%
-											} else {
-										%>
-												<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-dark">
-													<%=date %>
-												</a>
-										<%		
-											}
-										%>
-										</div>
-										<div>
-											<label>
+	<div id="main-wrapper">	
+		
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+		
+		<div class="content-body">
+			<div class="container-fluid table-responsive mt-2">
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-bordered">
+							<thead>
+							<tr class="text-center table-dark">
+								<th colspan="7">
+									<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-success btn-sm">&#8701; 이전달</a></span>
+									<span class="col-sm-2"><%=year %>년 <%=month+1 %>월</span>
+									<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-success btn-sm">다음달 &#8702;</a></span>
+								</th>
+							</tr>
+							<tr class="table-light">
+								<th class="text-danger">일</th>
+								<th>월</th>
+								<th>화</th>
+								<th>수</th>
+								<th>목</th>
+								<th>금</th>
+								<th class="text-primary">토</th>
+							</tr>
+							</thead>
+							
+							<tr class="table-light">
+							<!-- 달력 -->
+							<%
+								for(int i=1; i<=totalTd; i++) {
+							%>
+									<td id="td">
+							<%
+										int date = i-beginBlank;
+										if(date > 0 && date <= lastDate) {
+							%>
+											<div>
 											<%
-												for(HashMap<String, Object> m : list) {
-													String cashDate = (String)(m.get("cashDate"));
-													if(Integer.parseInt(cashDate.substring(8)) == date) {
+												if(i%7 ==1) {
 											%>
-														[<%=(String)(m.get("categoryKind")) %>]
-														₩<%=numberFormat.format((Long)(m.get("cashPrice"))) %>
-														<%=(String)(m.get("categoryName")) %>
-														<br>
+													<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-danger">
+														<%=date %>
+													</a>
 											<%
-														if(m.get("categoryKind").equals("수입")) {
-															totalCash = totalCash + (Long)m.get("cashPrice");
-															importCash = importCash + (Long)m.get("cashPrice");
-														} else if(m.get("categoryKind").equals("지출")) {
-															totalCash = totalCash - (Long)m.get("cashPrice");
-															expenseCash = expenseCash - (Long)m.get("cashPrice");
-														}
-													}
+												} else if(i%7==0) {
+											%>
+													<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-primary">
+														<%=date %>
+													</a>
+											<%
+												} else {
+											%>
+													<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" class="text-decoration-none text-dark">
+														<%=date %>
+													</a>
+											<%		
 												}
 											%>
-											</label>
-										</div>
-						<%
+											</div>
+											<div>
+												<%
+													for(HashMap<String, Object> m : list) {
+														String cashDate = (String)(m.get("cashDate"));
+														if(Integer.parseInt(cashDate.substring(8)) == date) {
+												%>
+															[<%=(String)(m.get("categoryKind")) %>]
+															₩<%=numberFormat.format((Long)(m.get("cashPrice"))) %>
+															<%=(String)(m.get("categoryName")) %>
+															<br>
+												<%
+															if(m.get("categoryKind").equals("수입")) {
+																totalCash = totalCash + (Long)m.get("cashPrice");
+																importCash = importCash + (Long)m.get("cashPrice");
+															} else if(m.get("categoryKind").equals("지출")) {
+																totalCash = totalCash - (Long)m.get("cashPrice");
+																expenseCash = expenseCash - (Long)m.get("cashPrice");
+															}
+														}
+													}
+												%>
+											</div>
+							<%
+										}
+							%>
+									</td> <!-- 11월이면 1부터 30일까지 -->
+							<%
+									if(i%7 == 0 && i!=totalTd) {
+							%>
+										</tr><tr class="table-light">
+							<%
 									}
-						%>
-								</td> <!-- 11월이면 1부터 30일까지 -->
-						<%
-								if(i%7 == 0 && i!=totalTd) {
-						%>
-									</tr><tr class="table-light">
-						<%
 								}
-							}
-						%>
-						</tr>
-					</table>
-					<div class="p-2 container-fluid row d-flex justify-content-between">
-						<div class="col-sm-6">
-							<span class="text-info"><label>수입 :  <%=numberFormat.format(importCash)%>원</label></span>
-							<br>
-							<span class="text-danger"><label>지출 : <%=numberFormat.format(expenseCash) %>원</label></span>
-						</div>
-						<div class="col-sm-6 text-end">
-						<%
-							if(totalCash < 0) {
-						%>
-								<span class="text-danger"><label>월 누계 : <%=numberFormat.format(totalCash) %>원</label></span>
-						<%
-							} else {
-						%>
-								<span class="text-info"><label>월 누계 : <%=numberFormat.format(totalCash) %>원</label></span>
-						<%
-							}
-						%>
+							%>
+							</tr>
+						</table>
+						<div class="p-2 container-fluid row d-flex justify-content-between">
+							<div>
+								<span class="text-info">수입 :  <%=numberFormat.format(importCash)%>원</span>
+								<br>
+								<span class="text-danger">지출 : <%=numberFormat.format(expenseCash) %>원</span>
+							</div>
+							<div class="text-end">
+							<%
+								if(totalCash < 0) {
+							%>
+									<span class="text-danger">월 누계 : <%=numberFormat.format(totalCash) %>원</span>
+							<%
+								} else {
+							%>
+									<span class="text-info">월 누계 : <%=numberFormat.format(totalCash) %>원</span>
+							<%
+								}
+							%>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>	
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

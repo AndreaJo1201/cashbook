@@ -14,19 +14,18 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>UPDATE PW</title>
 	</head>
 
 	<body>
-		<div class="table-reponsive container-fluid">
-			<jsp:include page="/inc/header.jsp"></jsp:include>
+	<div class="main-wrapper">
+		
+		<jsp:include page="/inc/header.jsp"></jsp:include>
 			
+		<div class="content-body">
+			<div class="table-reponsive container-fluid">
 			<div class="login-form-bg h-100">
 				<div class="container h-100">
 					<div class="row justify-content-center h-100">
@@ -50,7 +49,7 @@
 												if(request.getParameter("msg") != null) {
 											%>
 											<div class="alert alert-danger mt-1 alert-dismissible">
-												<label><%=request.getParameter("msg") %></label>
+												<%=request.getParameter("msg") %>
 												<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 											</div>
 											<%
@@ -64,6 +63,9 @@
 					</div>
 				</div>
 			</div>
+			</div>
 		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
+	</div>
 	</body>
 </html>

@@ -5,32 +5,83 @@
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember");
 %>
-	<div class="row mt-2 p-2">
-		<div class="dropdown text-start col-sm-6">
-			<span><label><%=loginMember.getMemberName() %>님 반갑습니다.</label></span>
-			<button type="button" class="btn btn-dark btn-sm dropdown-toggle" data-bs-toggle="dropdown">내 정보</button>
-			<ul class="dropdown-menu">
-				<li><a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">cashBook</a></li>
-				<li><hr class="dropdown-divider"></hr></li>
-				<%
-					if(loginMember.getMemberLevel() < 1) {
-				%>
-						<li><a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">문의내역</a></li>
-				<%
-					} else {
-				%>
-						<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp" class="dropdown-item">관리자 페이지</a></li>
-				<%
-					}
-				%>
-				<li><hr class="dropdown-divider"></hr></li>
-				<li><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp" class="dropdown-item">회원정보 수정</a><li>
-				<li><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp" class="dropdown-item">비밀번호 수정</a></li>
-				<li><hr class="dropdown-divider"></hr></li>
-				<li><a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp" class="dropdown-item">회원 탈퇴</a></li>
-			</ul>
-		</div>
-		<div class="text-end col-sm-6">
-			<a href="<%=request.getContextPath()%>/logout.jsp" class="btn-dark btn btn-sm">로그아웃</a>
+	<div class="nav-header">
+		<div class="brand-logo">
+			<a href="<%=request.getContextPath()%>/cash/cashList.jsp">
+				<b class="logo-abbr"><img src="<%=request.getContextPath()%>/css/images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="<%=request.getContextPath()%>/css/images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+						<img src="images/logo-text.png" alt="">
+				</span>
+			</a>
 		</div>
 	</div>
+	
+	<div class="header">    
+            <div class="header-content clearfix">
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                	<div class="input-group">
+                		<div class="input-group-prepend">
+        					<span class="h4">Hello! <%=loginMember.getMemberName() %></span>
+        				</div>
+        			</div>
+                </div>
+                <div class="header-right">
+                   	<a href="<%=request.getContextPath()%>/logout.jsp" class="btn-dark btn" style="margin-top:20px;">Sign out</a>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                	<li>
+                		<a href="<%=request.getContextPath()%>/cash/cashList.jsp" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">CashBook</span>
+                        </a>
+                	</li>
+					<li>
+						<%
+							if(loginMember.getMemberLevel() < 1) {
+						%>
+		                        <a href="<%=request.getContextPath()%>/help/helpList.jsp" aria-expanded="false">
+		                            <i class="icon-grid menu-icon"></i><span class="nav-text">문의내역</span>
+		                        </a>
+                        <%
+							} else {
+                        %>
+                        		<a href="<%=request.getContextPath()%>/admin/adminMain.jsp" aria-expanded="false">
+		                            <i class="icon-grid menu-icon"></i><span class="nav-text">ADMIN</span>
+		                        </a>
+                        <%
+							}
+                        %>
+                    </li>
+                    <li class="nav-label">My Page</li>
+					<li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-menu menu-icon"></i><span class="nav-text">Profile</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">Change Name</a></li>
+                            <li><a href="<%=request.getContextPath()%>/member/updateMemberPwForm.jsp">Change Password</a></li>
+                            <li><a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp">Unregister</a></li>
+                        </ul>
+					</li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->

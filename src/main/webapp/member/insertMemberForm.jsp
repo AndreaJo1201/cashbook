@@ -19,20 +19,13 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
-		<title>SIGN UP</title>
+		<title>Register</title>
 	</head>
 
 	<body>
 		<div class="table-reponsive container-fluid">
-			<div class="text-end mt-2 p-2">
-				<a href="<%=request.getContextPath()%>/loginForm.jsp" class="btn btn-sm btn-dark">뒤로가기</a>
-			</div>
 			<div class="login-form-bg h-100">
 				<div class="container h-100">
 					<div class="row justify-content-center h-100">
@@ -40,7 +33,7 @@
 							<div class="form-input-content">
 								<div class="card login-form mb-0">
 									<div class="card-body pt-5">
-										<a class="text-center" href="<%=request.getContextPath()%>/member/insertMemberForm.jsp"><h1>회원가입</h1></a>
+										<a class="text-center" href="<%=request.getContextPath()%>/member/insertMemberForm.jsp"><h1>Register</h1></a>
 										<form class="mt-5 mb-5 login-input" action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
 											<div class="form-group">
 												<input type="text" class="form-control" placeholder="ID" name="memberId">
@@ -56,7 +49,7 @@
 												if(request.getParameter("msg") != null) {
 											%>
 											<div class="alert alert-danger mt-1 alert-dismissible">
-												<label><%=request.getParameter("msg") %></label>
+												<%=request.getParameter("msg") %>
 												<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 											</div>
 											<%
@@ -66,10 +59,14 @@
 									</div>
 								</div>
 							</div>
+							<div class="d-flex justify-content-end">
+								<a href="<%=request.getContextPath()%>/loginForm.jsp" class="btn btn-dark">Back</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>	
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

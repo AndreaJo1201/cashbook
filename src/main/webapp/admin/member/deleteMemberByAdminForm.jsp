@@ -30,11 +30,7 @@
 	
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>회원 강제 탈퇴</title>
 		
@@ -55,7 +51,7 @@
 		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			<div class="mt-4 p-5 bg-danger text-white">
-				<h1><label>회원 강제 탈퇴</label></h1>
+				<h1>회원 강제 탈퇴</h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
@@ -67,25 +63,25 @@
 								<table class="table table-bordered table-hover">
 									<thead class="thead-light">
 										<tr>
-											<th colspan="2"><label>회원 내역</label></th>
+											<th colspan="2">회원 내역</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td class="text-center"><span><label><strong>회원번호</strong></label></span></td>
+											<td class="text-center"><span><strong>회원번호</strong></span></td>
 											<td><input type="text" name="memberNo" value="<%=member.getMemberNo() %>" readonly="readonly"></td>
 										</tr>
 									
 										<tr>
-											<td class="text-center"><span><label><strong>회원ID</strong></label></span></td>
+											<td class="text-center"><span><strong>회원ID</strong></span></td>
 											<td><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
 										</tr>
 										<tr>
-											<td class="text-center"><span><label><strong>회원닉네임</strong></label></span></td>
+											<td class="text-center"><span><strong>회원닉네임</strong></span></td>
 											<td><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
 										</tr>
 										<tr>
-											<td class="text-center"><span><label><strong>회원 레벨</strong></label></span></td>
+											<td class="text-center"><span><strong>회원 레벨</strong></span></td>
 											<td>
 												<input type="text" name="memberLevel" value="<%=member.getMemberLevel() %>" readonly="readonly">
 											</td>
@@ -102,6 +98,7 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 	
 </html>

@@ -18,13 +18,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
 		<title>카테고리 추가</title>
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		
 		<style>
@@ -43,7 +39,7 @@
 		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			<div class="mt-4 p-5 bg-light text-white">
-				<h1><label>카테고리 추가</label></h1>
+				<h1>카테고리 추가</h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
@@ -60,14 +56,14 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td class="col-sm-2 text-center"><label><strong>카테고리 종류</strong></label></td>
+											<td class="col-sm-2 text-center"><strong>카테고리 종류</strong></td>
 											<td class="col-sm-10">
-												<input type="radio" name="categoryKind" value="수입"><label>수입</label>
-												<input type="radio" name="categoryKind" value="지출"><label>지출</label>
+												<input type="radio" name="categoryKind" value="수입">수입
+												<input type="radio" name="categoryKind" value="지출">지출
 											</td>
 										</tr>
 										<tr>
-											<td class="col-sm-2 text-center"><label><strong>카테고리 이름</strong></label></td>
+											<td class="col-sm-2 text-center"><strong>카테고리 이름</strong></td>
 											<td class="col-sm-10"><input type="text" name="categoryName" placeholder="카테고리 이름을 입력해주세요." class="NameCategory"></td>
 										</tr>
 									</tbody>
@@ -82,5 +78,6 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

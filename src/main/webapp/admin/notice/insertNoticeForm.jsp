@@ -17,12 +17,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>공지사항 작성</title>
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		
 		<style>
@@ -44,7 +40,7 @@
 	<div class="container-fluid">
 		<jsp:include page="/inc/header.jsp"></jsp:include>
 		<div class="mt-4 p-5 bg-light text-white">
-			<h1><label>공지사항 작성</label></h1>
+			<h1>공지사항 작성</h1>
 		</div>
 		<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 		
@@ -61,7 +57,7 @@
 								</thead>
 								<tbody>
 									<tr class="table-light">
-										<td class="col-sm-1 text-center"><label><strong>내용</strong></label></td>
+										<td class="col-sm-1 text-center"><strong>내용</strong></td>
 										<td class="col-sm-11"><textarea name="noticeMemo" placeholder="공지사항 내용을 입력해주세요."></textarea></td>
 									</tr>
 								</tbody>
@@ -76,5 +72,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

@@ -46,11 +46,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>MainByAdmin</title>
 		
@@ -84,7 +80,7 @@
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			
 			<div class="mt-4 p-5 bg-light text-white">
-				<h1><label>INDEX</label></h1>
+				<h1>INDEX</h1>
 			</div>
 			
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
@@ -97,9 +93,9 @@
 						<div class="card">
 							<div class="card-body">
 								<table class="table table-bordered text-center">
-									<thead class="thead-light">
+									<thead class="thead-dark">
 										<tr>
-											<th colspan="3"><label>최신 공지사항</label></th>
+											<th colspan="3">최신 공지사항</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -107,9 +103,9 @@
 											<%
 												for(Notice n : noticeList) {
 											%>
-														<td><label><%=n.getNoticeNo() %></label></td>
-														<td><label><%=n.getNoticeMemo() %></label></td>
-														<td><label><%=n.getCreatedate() %></label></td>
+														<td><%=n.getNoticeNo() %></td>
+														<td><%=n.getNoticeMemo() %></td>
+														<td><%=n.getCreatedate() %></td>
 													</tr><tr>
 											<%
 												}
@@ -124,9 +120,9 @@
 						<div class="card">
 							<div class="card-body">
 								<table class="table table-bordered text-center">
-									<thead class="thead-light">
+									<thead class="thead-dark">
 										<tr>
-											<th colspan="3"><label>신규 가입회원</label></th>
+											<th colspan="3">신규 가입회원</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -134,9 +130,9 @@
 											<%
 												for(Member m : memberList) {
 											%>
-														<td><label><%=m.getMemberNo() %></label></td>
-														<td><label><%=m.getMemberName() %></label></td>
-														<td><label><%=m.getCreatedate() %></label></td>
+														<td><%=m.getMemberNo() %></td>
+														<td><%=m.getMemberName() %></td>
+														<td><%=m.getCreatedate() %></td>
 													</tr><tr>
 											<%
 												}
@@ -152,9 +148,9 @@
 					<div class="card">
 						<div class="card-body">
 							<table class="table table-bordered text-center">
-								<thead class="thead-light">
+								<thead class="thead-dark">
 									<tr>
-										<th colspan="3"><label>신규 문의사항</label></th>
+										<th colspan="3">신규 문의사항</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -162,9 +158,9 @@
 										<%
 											for(HashMap<String,Object> h : helpList) {
 										%>
-													<td class="col-sm-1"><label><%=h.get("helpNo") %></label></td>
-													<td class="col-sm-8"><label><%=h.get("helpMemo") %></label></td>
-													<td class="col-sm-3"><label><%=h.get("helpCreateDate") %></label></td>
+													<td class="col-sm-1"><%=h.get("helpNo") %></td>
+													<td class="col-sm-8"><%=h.get("helpMemo") %></td>
+													<td class="col-sm-3"><%=h.get("helpCreateDate") %></td>
 												</tr><tr>
 										<%
 											}
@@ -176,6 +172,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

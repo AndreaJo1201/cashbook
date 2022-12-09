@@ -34,103 +34,115 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		
 		<title>LOGIN</title>
+		<style>
+			.leftcolumn {
+				float:left;
+				width:75%
+			}
+			
+			.rightcolumn {
+				float: left;
+				width: 25%;
+				padding-left: 20px;
+			}
+		</style>
 	</head>
 
 	<body>
 	    <div class="table-reponsive container p-4">
-			<table class="table table-bordered">
-				<thead>
-					<tr class="table-dark">
-						<th class="col-sm-10 text-center"><label>공지사항</label></th>
-						<th class="col-sm-2 text-center"><label>날짜</label></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="table-light">
-					<%
-						for(Notice n : list) {
-					%>
-								<td class="col-sm-10"><label><%=n.getNoticeMemo() %></label></td>
-								<td class="col-sm-2 text-center"><label><%=n.getCreatedate() %></label></td> 
-							</tr><tr class="table-light">
-					<%
-						}
-					%>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 공지사항(5개)목록 페이징 -->
-			<div class="text-center">
-				<ul class="pagination justify-content-center">				
-					<li class="page-item">
-						<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1" class="page-link">처음</a>
-					</li>
-					<%
-						if(currentPage > 1){
-					%>
-							<li class="page-item">
-								<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
-							</li>
-					<%
-						}
-						if(endPage <= lastPage) {
-							for(int i=beginPage; i<=endPage; i++){
-								if(currentPage == i){
-								%>
-									<li class="page-item active">
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-									</li>
-								<%		
-								}else{
-								%>
-									<li class="page-item">
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-									</li>
-								<%	
+	    	<div class="card">
+		    	<div class="card-body">
+					<table class="table table-dark">
+						<thead class="thead-dark">
+							<tr>
+								<th class="col-sm-10 text-center">공지사항</th>
+								<th class="col-sm-2 text-center">날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="table-light">
+							<%
+								for(Notice n : list) {
+							%>
+										<td class="col-sm-10"><%=n.getNoticeMemo() %></td>
+										<td class="col-sm-2 text-center"><%=n.getCreatedate() %></td> 
+									</tr><tr class="table-light">
+							<%
 								}
-							}
-						} else if(endPage > lastPage) {
-							for(int i=beginPage; i<=lastPage; i++) {
-								if(currentPage == i) {
-					%>
-									<li class="page-item active">
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-									</li>
-					<%				
-								} else {
-					%>
-									<li class="page-item">
-										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-									</li>
-					<%				
-								}
-							}
-						}
-						if(currentPage < lastPage){
-					%>
+							%>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 공지사항(5개)목록 페이징 -->
+					<div class="text-center">
+						<ul class="pagination justify-content-center">				
 							<li class="page-item">
-								<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+								<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1" class="page-link">처음</a>
 							</li>
-					<%
-						}
-					%>
-					<li class="page-item">
-						<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
-					</li>
-				</ul>
+							<%
+								if(currentPage > 1){
+							%>
+									<li class="page-item">
+										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
+									</li>
+							<%
+								}
+								if(endPage <= lastPage) {
+									for(int i=beginPage; i<=endPage; i++){
+										if(currentPage == i){
+										%>
+											<li class="page-item active">
+												<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+											</li>
+										<%		
+										}else{
+										%>
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+											</li>
+										<%	
+										}
+									}
+								} else if(endPage > lastPage) {
+									for(int i=beginPage; i<=lastPage; i++) {
+										if(currentPage == i) {
+							%>
+											<li class="page-item active">
+												<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+											</li>
+							<%				
+										} else {
+							%>
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+											</li>
+							<%				
+										}
+									}
+								}
+								if(currentPage < lastPage){
+							%>
+									<li class="page-item">
+										<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+									</li>
+							<%
+								}
+							%>
+							<li class="page-item">
+								<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>	
+		</div>
  
-	     <div class="login-form-bg h-100">
+		
+		<div class="login-form-bg h-100">
 	     	<div class="container h-100">
 	            <div class="row justify-content-center h-100">
 	                <div class="col-xl-6">
@@ -149,23 +161,29 @@
 	                                    <%
 	                                    	if(request.getParameter("msg") != null) {
 	                                    %>
-	                                    		<div class="alert alert-danger mt-1 alert-dismissible">
-	                                    			<label><%=request.getParameter("msg") %></label>
-	                                    			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	                                    		<div class="alert alert-danger mt-1 alert-dismissible fade show">
+	                                    			<%=request.getParameter("msg") %>
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
 	                                    		</div>
 	                                    <%
 	                                    	}
 	                                    %>
 	                                </form>
-	                                <p class="mt-5 login-form__footer">Don't have account? <a href="<%=request.getContextPath()%>/member/insertMemberForm.jsp" class="text-primary">Sign Up</a> now</p>
+	                                <p class="mt-5 login-form__footer">Don't have account? <a href="<%=request.getContextPath()%>/member/insertMemberForm.jsp" class="text-primary">Register</a> now</p>
 	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-	    </div>
-		    
-
+		</div>
+	    
+	    
+    <!--**********************************
+        Scripts
+    ***********************************-->
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

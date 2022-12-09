@@ -54,11 +54,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>회원 관리</title>
 		<style>		
@@ -78,7 +74,7 @@
 		<div class="container-fluid">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			<div class="mt-4 p-5 bg-light text-white">
-				<h1><label>회원 관리</label></h1>
+				<h1>회원 관리</h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
@@ -90,14 +86,14 @@
 							<table class="table table-bordered table-hover">
 								<thead class="thead-light">
 									<tr>
-										<th class="col-sm-1"><label>회원 번호</label></th>
-										<th class="col-sm-2"><label>회원 ID</label></th>
-										<th class="col-sm-1"><label>회원 레벨</label></th>
-										<th class="col-sm-2"><label>회원 이름</label></th>
-										<th class="col-sm-2"><label>최신 수정일</label></th>
-										<th class="col-sm-2"><label>가입일자</label></th>
-										<th class="col-sm-1"><label>레벨 수정</label></th>
-										<th class="col-sm-1"><label>탈퇴</label></th>
+										<th class="col-sm-1">회원 번호</th>
+										<th class="col-sm-2">회원 ID</th>
+										<th class="col-sm-1">회원 레벨</th>
+										<th class="col-sm-2">회원 이름</th>
+										<th class="col-sm-2">최신 수정일</th>
+										<th class="col-sm-2">가입일자</th>
+										<th class="col-sm-1">레벨 수정</th>
+										<th class="col-sm-1">탈퇴</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -105,12 +101,12 @@
 										for(Member m : memberList) {
 									%>
 											<tr>
-												<td class="col-sm-1"><label><%=m.getMemberNo() %></label></td>
-												<td  class="col-sm-2"><label><%=m.getMemberId() %></label></td>
-												<td class="col-sm-1"><label><%=m.getMemberLevel() %></label></td>
-												<td  class="col-sm-2"><label><%=m.getMemberName() %></label></td>
-												<td  class="col-sm-2"><label><%=m.getUpdatedate() %></label></td>
-												<td  class="col-sm-2"><label><%=m.getCreatedate() %></label></td>
+												<td class="col-sm-1"><%=m.getMemberNo() %></td>
+												<td  class="col-sm-2"><%=m.getMemberId() %></td>
+												<td class="col-sm-1"><%=m.getMemberLevel() %></td>
+												<td  class="col-sm-2"><%=m.getMemberName() %></td>
+												<td  class="col-sm-2"><%=m.getUpdatedate() %></td>
+												<td  class="col-sm-2"><%=m.getCreatedate() %></td>
 												<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-primary btn-sm">수정</a></td>
 												<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-danger btn-sm">탈퇴</a></td>
 											</tr>
@@ -182,6 +178,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>	
 	</body>
 </html>

@@ -55,11 +55,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="<%=request.getContextPath() %>/css/css/style.css" rel="stylesheet">
 		<title>Notice</title>
 		
@@ -80,7 +76,7 @@
 		<div class="container-fluid"> 
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			<div class="mt-4 p-5 bg-light text-white">
-				<h1><label>공지사항</label></h1>
+				<h1>공지사항</h1>
 			</div>
 			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
@@ -92,11 +88,11 @@
 							<table class="table table-bordered text-center table-hover">
 								<thead class="thead-light">
 									<tr>
-										<th class="col-sm-1"><label>번호</label></th>
-										<th class="col-sm-7"><label>공지사항 내용</label></th>
-										<th class="col-sm-2"><label>게시일</label></th>
-										<th class="col-sm-1"><label>수정</label></th>
-										<th class="col-sm-1"><label>삭제</label></th>
+										<th class="col-sm-1">번호</th>
+										<th class="col-sm-7">공지사항 내용</th>
+										<th class="col-sm-2">게시일</th>
+										<th class="col-sm-1">수정</th>
+										<th class="col-sm-1">삭제</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -104,9 +100,9 @@
 									for(Notice n : list) {
 								%>
 										<tr>
-											<td class="col-sm-1"><label><%=n.getNoticeNo() %></label></td>
-											<td class="col-sm-7"><label><%=n.getNoticeMemo() %></label></td>
-											<td class="col-sm-2"><label><%=n.getCreatedate() %></label></td>
+											<td class="col-sm-1"><%=n.getNoticeNo() %></td>
+											<td class="col-sm-7"><%=n.getNoticeMemo() %></td>
+											<td class="col-sm-2"><%=n.getCreatedate() %></td>
 											<td class="col-sm-1">
 												<a href="<%=request.getContextPath()%>/admin/notice/updateNoticeForm.jsp?noticeNo=<%=n.getNoticeNo()%>" class="btn btn-primary btn-sm">
 													수정
@@ -191,6 +187,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<jsp:include page="/inc/footer.jsp"></jsp:include>	
 	</body>
 </html>
