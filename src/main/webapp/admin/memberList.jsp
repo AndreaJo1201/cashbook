@@ -71,108 +71,117 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-light text-white">
-				<h1>회원 관리</h1>
-			</div>
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="table-reponsiove container-fluid">
-				<div class="mt-2 p-2">
-					<!-- memberList contents... -->
-					<div class="card">
-						<div class="card-body">
-							<table class="table table-bordered table-hover">
-								<thead class="thead-light">
-									<tr>
-										<th class="col-sm-1">회원 번호</th>
-										<th class="col-sm-2">회원 ID</th>
-										<th class="col-sm-1">회원 레벨</th>
-										<th class="col-sm-2">회원 이름</th>
-										<th class="col-sm-2">최신 수정일</th>
-										<th class="col-sm-2">가입일자</th>
-										<th class="col-sm-1">레벨 수정</th>
-										<th class="col-sm-1">탈퇴</th>
-									</tr>
-								</thead>
-								<tbody>
-									<%
-										for(Member m : memberList) {
-									%>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>회원 관리</h1>
+							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
+						</div>
+					</div>
+			
+					<div class="table-reponsiove container-fluid">
+						<div class="mt-2 p-2">
+							<!-- memberList contents... -->
+							<div class="card">
+								<div class="card-body">
+									<table class="table table-bordered table-hover">
+										<thead class="thead-light">
 											<tr>
-												<td class="col-sm-1"><%=m.getMemberNo() %></td>
-												<td  class="col-sm-2"><%=m.getMemberId() %></td>
-												<td class="col-sm-1"><%=m.getMemberLevel() %></td>
-												<td  class="col-sm-2"><%=m.getMemberName() %></td>
-												<td  class="col-sm-2"><%=m.getUpdatedate() %></td>
-												<td  class="col-sm-2"><%=m.getCreatedate() %></td>
-												<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-primary btn-sm">수정</a></td>
-												<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-danger btn-sm">탈퇴</a></td>
+												<th class="col-sm-1">회원 번호</th>
+												<th class="col-sm-2">회원 ID</th>
+												<th class="col-sm-1">회원 레벨</th>
+												<th class="col-sm-2">회원 이름</th>
+												<th class="col-sm-2">최신 수정일</th>
+												<th class="col-sm-2">가입일자</th>
+												<th class="col-sm-1">레벨 수정</th>
+												<th class="col-sm-1">탈퇴</th>
 											</tr>
-									<%		
-										}
-									%>
-								</tbody>
-							</table>
-							<div class="text-center">
-								<ul class="pagination justify-content-center">				
-									<li class="page-item">
-										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1" class="page-link">처음</a>
-									</li>
-									<%
-										if(currentPage > 1){
-									%>
-											<li class="page-item">
-												<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
-											</li>
-									<%
-										}
-										if(endPage <= lastPage) {
-											for(int i=beginPage; i<=endPage; i++){
-												if(currentPage == i){
-												%>
-													<li class="page-item active">
-														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-												<%		
-												}else{
-												%>
-													<li class="page-item">
-														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-												<%	
+										</thead>
+										<tbody>
+											<%
+												for(Member m : memberList) {
+											%>
+													<tr>
+														<td class="col-sm-1"><%=m.getMemberNo() %></td>
+														<td  class="col-sm-2"><%=m.getMemberId() %></td>
+														<td class="col-sm-1"><%=m.getMemberLevel() %></td>
+														<td  class="col-sm-2"><%=m.getMemberName() %></td>
+														<td  class="col-sm-2"><%=m.getUpdatedate() %></td>
+														<td  class="col-sm-2"><%=m.getCreatedate() %></td>
+														<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-primary btn-sm">수정</a></td>
+														<td class="col-sm-1"><a href="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminForm.jsp?memberId=<%=m.getMemberId()%>" class="btn btn-danger btn-sm">탈퇴</a></td>
+													</tr>
+											<%		
 												}
-											}
-										} else if(endPage > lastPage) {
-											for(int i=beginPage; i<=lastPage; i++) {
-												if(currentPage == i) {
-									%>
-													<li class="page-item active">
-														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-									<%				
-												} else {
-									%>
-													<li class="page-item">
-														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-									<%				
-												}
-											}
-										}
-										if(currentPage < lastPage){
-									%>
+											%>
+										</tbody>
+									</table>
+									<div class="text-center">
+										<ul class="pagination justify-content-center">				
 											<li class="page-item">
-												<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+												<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=1" class="page-link">처음</a>
 											</li>
-									<%
-										}
-									%>
-									<li class="page-item">
-										<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
-									</li>
-								</ul>
+											<%
+												if(currentPage > 1){
+											%>
+													<li class="page-item">
+														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
+													</li>
+											<%
+												}
+												if(endPage <= lastPage) {
+													for(int i=beginPage; i<=endPage; i++){
+														if(currentPage == i){
+														%>
+															<li class="page-item active">
+																<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+														<%		
+														}else{
+														%>
+															<li class="page-item">
+																<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+														<%	
+														}
+													}
+												} else if(endPage > lastPage) {
+													for(int i=beginPage; i<=lastPage; i++) {
+														if(currentPage == i) {
+											%>
+															<li class="page-item active">
+																<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+											<%				
+														} else {
+											%>
+															<li class="page-item">
+																<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+											<%				
+														}
+													}
+												}
+												if(currentPage < lastPage){
+											%>
+													<li class="page-item">
+														<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+													</li>
+											<%
+												}
+											%>
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/admin/memberList.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
+											</li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

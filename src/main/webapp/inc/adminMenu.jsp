@@ -6,7 +6,7 @@
 %>
 
 <nav class="navbar navbar-expand bg-dark navbar-dark">
-	<div class="container-fluid d-flex justify-content-around">
+	<div class="container d-flex justify-content-around">
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link" href ="<%=request.getContextPath()%>/admin/adminMain.jsp">[메인 페이지]</a>

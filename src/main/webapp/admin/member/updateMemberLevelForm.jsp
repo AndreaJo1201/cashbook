@@ -49,61 +49,70 @@
 	</head>
 	
 	<body>
-		<div class="container-fluid">
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-light text-white">
-				<h1>회원 레벨 수정</h1>
-			</div>
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="table-reponsive container-fluid">
-				<div class="mt-2 p-2">
-					<div class="card">
-						<div class="card-body">
-							<form action="<%=request.getContextPath()%>/admin/member/updateMemberLevelAction.jsp" method="post" id="form">
-								<table class="table table-boredered table-hover">
-									<thead class="thead-light">
-										<tr>
-											<th colspan="2" class="col-sm-12">회원 내역</th> 
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="text-center col-sm-4"><span><strong>회원ID</strong></span></td>
-											<td class="col-sm-8"><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
-										</tr>
-										<tr>
-											<td class="text-center col-sm-4"><span><strong>회원닉네임</strong></span></td>
-											<td class="col-sm-8"><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
-										</tr>
-										<tr>
-											<td class="text-center col-sm-4"><strong>회원 레벨</strong></td>
-											<td class="col-sm-8">
-												<%
-													if(member.getMemberLevel() == 1) {
-												%>
-														<input type="radio" name ="memberLevel" value="0"><span class="p-2"><strong>일반회원</strong></span>
-														<input type="radio" name ="memberLevel" value="1" checked="checked"><span class="p-2"><label><strong>관리자</strong></label></span>
-												<%
-													} else {
-												%>
-														<input type="radio" name ="memberLevel" value="0" checked="checked"><span class="p-2"><strong>일반회원</strong></span>
-														<input type="radio" name ="memberLevel" value="1"><span class="p-2"><strong>관리자</strong></span>
-												<%
-													}
-												%>
-												
-											</td>
-										</tr>
-									</tbody>		
-								</table>
-								<input type="hidden" name="memberNo" value="<%=member.getMemberNo()%>">
-							</form>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>회원 레벨 수정</h1>
+							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 						</div>
-					</div>				
-					<div class="d-flex justify-content-between">
-						<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-						<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
+					</div>
+			
+					<div class="table-reponsive container-fluid">
+						<div class="mt-2 p-2">
+							<div class="card">
+								<div class="card-body">
+									<form action="<%=request.getContextPath()%>/admin/member/updateMemberLevelAction.jsp" method="post" id="form">
+										<table class="table table-boredered table-hover">
+											<thead class="thead-light">
+												<tr>
+													<th colspan="2" class="col-sm-12">회원 내역</th> 
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center col-sm-4"><span><strong>회원ID</strong></span></td>
+													<td class="col-sm-8"><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
+												</tr>
+												<tr>
+													<td class="text-center col-sm-4"><span><strong>회원닉네임</strong></span></td>
+													<td class="col-sm-8"><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
+												</tr>
+												<tr>
+													<td class="text-center col-sm-4"><strong>회원 레벨</strong></td>
+													<td class="col-sm-8">
+														<%
+															if(member.getMemberLevel() == 1) {
+														%>
+																<input type="radio" name ="memberLevel" value="0"><span class="p-2"><strong>일반회원</strong></span>
+																<input type="radio" name ="memberLevel" value="1" checked="checked"><span class="p-2"><label><strong>관리자</strong></label></span>
+														<%
+															} else {
+														%>
+																<input type="radio" name ="memberLevel" value="0" checked="checked"><span class="p-2"><strong>일반회원</strong></span>
+																<input type="radio" name ="memberLevel" value="1"><span class="p-2"><strong>관리자</strong></span>
+														<%
+															}
+														%>
+														
+													</td>
+												</tr>
+											</tbody>		
+										</table>
+										<input type="hidden" name="memberNo" value="<%=member.getMemberNo()%>">
+									</form>
+								</div>
+							</div>				
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

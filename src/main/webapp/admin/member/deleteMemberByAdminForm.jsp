@@ -48,52 +48,61 @@
 	</head>
 	
 	<body>
-		<div class="container-fluid">
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-danger text-white">
-				<h1>회원 강제 탈퇴</h1>
-			</div>
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="table-responsive container-fluid">
-				<div class="mt-2 p-2">
-					<div class="card">
-						<div class="card-body">
-							<form action="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminAction.jsp" method="post" id="form">
-								<table class="table table-bordered table-hover">
-									<thead class="thead-light">
-										<tr>
-											<th colspan="2">회원 내역</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="text-center"><span><strong>회원번호</strong></span></td>
-											<td><input type="text" name="memberNo" value="<%=member.getMemberNo() %>" readonly="readonly"></td>
-										</tr>
-									
-										<tr>
-											<td class="text-center"><span><strong>회원ID</strong></span></td>
-											<td><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
-										</tr>
-										<tr>
-											<td class="text-center"><span><strong>회원닉네임</strong></span></td>
-											<td><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
-										</tr>
-										<tr>
-											<td class="text-center"><span><strong>회원 레벨</strong></span></td>
-											<td>
-												<input type="text" name="memberLevel" value="<%=member.getMemberLevel() %>" readonly="readonly">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>회원 강제 탈퇴</h1>
+							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 						</div>
 					</div>
-					<div class="d-flex justify-content-between">
-						<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-						<button type="submit" class="btn btn-sm btn-outline-danger" form="form">회원추방</button>
+			
+					<div class="table-responsive container-fluid">
+						<div class="mt-2 p-2">
+							<div class="card">
+								<div class="card-body">
+									<form action="<%=request.getContextPath()%>/admin/member/deleteMemberByAdminAction.jsp" method="post" id="form">
+										<table class="table table-bordered table-hover">
+											<thead class="thead-light">
+												<tr>
+													<th colspan="2">회원 내역</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center"><span><strong>회원번호</strong></span></td>
+													<td><input type="text" name="memberNo" value="<%=member.getMemberNo() %>" readonly="readonly"></td>
+												</tr>
+											
+												<tr>
+													<td class="text-center"><span><strong>회원ID</strong></span></td>
+													<td><input type="text" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
+												</tr>
+												<tr>
+													<td class="text-center"><span><strong>회원닉네임</strong></span></td>
+													<td><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
+												</tr>
+												<tr>
+													<td class="text-center"><span><strong>회원 레벨</strong></span></td>
+													<td>
+														<input type="text" name="memberLevel" value="<%=member.getMemberLevel() %>" readonly="readonly">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath() %>/admin/memberList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-sm btn-outline-danger" form="form">회원추방</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

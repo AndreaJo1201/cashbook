@@ -67,143 +67,152 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-light text-white">
-				<h1>문의사항</h1>
-			</div>
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
-			
-			<div class="table-responsive container-fluid">
-				<div class="mt-2 p-2">
-					<div class="card">
-						<div class="card-body">
-							<table class="table table-bordered table-hover">
-								<thead class="thead-light">
-									<tr>
-										<th class="col-sm-1">번호</th>
-										<th class="col-sm-3">문의내용</th>
-										<th class="col-sm-1">작성자</th>
-										<th class="col-sm-2">작성일</th>
-										<th class="col-sm-3">답변내용</th>
-										<th class="col-sm-1">답변일</th>
-										<th class="col-sm-1">답변추가 / 수정 / 삭제</th>				
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-									<%
-										for(HashMap<String,Object> m : list) {
-									%>
-											<td class="col-sm-1"><%=m.get("helpNo") %></td>
-											<td class="col-sm-3"><%=m.get("helpMemo") %></td>
-											<td class="col-sm-1"><%=m.get("memberId") %></td>
-											<td class="col-sm-2"><%=m.get("helpCreateDate") %></td>
-											<td class="col-sm-3">
-												<%
-													if(m.get("commentMemo") == null) {
-												%>
-														<span>답변 미작성</span>
-												<%
-													} else {
-												%>
-														<%=m.get("commentMemo") %>
-												<%
-													}
-												%>
-											</td>
-											<td class="col-sm-1">							
-												<%
-													if(m.get("commentMemo") == null) {
-												%>
-														<span>답변 미작성</span>
-												<%
-													} else {
-												%>
-														<%=m.get("commentCreateDate") %>
-												<%
-													}
-												%></td>
-											<td class="col-sm-1">
-												<%
-													if(m.get("commentMemo") == null) {
-												%>
-														<a href="<%=request.getContextPath()%>/admin/help/insertCommentForm.jsp?helpNo=<%=m.get("helpNo")%>" class="btn btn-outline-primary btn-sm">답변 입력</a>
-												<%
-													} else {
-												%>
-														<a href="<%=request.getContextPath()%>/admin/help/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>" class="btn btn-sm btn-primary">답변 수정</a>
-														<a href="<%=request.getContextPath()%>/admin/help/deleteComment.jsp?commentNo=<%=m.get("commentNo")%>" class="btn btn-sm btn-danger">답변 삭제</a>
-														<!-- 수정 삭제 주소 변경 필요 -->
-												<%
-													}
-												%>
-											</td>
-											</tr><tr>
-									<%
-										}
-									%>
-									</tr>
-								</tbody>
-							</table>
-							<div class="text-center">
-								<ul class="pagination justify-content-center">				
-									<li class="page-item">
-										<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1" class="page-link">처음</a>
-									</li>
-									<%
-										if(currentPage > 1){
-									%>
-											<li class="page-item">
-												<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
-											</li>
-									<%
-										}
-										if(endPage <= lastPage) {
-											for(int i=beginPage; i<=endPage; i++){
-												if(currentPage == i){
-												%>
-													<li class="page-item active">
-														<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-												<%		
-												}else{
-												%>
-													<li class="page-item">
-														<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-												<%	
+		
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>문의내역 관리</h1>
+							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
+						</div>
+					</div>
+				
+					<div class="table-responsive container-fluid">
+						<div class="mt-2 p-2">
+							<div class="card">
+								<div class="card-body">
+									<table class="table table-bordered table-hover">
+										<thead class="thead-light">
+											<tr>
+												<th class="col-sm-1">번호</th>
+												<th class="col-sm-3">문의내용</th>
+												<th class="col-sm-1">작성자</th>
+												<th class="col-sm-2">작성일</th>
+												<th class="col-sm-3">답변내용</th>
+												<th class="col-sm-1">답변일</th>
+												<th class="col-sm-1">답변추가 / 수정 / 삭제</th>				
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+											<%
+												for(HashMap<String,Object> m : list) {
+											%>
+													<td class="col-sm-1"><%=m.get("helpNo") %></td>
+													<td class="col-sm-3"><%=m.get("helpMemo") %></td>
+													<td class="col-sm-1"><%=m.get("memberId") %></td>
+													<td class="col-sm-2"><%=m.get("helpCreateDate") %></td>
+													<td class="col-sm-3">
+														<%
+															if(m.get("commentMemo") == null) {
+														%>
+																<span>답변 미작성</span>
+														<%
+															} else {
+														%>
+																<%=m.get("commentMemo") %>
+														<%
+															}
+														%>
+													</td>
+													<td class="col-sm-1">							
+														<%
+															if(m.get("commentMemo") == null) {
+														%>
+																<span>답변 미작성</span>
+														<%
+															} else {
+														%>
+																<%=m.get("commentCreateDate") %>
+														<%
+															}
+														%></td>
+													<td class="col-sm-1">
+														<%
+															if(m.get("commentMemo") == null) {
+														%>
+																<a href="<%=request.getContextPath()%>/admin/help/insertCommentForm.jsp?helpNo=<%=m.get("helpNo")%>" class="btn btn-outline-primary btn-sm">답변 입력</a>
+														<%
+															} else {
+														%>
+																<a href="<%=request.getContextPath()%>/admin/help/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>" class="btn btn-sm btn-primary">답변 수정</a>
+																<a href="<%=request.getContextPath()%>/admin/help/deleteComment.jsp?commentNo=<%=m.get("commentNo")%>" class="btn btn-sm btn-danger">답변 삭제</a>
+																<!-- 수정 삭제 주소 변경 필요 -->
+														<%
+															}
+														%>
+													</td>
+													</tr><tr>
+											<%
 												}
-											}
-										} else if(endPage > lastPage) {
-											for(int i=beginPage; i<=lastPage; i++) {
-												if(currentPage == i) {
-									%>
-													<li class="page-item active">
-														<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-									<%				
-												} else {
-									%>
-													<li class="page-item">
-														<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
-													</li>
-									<%				
-												}
-											}
-										}
-										if(currentPage < lastPage){
-									%>
+											%>
+											</tr>
+										</tbody>
+									</table>
+									<div class="text-center">
+										<ul class="pagination justify-content-center">				
 											<li class="page-item">
-												<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+												<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1" class="page-link">처음</a>
 											</li>
-									<%
-										}
-									%>
-									<li class="page-item">
-										<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
-									</li>
-								</ul>
+											<%
+												if(currentPage > 1){
+											%>
+													<li class="page-item">
+														<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1%>" class="page-link">이전</a>
+													</li>
+											<%
+												}
+												if(endPage <= lastPage) {
+													for(int i=beginPage; i<=endPage; i++){
+														if(currentPage == i){
+														%>
+															<li class="page-item active">
+																<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+														<%		
+														}else{
+														%>
+															<li class="page-item">
+																<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+														<%	
+														}
+													}
+												} else if(endPage > lastPage) {
+													for(int i=beginPage; i<=lastPage; i++) {
+														if(currentPage == i) {
+											%>
+															<li class="page-item active">
+																<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+											<%				
+														} else {
+											%>
+															<li class="page-item">
+																<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=i%>" class="page-link"><%=i%></a>
+															</li>
+											<%				
+														}
+													}
+												}
+												if(currentPage < lastPage){
+											%>
+													<li class="page-item">
+														<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1%>" class="page-link">다음</a>
+													</li>
+											<%
+												}
+											%>
+											<li class="page-item">
+												<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>" class="page-link">마지막</a>	
+											</li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

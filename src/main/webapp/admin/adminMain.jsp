@@ -75,104 +75,110 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
-		
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
 			
-			<div class="mt-4 p-5 bg-light text-white">
-				<h1>INDEX</h1>
-			</div>
-			
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
-			
-			<div class="table-reponsive container-fluid">
-				<div class="row mt-2 p-2">
-					<!-- adminMain contents... -->
-					<!-- 최근 공지 5,ㅡ 최근 가입 멤버 5 -->
-					<div class="leftcolumn">
-						<div class="card">
-							<div class="card-body">
-								<table class="table table-bordered text-center">
-									<thead class="thead-dark">
-										<tr>
-											<th colspan="3">최신 공지사항</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<%
-												for(Notice n : noticeList) {
-											%>
-														<td><%=n.getNoticeNo() %></td>
-														<td><%=n.getNoticeMemo() %></td>
-														<td><%=n.getCreatedate() %></td>
-													</tr><tr>
-											<%
-												}
-											%>
-										</tr>
-									</tbody>
-								</table>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>INDEX</h1>
 							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 						</div>
 					</div>
-					<div class="rightcolumn">
-						<div class="card">
-							<div class="card-body">
-								<table class="table table-bordered text-center">
-									<thead class="thead-dark">
-										<tr>
-											<th colspan="3">신규 가입회원</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<%
-												for(Member m : memberList) {
-											%>
-														<td><%=m.getMemberNo() %></td>
-														<td><%=m.getMemberName() %></td>
-														<td><%=m.getCreatedate() %></td>
-													</tr><tr>
-											<%
-												}
-											%>
-										</tr>
-									</tbody>
-								</table>
+					
+					<div class="table-reponsive container-fluid">
+						<div class="row mt-2 p-2">
+							<!-- adminMain contents... -->
+							<!-- 최근 공지 5,ㅡ 최근 가입 멤버 5 -->
+							<div class="leftcolumn">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-bordered text-center">
+											<thead class="thead-dark">
+												<tr>
+													<th colspan="3">최신 공지사항</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<%
+														for(Notice n : noticeList) {
+													%>
+																<td><%=n.getNoticeNo() %></td>
+																<td><%=n.getNoticeMemo() %></td>
+																<td><%=n.getCreatedate() %></td>
+															</tr><tr>
+													<%
+														}
+													%>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="rightcolumn">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-bordered text-center">
+											<thead class="thead-dark">
+												<tr>
+													<th colspan="3">신규 가입회원</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<%
+														for(Member m : memberList) {
+													%>
+																<td><%=m.getMemberNo() %></td>
+																<td><%=m.getMemberName() %></td>
+																<td><%=m.getCreatedate() %></td>
+															</tr><tr>
+													<%
+														}
+													%>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="leftcolumn">
+							<div class="card">
+								<div class="card-body">
+									<table class="table table-bordered text-center">
+										<thead class="thead-dark">
+											<tr>
+												<th colspan="3">신규 문의사항</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<%
+													for(HashMap<String,Object> h : helpList) {
+												%>
+															<td class="col-sm-1"><%=h.get("helpNo") %></td>
+															<td class="col-sm-8"><%=h.get("helpMemo") %></td>
+															<td class="col-sm-3"><%=h.get("helpCreateDate") %></td>
+														</tr><tr>
+												<%
+													}
+												%>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="leftcolumn">
-					<div class="card">
-						<div class="card-body">
-							<table class="table table-bordered text-center">
-								<thead class="thead-dark">
-									<tr>
-										<th colspan="3">신규 문의사항</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<%
-											for(HashMap<String,Object> h : helpList) {
-										%>
-													<td class="col-sm-1"><%=h.get("helpNo") %></td>
-													<td class="col-sm-8"><%=h.get("helpMemo") %></td>
-													<td class="col-sm-3"><%=h.get("helpCreateDate") %></td>
-												</tr><tr>
-										<%
-											}
-										%>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
 			</div>
-		</div>
+		</div>	
 		<jsp:include page="/inc/footer.jsp"></jsp:include>
 	</body>
 </html>

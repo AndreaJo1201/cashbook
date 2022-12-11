@@ -74,93 +74,102 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<jsp:include page="/inc/header.jsp"></jsp:include>
+		<div id="main-wrapper">
+		
+		<jsp:include page="/inc/header.jsp"></jsp:include>
 			
-			<div class="mt-4 p-5 bg-light">
-				<h1>세부 내역 수정</h1>
-			</div>
-			
-			<div class="table-reponsive container-fluid">
-				<div class="mt-4">
-					<div class="card">
-						<div class="card-body">
-							<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
-								<table class="table table-bordered">
-									<thead class="thead-light">
-										<tr>
-											<th colspan="2" class="text-center col-sm-12">수정 내역</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="text-center col-sm-1"><strong>분류</strong></td>
-											<td class="text-start col-sm-11">
-												<select name="categoryNo">
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="card mt-2">
+							<div class="card-body p-5 mt-4 text-dark">
+								<h1>세부 내역 수정</h1>
+							</div>
+						</div>
+					</div>
+				
+					<div class="table-reponsive container-fluid">
+						<div class="mt-4">
+							<div class="card">
+								<div class="card-body">
+									<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
+										<table class="table table-bordered">
+											<thead class="thead-light">
+												<tr>
+													<th colspan="2" class="text-center col-sm-12">수정 내역</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center col-sm-1"><strong>분류</strong></td>
+													<td class="text-start col-sm-11">
+														<select name="categoryNo">
+															<%
+																//category 목록 출력
+																for(Category c : categoryList) {
+															%>
+																	<option value="<%=c.getCategoryNo()%>">
+																		<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
+																	</option>
+															<%
+																}
+															%>
+														</select>
+													</td>
+												</tr>
+												
+												<tr>
+													<td class="text-center col-sm-1"><strong>일자</strong></td>
 													<%
-														//category 목록 출력
-														for(Category c : categoryList) {
+														if(date < 10) {
 													%>
-															<option value="<%=c.getCategoryNo()%>">
-																<%=c.getCategoryKind()%>/<%=c.getCategoryName()%>
-															</option>
+															<td class="text-start col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
+													<%
+														} else {
+													%>
+															<td class="text-start col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
 													<%
 														}
 													%>
-												</select>
-											</td>
-										</tr>
-										
-										<tr>
-											<td class="text-center col-sm-1"><strong>일자</strong></td>
-											<%
-												if(date < 10) {
-											%>
-													<td class="text-start col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-0<%=date%>" readonly="readonly"></td>
-											<%
-												} else {
-											%>
-													<td class="text-start col-sm-11"><input type="text" name="cashDate" value="<%=year%>-<%=month+1%>-<%=date%>" readonly="readonly"></td>
-											<%
-												}
-											%>
-										</tr>
-										
-										<tr>
-											<td class="text-center col-sm-1"><strong>금액</strong></td>
-											<td class="text-start col-sm-11"><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0[^.]/, '0');"></td>
-										</tr>
-										
-										<tr>
-											<td class="text-center col-sm-1"><strong>메모</strong></td>
-											<td class="col-sm-11"><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
-										</tr>
-									</tbody>
-								</table>
-								<input type="hidden" name="cashNo" value="<%=cashData.getCashNo()%>">
-								<input type="hidden" name="year" value="<%=year %>">
-								<input type="hidden" name="month" value="<%=month %>">
-								<input type="hidden" name="date" value="<%=date %>">
-								<%
-					             	if(request.getParameter("msg") != null) {
-					             %>
-					             		<div class="alert alert-danger mt-1 alert-dismissible">
-					             			<%=request.getParameter("msg") %>
-					             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-					             		</div>
-					             <%
-					             	}
-					             %>
-								<div class="d-grid">
-									<button type="submit" class="btn btn-primary btn-block">업데이트</button>
+												</tr>
+												
+												<tr>
+													<td class="text-center col-sm-1"><strong>금액</strong></td>
+													<td class="text-start col-sm-11"><input type="text" name="cashPrice" value="<%=cashData.getCashPrice()%>" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0[^.]/, '0');"></td>
+												</tr>
+												
+												<tr>
+													<td class="text-center col-sm-1"><strong>메모</strong></td>
+													<td class="col-sm-11"><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
+												</tr>
+											</tbody>
+										</table>
+										<input type="hidden" name="cashNo" value="<%=cashData.getCashNo()%>">
+										<input type="hidden" name="year" value="<%=year %>">
+										<input type="hidden" name="month" value="<%=month %>">
+										<input type="hidden" name="date" value="<%=date %>">
+										<%
+							             	if(request.getParameter("msg") != null) {
+							             %>
+							             		<div class="alert alert-danger mt-1 alert-dismissible">
+							             			<%=request.getParameter("msg") %>
+							             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+							             		</div>
+							             <%
+							             	}
+							             %>
+										<div class="d-grid">
+											<button type="submit" class="btn btn-primary btn-block">업데이트</button>
+										</div>
+									</form>
 								</div>
-							</form>
+							</div>
+						</div>
+						<div class="mt-2 p-2 text-end">
+							<span><a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date %>" class="btn btn-sm btn-dark">뒤로가기</a></span>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="mt-2 p-2 text-end">
-				<span><a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date %>" class="btn btn-sm btn-dark">뒤로가기</a></span>
 			</div>
 		</div>
 		<jsp:include page="/inc/footer.jsp"></jsp:include>

@@ -57,66 +57,75 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-light text-white">
-				<h1>문의사항 답변 수정</h1>
-			</div>
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="table-responsive container-fluid">
-				<div class="mt-4">
-					<div class="card">
-						<div class="card-body">
-							<table class="table table-bordered table-hover">
-								<thead class="thead-light">
-									<tr>
-										<th colspan="2" class="col-sm-12 table-dark">수정 전 내용</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="col-sm-1 text-center"><strong>내용</strong></td>
-										<td class="col-sm-11"><p><%=comment.getCommentMemo() %></p></td>
-									</tr>
-									<tr>
-										<td class="col-sm-1 text-center"><label><strong>작성일</strong></label></td>
-										<td class="col-sm-11"><%=comment.getCreatedate() %></td>
-									</tr>
-									<tr>
-										<td class="col-sm-1 text-center"><strong>수정일</strong></td>
-										<td class="col-sm-11"><%=comment.getUpdatedate() %></td>
-									</tr>
-								</tbody>
-							</table>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>문의사항 답변 수정</h1>
+							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 						</div>
 					</div>
-				</div>
-				
-				<div class="mt-2 p-2">
-					<div class="card">
-						<div class="card-body">
-							<form action="<%=request.getContextPath()%>/admin/help/updateCommentAction.jsp" method="post" id="form">
-								<table class="table table-bordered">
-									<thead class="thead-light">
-										<tr>
-											<th colspan="2" class="col-sm-12">수정 사항</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="col-sm-1 text-center"><strong>내용</strong></td>
-											<td class="col-sm-11"><textarea name="commentMemo" placeholder="수정할 내용을 입력해주세요."></textarea></td>
-										</tr>
-									</tbody>
-								</table>
-								<input type="hidden" name="commentNo" value="<%=comment.getCommentNo() %>">
-							</form>
+			
+					<div class="table-responsive container-fluid">
+						<div class="mt-4">
+							<div class="card">
+								<div class="card-body">
+									<table class="table table-bordered table-hover">
+										<thead class="thead-light">
+											<tr>
+												<th colspan="2" class="col-sm-12 table-dark">수정 전 내용</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="col-sm-1 text-center"><strong>내용</strong></td>
+												<td class="col-sm-11"><p><%=comment.getCommentMemo() %></p></td>
+											</tr>
+											<tr>
+												<td class="col-sm-1 text-center"><label><strong>작성일</strong></label></td>
+												<td class="col-sm-11"><%=comment.getCreatedate() %></td>
+											</tr>
+											<tr>
+												<td class="col-sm-1 text-center"><strong>수정일</strong></td>
+												<td class="col-sm-11"><%=comment.getUpdatedate() %></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="d-flex justify-content-between">
-						<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-						<button type="submit" class="btn btn-sm btn-outline-success" form="form">수정</button>
+						
+						<div class="mt-2 p-2">
+							<div class="card">
+								<div class="card-body">
+									<form action="<%=request.getContextPath()%>/admin/help/updateCommentAction.jsp" method="post" id="form">
+										<table class="table table-bordered">
+											<thead class="thead-light">
+												<tr>
+													<th colspan="2" class="col-sm-12">수정 사항</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="col-sm-1 text-center"><strong>내용</strong></td>
+													<td class="col-sm-11"><textarea name="commentMemo" placeholder="수정할 내용을 입력해주세요."></textarea></td>
+												</tr>
+											</tbody>
+										</table>
+										<input type="hidden" name="commentNo" value="<%=comment.getCommentNo() %>">
+									</form>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-sm btn-outline-success" form="form">수정</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

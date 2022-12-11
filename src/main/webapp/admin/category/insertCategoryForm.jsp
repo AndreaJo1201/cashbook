@@ -36,44 +36,53 @@
 	</head>
 
 	<body>
-		<div class="container-fluid">
+		<div id="main-wrapper">
 			<jsp:include page="/inc/header.jsp"></jsp:include>
-			<div class="mt-4 p-5 bg-light text-white">
-				<h1>카테고리 추가</h1>
-			</div>
-			<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 			
-			<div class="table-responsive container-fluid">
-				<div class="mt-2 p-2">
-					<div class="card">
-						<div class="card-body">
-							<form action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp" method="post" id="form">
-								<table class="table table-bordered">
-									<thead class="thead-light">
-										<tr>
-											<th class="col-sm-12" colspan="2">카테고리 추가</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="col-sm-2 text-center"><strong>카테고리 종류</strong></td>
-											<td class="col-sm-10">
-												<input type="radio" name="categoryKind" value="수입">수입
-												<input type="radio" name="categoryKind" value="지출">지출
-											</td>
-										</tr>
-										<tr>
-											<td class="col-sm-2 text-center"><strong>카테고리 이름</strong></td>
-											<td class="col-sm-10"><input type="text" name="categoryName" placeholder="카테고리 이름을 입력해주세요." class="NameCategory"></td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
+			<div class="content-body">
+				<div class="container-fluid table-responsive mt-2">
+					<div class="container-fluid">
+						<div class="mt-2 card">
+							<div class="mt-4 p-5 card-body">
+								<h1>카테고리 추가</h1>
+							</div>
+							<jsp:include page="/inc/adminMenu.jsp"></jsp:include>
 						</div>
 					</div>
-					<div class="d-flex justify-content-between">
-						<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
-						<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
+			
+					<div class="table-responsive container-fluid">
+						<div class="mt-2 p-2">
+							<div class="card">
+								<div class="card-body">
+									<form action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp" method="post" id="form">
+										<table class="table table-bordered">
+											<thead class="thead-light">
+												<tr>
+													<th class="col-sm-12" colspan="2">카테고리 추가</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="col-sm-2 text-center"><strong>카테고리 종류</strong></td>
+													<td class="col-sm-10">
+														<input type="radio" name="categoryKind" value="수입">수입
+														<input type="radio" name="categoryKind" value="지출">지출
+													</td>
+												</tr>
+												<tr>
+													<td class="col-sm-2 text-center"><strong>카테고리 이름</strong></td>
+													<td class="col-sm-10"><input type="text" name="categoryName" placeholder="카테고리 이름을 입력해주세요." class="NameCategory"></td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between">
+								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-dark btn-sm">뒤로가기</a>
+								<button type="submit" class="btn btn-sm btn-outline-secondary" form="form">수정</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
