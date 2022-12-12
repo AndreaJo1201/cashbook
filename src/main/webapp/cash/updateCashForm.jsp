@@ -149,15 +149,17 @@
 										<input type="hidden" name="month" value="<%=month %>">
 										<input type="hidden" name="date" value="<%=date %>">
 										<%
-							             	if(request.getParameter("msg") != null) {
-							             %>
-							             		<div class="alert alert-danger mt-1 alert-dismissible">
-							             			<%=request.getParameter("msg") %>
-							             			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-							             		</div>
-							             <%
-							             	}
-							             %>
+											if(request.getParameter("msg") != null) {
+										%>
+												<div class="alert alert-danger mt-1 alert-dismissible fade show">
+													<%=request.getParameter("msg") %>
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+										<%
+											}
+										%>
 										<div class="d-grid">
 											<button type="submit" class="btn btn-primary btn-block">업데이트</button>
 										</div>

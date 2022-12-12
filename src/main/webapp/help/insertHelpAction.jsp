@@ -12,12 +12,6 @@
 		return;
 	}
 	
-	if(request.getParameter("msg") != null) {
-		String msg = request.getParameter("msg");
-		out.println("<script>alert('"+msg+"');</script>");
-		msg = null;
-	}
-	
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	String memberId = loginMember.getMemberId();
 	

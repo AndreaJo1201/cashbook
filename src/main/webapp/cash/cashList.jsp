@@ -103,6 +103,18 @@
 		<jsp:include page="/inc/header.jsp"></jsp:include>
 		
 		<div class="content-body">
+			<%
+				if(request.getParameter("msg") != null) {
+			%>
+					<div class="alert alert-danger mt-1 alert-dismissible fade show">
+						<%=request.getParameter("msg") %>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+			<%
+				}
+			%>
 			<div class="container-fluid table-responsive mt-2">
 				<div class="card">
 					<div class="card-body">
@@ -110,9 +122,9 @@
 							<thead>
 							<tr class="text-center table-dark">
 								<th colspan="7">
-									<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-success btn-sm">&#8701; 이전달</a></span>
+									<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-primary btn-sm">&#8701; 이전달</a></span>
 									<span class="col-sm-2"><%=year %>년 <%=month+1 %>월</span>
-									<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-success btn-sm">다음달 &#8702;</a></span>
+									<span class="col-sm-5"><a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-primary btn-sm">다음달 &#8702;</a></span>
 								</th>
 							</tr>
 							<tr class="table-light">

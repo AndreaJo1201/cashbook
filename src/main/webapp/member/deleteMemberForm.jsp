@@ -45,16 +45,18 @@
 												<input type="password" class="form-control" placeholder="Password Check" name="memberPwCheck">
 											</div>
 											<button type="submit" class="btn login-form__btn submit w-100" style="background-color:red">Unregister</button>
-											<%
-												if(request.getParameter("msg") != null) {
-											%>
-											<div class="alert alert-danger mt-1 alert-dismissible">
-												<%=request.getParameter("msg") %>
-												<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-											</div>
-											<%
-												}
-											%>
+		                                    <%
+		                                    	if(request.getParameter("msg") != null) {
+		                                    %>
+		                                    		<div class="alert alert-danger mt-1 alert-dismissible fade show">
+		                                    			<%=request.getParameter("msg") %>
+														<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+		                                    		</div>
+		                                    <%
+		                                    	}
+		                                    %>
 										</form>
 									</div>
 								</div>
