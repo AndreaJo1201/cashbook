@@ -78,6 +78,10 @@
 	CashDao cashDao = new CashDao();
 	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMont(year, month+1, memberId); // cashDao.java 참조
 	
+	ArrayList<HashMap<String, Object>> IEList = cashDao.selectImportExportListByYear(year, memberId);
+	
+	ArrayList<HashMap<String,Object>> IEListYear = cashDao.selectImportExportListByYear(memberId);
+	
 	
 	/*************************************************************************************************************/
 	//View : 달력출력 + 일별 cash 목록
@@ -183,11 +187,11 @@
 															<br>
 												<%
 															if(m.get("categoryKind").equals("수입")) {
-																totalCash = totalCash + (Long)m.get("cashPrice");
-																importCash = importCash + (Long)m.get("cashPrice");
+																totalCash = totalCash + (long)m.get("cashPrice");
+																importCash = importCash + (long)m.get("cashPrice");
 															} else if(m.get("categoryKind").equals("지출")) {
-																totalCash = totalCash - (Long)m.get("cashPrice");
-																expenseCash = expenseCash - (Long)m.get("cashPrice");
+																totalCash = totalCash - (long)m.get("cashPrice");
+																expenseCash = expenseCash - (long)m.get("cashPrice");
 															}
 														}
 													}

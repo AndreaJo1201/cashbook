@@ -51,6 +51,15 @@
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">CashBook</span>
                         </a>
                 	</li>
+      				<li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i><span class="nav-text">통계</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="<%=request.getContextPath()%>/cash/cashIEListByYear.jsp">연도별 통계</a></li>
+                            <li><a href="<%=request.getContextPath()%>/cash/cashIEListByMonth.jsp">월별 통계</a></li>
+                        </ul>
+					</li>
 					<li>
 						<%
 							if(loginMember.getMemberLevel() < 1) {
