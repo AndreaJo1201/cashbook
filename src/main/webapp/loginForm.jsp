@@ -150,14 +150,14 @@
 	                        <div class="card login-form mb-0">
 	                            <div class="card-body pt-5">
 	                                <a class="text-center" href="<%=request.getContextPath()%>/loginForm.jsp"><h1>CASH BOOK</h1></a>
-	                                <form class="mt-5 mb-5 login-input" action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
+	                                <form class="mt-5 mb-5 login-input" action="<%=request.getContextPath()%>/loginAction.jsp" method="post" id="loginForm">
 	                                    <div class="form-group">
-	                                        <input type="text" class="form-control" placeholder="ID" name="memberId">
+	                                        <input type="text" class="form-control" placeholder="ID" name="memberId" id="id">
 	                                    </div>
 	                                    <div class="form-group">
-	                                        <input type="password" class="form-control" placeholder="Password" name="memberPw">
+	                                        <input type="password" class="form-control" placeholder="Password" name="memberPw" id="pw">
 	                                    </div>
-	                                    <button type="submit" class="btn login-form__btn submit w-100">Sign In</button>
+	                                    <button type="button" class="btn login-form__btn submit w-100" id="loginSubmitBtn">Sign In</button>
 	                                    <%
 	                                    	if(request.getParameter("msg") != null) {
 	                                    %>
@@ -185,5 +185,6 @@
         Scripts
     ***********************************-->
 	<jsp:include page="/inc/footer.jsp"></jsp:include>
+	<script src="<%=request.getContextPath()%>/inc/js/insertNone.js"></script>
 	</body>
 </html>
