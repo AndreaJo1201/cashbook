@@ -185,6 +185,6 @@
         Scripts
     ***********************************-->
 	<jsp:include page="/inc/footer.jsp"></jsp:include>
-	<script src="<%=request.getContextPath()%>/inc/js/insertNone.js"></script>
+	<script src="<%=request.getContextPath()%>/inc/js/loginForm.js"></script>
 	</body>
 </html>
