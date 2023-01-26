@@ -107,7 +107,7 @@ public class HelpDao {
 		
 		
 		try {
-			String sql = "SELECT h.*, c.* FROM HELP h LEFT OUTER JOIN COMMENT c ON h.help_no = c.help_no ORDER BY h.help_no DESC LIMIT ?, ?";
+			String sql = "SELECT h.*, c.* FROM help h LEFT OUTER JOIN comment c ON h.help_no = c.help_no ORDER BY h.help_no DESC LIMIT ?, ?";
 			
 			dbUtil = new DBUtil();
 			
