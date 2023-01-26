@@ -152,10 +152,10 @@
 	                                <a class="text-center" href="<%=request.getContextPath()%>/loginForm.jsp"><h1>CASH BOOK</h1></a>
 	                                <form class="mt-5 mb-5 login-input" action="<%=request.getContextPath()%>/loginAction.jsp" method="post" id="loginForm">
 	                                    <div class="form-group">
-	                                        <input type="text" class="form-control" placeholder="ID" name="memberId" id="id">
+	                                        <input type="text" class="form-control" placeholder="ID" name="memberId" id="id" value="test">
 	                                    </div>
 	                                    <div class="form-group">
-	                                        <input type="password" class="form-control" placeholder="Password" name="memberPw" id="pw">
+	                                        <input type="password" class="form-control" placeholder="Password" name="memberPw" id="pw" value="1234">
 	                                    </div>
 	                                    <button type="button" class="btn login-form__btn submit w-100" id="loginSubmitBtn">Sign In</button>
 	                                    <%

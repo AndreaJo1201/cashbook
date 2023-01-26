@@ -57,7 +57,7 @@ public class HelpDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT h.*, c.* FROM HELP h LEFT OUTER JOIN COMMENT c ON h.help_no = c.help_no WHERE h.member_id = ? ORDER BY h.help_no DESC";
+			String sql = "SELECT h.*, c.* FROM help h LEFT OUTER JOIN comment c ON h.help_no = c.help_no WHERE h.member_id = ? ORDER BY h.help_no DESC";
 			
 			dbUtil = new DBUtil();
 			
